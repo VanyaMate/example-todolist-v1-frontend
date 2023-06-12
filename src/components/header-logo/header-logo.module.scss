@@ -1,0 +1,12 @@
+@import "src/styles/colors";
+
+.container {
+    font-size: 24px;
+
+    &.dark {
+        color: $white;
+    }
+    &.white {
+        color: $darkBlack;
+    }
+}

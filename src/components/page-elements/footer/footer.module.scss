@@ -1,0 +1,19 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    padding: $smallOffset;
+    font-size: 10px;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    justify-content: center;
+    color: $gray;
+
+    .link {
+        color: $gray;
+
+        &:hover {
+            color: $markBlueLight;
+        }
+    }
+}

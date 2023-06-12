@@ -1,0 +1,27 @@
+@import "src/styles/sizes";
+@import "src/styles/colors";
+
+.container {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+
+    &.dark {
+        background: $darkBlack;
+        color: $white;
+    }
+    &.white {
+        background: $white;
+        color: $darkBlack;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        width: $contentWidth;
+        max-width: calc(100vw - #{$mediumOffset} * 2);
+    }
+}

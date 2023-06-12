@@ -1,0 +1,26 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    cursor: pointer;
+    padding: $smallOffset;
+    border-radius: $smallOffset;
+
+    &.dark {
+        color: $white;
+        background: $darkBlack;
+
+        &:hover {
+            background: lighten($darkBlack, 3);
+        }
+    }
+
+    &.white {
+        color: $darkBlack;
+        background: $white;
+
+        &:hover {
+            background: lighten($white, 3);
+        }
+    }
+}
