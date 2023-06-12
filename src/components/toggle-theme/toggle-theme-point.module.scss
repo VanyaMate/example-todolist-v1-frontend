@@ -1,0 +1,21 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: $lightGray;
+    border-radius: 50%;
+    top: 4px;
+    left: 50%;
+    transition: .1s;
+
+    &.dark {
+        transform: translateX(-4px);
+        background: $gray;
+    }
+    &.white {
+        transform: translateX(calc(-100% + 4px));
+    }
+}

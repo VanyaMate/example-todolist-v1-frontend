@@ -11,7 +11,7 @@
         background: $darkBlack;
 
         &:hover {
-            background: lighten($darkBlack, 3);
+            background: darken($darkBlack, 3);
         }
     }
 

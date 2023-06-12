@@ -4,4 +4,11 @@
 .container {
     padding: $mediumOffset;
     border-radius: $mediumOffset;
+
+    &.dark {
+        color: $white;
+    }
+    &.white {
+        color: $darkBlack;
+    }
 }
