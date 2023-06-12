@@ -19,7 +19,7 @@ const ToggleTheme = () => {
     }
 
     return (
-        <Button onClick={toggleTheme}>
+        <Button onClick={toggleTheme} active>
             <Theme css={cssContainer}>
                 <Theme css={cssPoint}></Theme>
             </Theme>

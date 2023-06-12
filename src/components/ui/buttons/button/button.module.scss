@@ -7,13 +7,21 @@
     border-radius: $smallOffset;
     display: flex;
     justify-content: center;
+    pointer-events: none;
+    opacity: .6;
+    transition: .1s;
+
+    &.active {
+        pointer-events: auto;
+        opacity: 1;
+    }
 
     &.dark {
         color: $white;
-        background: darken($darkBlack, 4);
+        background: $darkBlack;
 
         &:hover {
-            background: darken($darkBlack, 6);
+            background: darken($darkBlack, 4);
         }
     }
 

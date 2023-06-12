@@ -4,7 +4,7 @@ import {useStore} from "../../../../hooks/redux/use-store.hook";
 import {cn} from "../../../../helpers/react.helper";
 import _css from './input.module.scss';
 
-interface IInputProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     hook: IUseInput<string>,
     css?: { [key: string]: string },
 }

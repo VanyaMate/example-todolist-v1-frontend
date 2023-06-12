@@ -2,17 +2,38 @@ import {useInput} from "../../hooks/use-input.hook";
 import Input from "../ui/inputs/input/input.component";
 import Button from "../ui/buttons/button/button.component";
 import Vertical from "../ui/containers/vertical/vertical.component";
+import css from './registration-form.module.scss';
+import Box from "../ui/containers/box/box.component";
+import Password from "../ui/inputs/password/password.component";
+import {loginValidator, passwordValidator} from "../../validators/form.validator";
+import {authApi} from "../../store/auth/auth.api";
+import {useMemo} from "react";
 
 const RegistrationForm = () => {
-    const login = useInput<string>('');
-    const password = useInput<string>('');
+    const login = useInput<string>('', loginValidator);
+    const password = useInput<string>('', passwordValidator);
+    const [dispatchLogin, { isFetching }] = authApi.useLazyLoginQuery();
+    const valid = useMemo<boolean>(() => {
+        return login.valid && password.valid && !isFetching;
+    }, [login.valid, password.valid, isFetching])
+
+    const loginHandler = function () {
+        dispatchLogin({
+            login: login.value,
+            password: password.value,
+        }).then(({ isError, data }) => {
+            console.log(isError, data);
+        })
+    }
 
     return (
-        <Vertical offset={5}>
-            <Input hook={login} placeholder={'Логин'}/>
-            <Input hook={password} placeholder={'Пароль'}/>
-            <Button>Регистрация</Button>
-        </Vertical>
+        <Box css={css}>
+            <Vertical offset={5}>
+                <Input hook={login} placeholder={'Логин'}/>
+                <Password hook={password} placeholder={'Пароль'}/>
+                <Button onClick={loginHandler} active={valid}>Регистрация</Button>
+            </Vertical>
+        </Box>
     );
 };
 

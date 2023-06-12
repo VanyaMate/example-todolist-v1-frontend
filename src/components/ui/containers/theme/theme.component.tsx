@@ -3,8 +3,10 @@ import {useStore} from "../../../../hooks/redux/use-store.hook";
 import {cn} from "../../../../helpers/react.helper";
 import _css from './theme.module.scss';
 
+export type CssProps = { [key: string]: string };
+
 interface IThemeProps extends React.HTMLAttributes<HTMLDivElement> {
-    css: { [key: string]: string },
+    css: CssProps,
 }
 
 const Theme: React.FC<IThemeProps> = (props) => {

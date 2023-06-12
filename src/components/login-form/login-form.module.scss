@@ -1,0 +1,13 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    width: 300px;
+
+    &.dark {
+        background: darken($darkBlack, 2);
+    }
+    &.white {
+        background: lighten($white, 2);
+    }
+}
