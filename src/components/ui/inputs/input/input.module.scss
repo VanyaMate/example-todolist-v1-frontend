@@ -1,0 +1,19 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    padding: $mediumOffset;
+    outline: none;
+    border: none;
+    border-radius: $smallOffset;
+    text-indent: $smallOffset;
+
+    &.dark {
+        background: lighten($darkBlack, 4);
+        color: $white;
+    }
+    &.white {
+        background: lighten($white, 8);
+        color: $darkBlack;
+    }
+}

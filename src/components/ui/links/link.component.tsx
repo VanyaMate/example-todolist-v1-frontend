@@ -1,16 +1,17 @@
 import React from "react";
 import css from './link.module.scss';
 import {cn} from "../../../helpers/react.helper";
+import {Link} from "react-router-dom";
 
 interface ILinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 
 }
 
-const Link: React.FC<ILinkProps> = (props) => {
-    const { className, ...other } = props;
+const StandardLink: React.FC<ILinkProps> = (props) => {
+    const { className, href, ...other } = props;
     return (
-        <a {...other} className={cn(className, css.container)}/>
+        <Link {...other} to={href ?? ''} className={cn(className, css.container)}/>
     );
 };
 
-export default Link;
+export default StandardLink;

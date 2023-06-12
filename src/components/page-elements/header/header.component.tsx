@@ -1,8 +1,8 @@
-import HeaderLogo from "../../header-logo/header-logo.component";
+import HeaderLogo from "../../logo-header/header-logo.component";
 import Theme from "../../ui/containers/theme/theme.component";
 import css from './header.module.scss';
 import Row from "../../ui/containers/row/row.component";
-import ToggleTheme from "../../toggle-theme/toggle-theme.component";
+import ToggleTheme from "../../theme-toggle/toggle-theme.component";
 
 const Header = () => {
     return (

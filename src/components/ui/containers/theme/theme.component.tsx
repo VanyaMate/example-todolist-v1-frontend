@@ -4,7 +4,7 @@ import {cn} from "../../../../helpers/react.helper";
 import _css from './theme.module.scss';
 
 interface IThemeProps extends React.HTMLAttributes<HTMLDivElement> {
-    css: { [key: string]: string }
+    css: { [key: string]: string },
 }
 
 const Theme: React.FC<IThemeProps> = (props) => {

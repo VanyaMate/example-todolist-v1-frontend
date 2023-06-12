@@ -5,22 +5,24 @@
     cursor: pointer;
     padding: $smallOffset;
     border-radius: $smallOffset;
+    display: flex;
+    justify-content: center;
 
     &.dark {
         color: $white;
-        background: $darkBlack;
+        background: darken($darkBlack, 4);
 
         &:hover {
-            background: darken($darkBlack, 3);
+            background: darken($darkBlack, 6);
         }
     }
 
     &.white {
         color: $darkBlack;
-        background: $white;
+        background: lighten($white, 4);
 
         &:hover {
-            background: lighten($white, 3);
+            background: lighten($white, 6);
         }
     }
 }
