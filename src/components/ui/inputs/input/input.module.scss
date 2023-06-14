@@ -10,11 +10,6 @@
     text-indent: $smallOffset;
     transition: .1s;
 
-    &:-webkit-autofill,
-    &:-webkit-autofill:focus  {
-        transition: background-color 600000s 0s, color 600000s 0s;
-    }
-
     &.dark {
         background: lighten($darkBlack, 4);
         color: $white;

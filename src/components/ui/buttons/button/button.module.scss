@@ -5,8 +5,10 @@
     cursor: pointer;
     padding: $smallOffset;
     border-radius: $smallOffset;
+    height: $mediumHeight;
     display: flex;
     justify-content: center;
+    align-items: center;
     pointer-events: none;
     opacity: .6;
     transition: .1s;
