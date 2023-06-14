@@ -28,6 +28,12 @@ export const authApi = createApi({
                 url: 'logout',
                 method: 'get',
             })
-        })
+        }),
+        refresh: build.query<IUser, void>({
+            query: () => ({
+                url: 'refresh',
+                method: 'get',
+            })
+        }),
     })
 })
