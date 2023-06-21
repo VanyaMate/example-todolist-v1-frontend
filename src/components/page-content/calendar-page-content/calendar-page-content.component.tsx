@@ -1,8 +1,10 @@
+import PageContentInside from "../page-content-inside.component";
+
 const CalendarPageContent = () => {
     return (
-        <div>
+        <PageContentInside title={'Calendar'} count={0}>
             CalendarPageContent
-        </div>
+        </PageContentInside>
     );
 };
 

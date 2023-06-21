@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {IAuthLoginProps, ILogout, IUser} from "./auth.interface";
+import {IAuthData, IAuthLoginProps, ILogout} from "./auth.interface";
 import {HOST_API_AUTH} from "../../constants/urls.constant";
 
 export const authApi = createApi({
@@ -9,14 +9,14 @@ export const authApi = createApi({
         credentials: 'include'
     }),
     endpoints: (build) => ({
-        login: build.query<IUser, IAuthLoginProps>({
+        login: build.query<IAuthData, IAuthLoginProps>({
             query: (props) => ({
                 url: 'login',
                 method: 'post',
                 body: props,
             })
         }),
-        registration: build.query<IUser, IAuthLoginProps>({
+        registration: build.query<IAuthData, IAuthLoginProps>({
             query: (props) => ({
                 url: 'registration',
                 method: 'post',
@@ -29,7 +29,7 @@ export const authApi = createApi({
                 method: 'get',
             })
         }),
-        refresh: build.query<IUser, void>({
+        refresh: build.query<IAuthData, void>({
             query: () => ({
                 url: 'refresh',
                 method: 'get',

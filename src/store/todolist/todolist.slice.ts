@@ -1,9 +1,9 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {ITodoList, ITodoListSliceItem} from "./todolist.interface";
+import {ITodoList} from "./todolist.interface";
 import {LS_LISTS} from "../../constants/storages.constant";
 
 interface ITodoListSlice {
-    lists: ITodoListSliceItem[]
+    lists: ITodoList[]
 }
 
 const initialState: ITodoListSlice = {
@@ -15,20 +15,18 @@ export const todolistSlice = createSlice({
     initialState: initialState,
     reducers: {
         add (state: Draft<ITodoListSlice>, action: PayloadAction<ITodoList>) {
-            state.lists.push({
-                ...action.payload,
-                todo_items: action.payload.todo_items.map((item) => item.id),
-            })
+            state.lists.push(action.payload)
             localStorage.setItem(LS_LISTS, JSON.stringify(state.lists));
         },
         remove (state: Draft<ITodoListSlice>, action: PayloadAction<number>) {
             state.lists = state.lists.filter((list) => list.id !== action.payload)
             localStorage.setItem(LS_LISTS, JSON.stringify(state.lists));
         },
-        update (state: Draft<ITodoListSlice>, action: PayloadAction<ITodoListSliceItem>) {
+        update (state: Draft<ITodoListSlice>, action: PayloadAction<Partial<ITodoList>>) {
             for (let i = 0; i < state.lists.length; i++) {
                 if (state.lists[i].id === action.payload.id) {
                     state.lists[i] = {
+                        ...state.lists[i],
                         ...action.payload
                     }
                     break;

@@ -1,9 +1,12 @@
 import PageContentInside from "../page-content-inside.component";
+import {useStore} from "../../../hooks/redux/use-store.hook";
 
 const TodayPageContent = () => {
-    return (
-        <PageContentInside title={'Today'} count={5}>
+    const todoItemSlice = useStore((state) => state.todoitem);
 
+    return (
+        <PageContentInside title={'Today'} count={todoItemSlice.data.today.length}>
+            TodayPageContent
         </PageContentInside>
     );
 };

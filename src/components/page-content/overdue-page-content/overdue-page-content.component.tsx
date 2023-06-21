@@ -1,14 +1,14 @@
 import PageContentInside from "../page-content-inside.component";
 import {useStore} from "../../../hooks/redux/use-store.hook";
 
-const UpcomingPageContent = () => {
+const OverduePageContent = () => {
     const todoItemSlice = useStore((state) => state.todoitem);
 
     return (
-        <PageContentInside title={'Upcoming'} count={todoItemSlice.data.upcoming.length}>
-            UpcomingPageContent
+        <PageContentInside title={'Overdue'} count={todoItemSlice.data.overdue}>
+            OverduePageContent
         </PageContentInside>
     );
 };
 
-export default UpcomingPageContent;
+export default OverduePageContent;

@@ -25,8 +25,9 @@ export const useAuth = function () {
             auth.reset();
             todo.reset();
             if (!response.isError) {
-                auth.set(response.data!.login);
+                auth.set(response.data!.user.login);
                 todo.addList(response.data!.todo_lists);
+                todo.setTodoItems(response.data!.todo_items)
                 navigate('/');
             }
         })
@@ -37,8 +38,9 @@ export const useAuth = function () {
             auth.reset();
             todo.reset();
             if (!response.isError) {
-                auth.set(response.data!.login);
+                auth.set(response.data!.user.login);
                 todo.addList([]);
+                todo.setTodoItems(response.data!.todo_items)
                 navigate('/');
             }
         })
@@ -59,8 +61,9 @@ export const useAuth = function () {
             auth.reset();
             todo.reset();
             if (!response.isError) {
-                auth.set(response.data!.login);
+                auth.set(response.data!.user.login);
                 todo.addList(response.data!.todo_lists);
+                todo.setTodoItems(response.data!.todo_items)
                 navigate('/');
             }
         })

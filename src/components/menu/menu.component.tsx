@@ -5,7 +5,14 @@ import TitledList from "../titled-list/titled-list.component";
 import {useLocation} from "react-router-dom";
 import css from './menu.module.scss';
 import Theme from "../ui/containers/theme/theme.component";
-import {URL_CALENDAR, URL_HOMEPAGE, URL_LIST, URL_TODAY, URL_UPCOMING} from "../../constants/urls.constant";
+import {
+    URL_CALENDAR,
+    URL_HOMEPAGE,
+    URL_LIST,
+    URL_OVERDUE,
+    URL_TODAY,
+    URL_UPCOMING
+} from "../../constants/urls.constant";
 import LinkListItem from "../link-list-item/link-list-item.component";
 import {useStore} from "../../hooks/redux/use-store.hook";
 
@@ -13,6 +20,7 @@ const Menu = () => {
     const search = useInput('');
     const location = useLocation();
     const todoListSlice = useStore((state) => state.todolist);
+    const todoItemSlice = useStore((state) => state.todoitem);
 
     return (
         <Theme css={css}>
@@ -25,21 +33,21 @@ const Menu = () => {
                         active={location.pathname === URL_HOMEPAGE}
                         text={'All'}
                         icon={'/icons/delete.png'}
-                        count={10}
+                        count={todoItemSlice.data.all}
                     />
                     <LinkListItem
                         to={URL_UPCOMING}
                         active={location.pathname === URL_UPCOMING}
                         text={'Upcoming'}
                         icon={'/icons/delete.png'}
-                        count={10}
+                        count={todoItemSlice.data.upcoming.length}
                     />
                     <LinkListItem
                         to={URL_TODAY}
                         active={location.pathname === URL_TODAY}
                         text={'Today'}
                         icon={'/icons/diskette.png'}
-                        count={5}
+                        count={todoItemSlice.data.today.length}
                     />
                     <LinkListItem
                         to={URL_CALENDAR}
@@ -47,6 +55,13 @@ const Menu = () => {
                         text={'Calendar'}
                         icon={'/icons/diskette.png'}
                         count={0}
+                    />
+                    <LinkListItem
+                        to={URL_OVERDUE}
+                        active={location.pathname === URL_OVERDUE}
+                        text={'Overdue'}
+                        icon={'/icons/diskette.png'}
+                        count={todoItemSlice.data.overdue}
                     />
                 </TitledList>
                 <TitledList title={'Lists'}>
@@ -60,7 +75,7 @@ const Menu = () => {
                                     active={location.pathname === listUrl}
                                     text={list.title}
                                     color={'red'}
-                                    count={list.todo_items.length}
+                                    count={0}
                                 />
                             )
                         })
