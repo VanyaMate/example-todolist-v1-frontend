@@ -11,7 +11,7 @@
     transition: .1s;
 
     &.dark {
-        background: lighten($darkBlack, 4);
+        background: lighten($darkBlack, 8);
         color: $white;
     }
     &.white {

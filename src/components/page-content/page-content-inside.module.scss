@@ -1,0 +1,35 @@
+@import "src/styles/sizes";
+@import "src/styles/colors";
+
+.container {
+    .header {
+        align-items: center;
+
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .count {
+            font-size: 36px;
+            padding: 0 $largeOffset;
+            border-radius: $mediumOffset;
+            transition: .1s;
+        }
+    }
+
+    &.dark {
+        .header {
+            .count {
+                border: 1px solid lighten($darkBlack, 6);
+            }
+        }
+    }
+
+    &.white {
+        .header {
+            .count {
+                border: 1px solid darken($white, 6);
+            }
+        }
+    }
+}

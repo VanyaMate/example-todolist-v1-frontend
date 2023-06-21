@@ -1,0 +1,92 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    width: 100%;
+    padding: $mediumOffset;
+    border-radius: $mediumOffset;
+
+    .row {
+        align-items: center;
+    }
+
+    .icon {
+        min-width: 14px;
+        min-height: 14px;
+        max-width: 14px;
+        max-height: 14px;
+        transition: .1s;
+
+        border-radius: $smallOffset;
+    }
+
+    .text {
+        width: 100%;
+        transition: .1s;
+    }
+
+    .count {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 2px $smallOffset;
+        border-radius: $smallOffset;
+        min-width: 30px;
+        overflow: hidden;
+        transition: .1s;
+
+        &.hidden {
+            width: 0;
+            min-width: 0;
+            padding: 2px 0;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.dark {
+        .icon {
+            filter: invert(1);
+        }
+        .text {
+            color: $white;
+        }
+        .count {
+            color: $white;
+            background: $darkBlack;
+        }
+
+        &.selected {
+            background: lighten($darkBlack, 8);
+        }
+
+        &:hover:not(.selected) {
+            background: lighten($darkBlack, 4);
+        }
+    }
+
+    &.white {
+        .icon {
+            filter: invert(0);
+        }
+        .text {
+            color: $black;
+        }
+        .count {
+            color: $black;
+            background: $white;
+        }
+
+        &.selected {
+            background: darken($white, 8);
+        }
+
+        &:hover:not(.selected) {
+            background: darken($white, 4);
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    width: 260px;
+    padding: $largeOffset;
+    border-radius: $mediumOffset;
+
+    &.dark {
+        background: lighten($darkBlack, 2);
+    }
+    &.white {
+        background: darken($white, 2);
+    }
+}

@@ -4,7 +4,7 @@ import {ITodoList} from "../store/todolist/todolist.interface";
 import {useStore} from "./redux/use-store.hook";
 import {ITodoItem} from "../store/todoitem/todoitem.interface";
 
-export const useTodo = function () {
+export const useTodoActions = function () {
     const todoListSlice = useStore((state) => state.todolist);
     const { todolist, todoitem } = useActions();
 

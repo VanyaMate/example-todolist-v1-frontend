@@ -2,7 +2,7 @@ import {useCallback, useMemo} from "react";
 import {useActions} from "./redux/use-actions.hook";
 import {authApi} from "../store/auth/auth.api";
 import {useNavigate} from "react-router-dom";
-import {useTodo} from "./use-todo.hook";
+import {useTodoActions} from "./use-todo-actions.hook";
 
 export const useAuth = function () {
     const { auth } = useActions();
@@ -11,7 +11,7 @@ export const useAuth = function () {
     const [ dispatchLogout, logoutOptions ] = authApi.useLazyLogoutQuery();
     const [ dispatchRefresh, refreshOptions ] = authApi.useLazyRefreshQuery();
     const navigate = useNavigate();
-    const todo = useTodo();
+    const todo = useTodoActions();
 
     const isFetching = useMemo<boolean>(() =>
         loginOptions.isFetching &&
