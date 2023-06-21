@@ -1,0 +1,23 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    padding: $mediumOffset;
+    border-radius: $mediumOffset;
+    
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.dark {
+        &:hover {
+            background: lighten($darkBlack, 2);
+        }
+    }
+
+    &.white {
+        &:hover {
+            background: darken($white, 2);
+        }
+    }
+}

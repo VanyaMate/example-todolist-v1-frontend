@@ -4,6 +4,7 @@ export interface ITodoItem {
     description: string;
     status: boolean;
     completion_date: string;
+    todo_list_id: number;
     createdAt: string;
     updatedAt: string;
 }
