@@ -7,6 +7,7 @@ export const URL_HOMEPAGE = '/';
 export const URL_LOGIN = '/login';
 export const URL_REGISTRATION = '/registration';
 export const URL_UPCOMING = '/upcoming';
+export const URL_COMPLETED = '/completed';
 export const URL_TODAY = '/today';
 export const URL_CALENDAR = '/calendar';
 export const URL_OVERDUE = '/overdue';

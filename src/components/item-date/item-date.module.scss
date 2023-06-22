@@ -1,0 +1,30 @@
+.container {
+
+    .align {
+        align-items: center;
+
+        .icon {
+            transition: .1s;
+            width: 14px;
+            height: 14px;
+        }
+
+        .date {
+            font-weight: bold;
+            font-size: 14px;
+        }
+    }
+
+    &.dark {
+        .icon {
+            filter: invert(1);
+        }
+    }
+
+    &.white {
+        .icon {
+            filter: invert(0);
+        }
+    }
+
+}

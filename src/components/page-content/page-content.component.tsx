@@ -1,6 +1,6 @@
 import {Routes, Route} from "react-router-dom";
 import {
-    URL_CALENDAR,
+    URL_CALENDAR, URL_COMPLETED,
     URL_HOMEPAGE,
     URL_LIST,
     URL_OVERDUE,
@@ -13,12 +13,14 @@ import CalendarPageContent from "./calendar-page-content/calendar-page-content.c
 import ListPageContent from "./list-page-content/list-page-content.component";
 import AllPageContent from "./all-page-content/all-page.content.component";
 import OverduePageContent from "./overdue-page-content/overdue-page-content.component";
+import CompletedPageContent from "./completed-page-content/completed-page-content.component";
 
 const PageContent = () => {
     return (
         <Routes>
             <Route path={URL_HOMEPAGE} element={<AllPageContent/>}/>
             <Route path={URL_UPCOMING} element={<UpcomingPageContent/>}/>
+            <Route path={URL_COMPLETED} element={<CompletedPageContent/>}/>
             <Route path={URL_TODAY} element={<TodayPageContent/>}/>
             <Route path={URL_CALENDAR} element={<CalendarPageContent/>}/>
             <Route path={URL_OVERDUE} element={<OverduePageContent/>}/>

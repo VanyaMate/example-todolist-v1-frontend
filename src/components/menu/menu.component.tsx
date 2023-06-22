@@ -6,7 +6,7 @@ import {useLocation} from "react-router-dom";
 import css from './menu.module.scss';
 import Theme from "../ui/containers/theme/theme.component";
 import {
-    URL_CALENDAR,
+    URL_CALENDAR, URL_COMPLETED,
     URL_HOMEPAGE,
     URL_LIST,
     URL_OVERDUE,
@@ -34,6 +34,13 @@ const Menu = () => {
                         text={'All'}
                         icon={'/icons/delete.png'}
                         count={todoItemSlice.data.all}
+                    />
+                    <LinkListItem
+                        to={URL_COMPLETED}
+                        active={location.pathname === URL_COMPLETED}
+                        text={'Completed'}
+                        icon={'/icons/delete.png'}
+                        count={todoItemSlice.data.completed}
                     />
                     <LinkListItem
                         to={URL_UPCOMING}

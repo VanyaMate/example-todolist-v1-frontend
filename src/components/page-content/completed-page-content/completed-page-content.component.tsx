@@ -5,16 +5,16 @@ import {useEffect} from "react";
 import TodoItem from "../../todo-item/todo-item.component";
 import Vertical from "../../ui/containers/vertical/vertical.component";
 
-const AllPageContent = () => {
+const CompletedPageContent = () => {
     const todoItemSlice = useStore((state) => state.todoitem);
-    const [dispatchGetMy, { data, isFetching }] = todoitemApi.useLazyGetMyQuery();
+    const [dispatchGetCompleted, { data, isFetching }] = todoitemApi.useLazyGetCompletedQuery();
 
     useEffect(() => {
-        dispatchGetMy({});
+        dispatchGetCompleted({});
     }, [])
 
     return (
-        <PageContentInside title={'All'} count={todoItemSlice.data.all}>
+        <PageContentInside title={'Completed'} count={todoItemSlice.data.completed}>
             <Vertical offset={5}>
                 {
                     data ? data.list.map((item) => <TodoItem key={item.id} item={item}/>) : isFetching ? '' : 'not found'
@@ -24,4 +24,4 @@ const AllPageContent = () => {
     );
 };
 
-export default AllPageContent;
+export default CompletedPageContent;

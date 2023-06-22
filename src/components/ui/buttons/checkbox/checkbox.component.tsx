@@ -1,23 +1,22 @@
-import {useCallback, useState} from "react";
+import React, {useCallback} from "react";
 import css from './checkbox.module.scss';
 import {cn} from "../../../../helpers/react.helper";
 import Theme from "../../containers/theme/theme.component";
+import {IUseCheckbox} from "../../../../hooks/use-checkbox.hook";
 
 export interface ICheckboxProps {
-    active: boolean;
+    hook: IUseCheckbox
 }
 
 const Checkbox: React.FC<ICheckboxProps> = (props) => {
-    const [state, setState] = useState<boolean>(props.active);
-
     const toggle = useCallback(() => {
-        setState((prev) => !prev);
+        props.hook.setStatus((prev) => !prev);
     }, [])
 
     return (
         <Theme
             css={css}
-            className={cn(state ? css.active : undefined)}
+            className={cn(props.hook.status ? css.active : undefined)}
             onClick={toggle}
         />
     );
