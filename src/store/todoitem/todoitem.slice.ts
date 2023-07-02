@@ -1,67 +1,40 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 import {ITodoItem} from "./todoitem.interface";
 
-
-export interface ITodoItemSliceData {
-    all: number,
-    overdue: number,
-    completed: number,
-    today: ITodoItem[],
-    upcoming: ITodoItem[],
-}
-
 interface ITodoItemSlice {
-    data: ITodoItemSliceData
+    list: ITodoItem[]
 }
 
 const initialState: ITodoItemSlice = {
-    data: {
-        today: [],
-        upcoming: [],
-        all: 0,
-        overdue: 0,
-        completed: 0,
-    }
+    list: [],
 }
 
 export const todoitemSlice = createSlice({
     name: 'todoitem',
     initialState: initialState,
     reducers: {
-        set (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItemSliceData>) {
-            state.data = action.payload;
+        set (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem[]>) {
+            state.list = action.payload;
         },
         reset (state: Draft<ITodoItemSlice>) {
-            state.data = {
-                today: [],
-                upcoming: [],
-                all: 0,
-                overdue: 0,
-                completed: 0,
-            };
+            state.list = [];
         },
-        addToday (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem>) {
-            state.data.today.push(action.payload)
-            state.data.today = state.data.today.sort((a, b) => +new Date(a.completion_date) - +new Date(b.completion_date))
+        add (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem>) {
+            state.list.push(action.payload);
         },
-        removeToday (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
-            state.data.today = state.data.today.filter((item) => item.id !== action.payload);
+        remove (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
+            state.list = state.list.filter((item) => item.id !== action.payload);
         },
-        addUpcoming (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem>) {
-            state.data.upcoming.push(action.payload)
-            state.data.upcoming = state.data.upcoming.sort((a, b) => +new Date(a.completion_date) - +new Date(b.completion_date))
-        },
-        removeUpcoming (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
-            state.data.upcoming = state.data.upcoming.filter((item) => item.id !== action.payload);
-        },
-        updateCompleted (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
-            state.data.completed = action.payload;
-        },
-        updateAll (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
-            state.data.all = action.payload;
-        },
-        updateOverdue (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
-            state.data.overdue = action.payload;
-        },
+        patch (state: Draft<ITodoItemSlice>, action: PayloadAction<[number, Partial<ITodoItem>]>) {
+            console.log(state.list.length);
+            const [id, patch]: [number, Partial<ITodoItem>] = action.payload;
+            for (let i = 0; i < state.list.length; i++) {
+                const item = state.list[i];
+                if (item.id === id) {
+                    state.list.splice(i, 1, {...item, ...patch});
+                    break;
+                }
+            }
+        }
     }
 })

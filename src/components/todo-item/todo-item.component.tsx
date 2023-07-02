@@ -8,6 +8,7 @@ import Theme from "../ui/containers/theme/theme.component";
 import css from './todo-item.module.scss';
 import ItemDate from "../item-date/item-date.component";
 import {useCheckbox} from "../../hooks/use-checkbox.hook";
+import {useActions} from "../../hooks/redux/use-actions.hook";
 
 export interface ITodoItemProps {
     item: ITodoItem
@@ -15,16 +16,20 @@ export interface ITodoItemProps {
 
 const TodoItem: React.FC<ITodoItemProps> = (props) => {
     const { item } = props;
-    const status = useCheckbox(item.status);
-    const todolistSlice = useStore((state) => state.todolist)
+    const {todoitem} = useActions();
+    const status = useCheckbox(item.status, (status) => {
+        console.log(status);
+        todoitem.patch([item.id, { status }])
+    });
+    const todolistSlice = useStore((state) => state.todolist);
     const list = useMemo(
         () => todolistSlice.lists.filter((list) => list.id === item.todo_list_id)[0],
         []
-    )
+    );
 
     return (
         <Theme css={css}>
-            <Row offset={15}>
+            <Row offset={item.status ? 25 : 15}>
                 <Checkbox hook={status}/>
                 <Vertical offset={10}>
                     <div>{item.title}</div>

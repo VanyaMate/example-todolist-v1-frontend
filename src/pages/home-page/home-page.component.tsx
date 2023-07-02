@@ -1,14 +1,15 @@
 import Row from "../../components/ui/containers/row/row.component";
 import Menu from "../../components/menu/menu.component";
-import PageContent from "../../components/page-content/page-content.component";
+import TodoContainer from "../../components/todo-container/todo-container";
+import React from "react";
 
 const HomePage = () => {
     return (
         <Row offset={20}>
             <Menu/>
-            <PageContent/>
+            <TodoContainer/>
         </Row>
     );
 };
 
-export default HomePage;
+export default React.memo(HomePage);

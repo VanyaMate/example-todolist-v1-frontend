@@ -6,7 +6,6 @@ import Vertical from "../../ui/containers/vertical/vertical.component";
 const ListPageContent = () => {
     const params = useParams<{ id: string }>();
     const todoListsSlice = useStore((state) => state.todolist);
-    //const todoItemsSlice = useStore((state) => state.todoitem);
     const activeList = useMemo(() => {
         return todoListsSlice.lists.filter((list) => list.id === +(params.id ?? -1))[0];
     }, [params.id])

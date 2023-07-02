@@ -1,8 +1,8 @@
 import {useCallback, useMemo} from "react";
 import {useActions} from "./redux/use-actions.hook";
 import {authApi} from "../store/auth/auth.api";
-import {useNavigate} from "react-router-dom";
 import {useTodoActions} from "./use-todo-actions.hook";
+import {useStableNavigate} from "../context/stable-navigate.context";
 
 export const useAuth = function () {
     const { auth } = useActions();
@@ -10,7 +10,7 @@ export const useAuth = function () {
     const [ dispatchRegistration, registrationOptions ] = authApi.useLazyRegistrationQuery();
     const [ dispatchLogout, logoutOptions ] = authApi.useLazyLogoutQuery();
     const [ dispatchRefresh, refreshOptions ] = authApi.useLazyRefreshQuery();
-    const navigate = useNavigate();
+    const navigate = useStableNavigate();
     const todo = useTodoActions();
 
     const isFetching = useMemo<boolean>(() =>
@@ -27,7 +27,6 @@ export const useAuth = function () {
             if (!response.isError) {
                 auth.set(response.data!.user.login);
                 todo.addList(response.data!.todo_lists);
-                todo.setTodoItems(response.data!.todo_items)
                 navigate('/');
             }
         })
@@ -40,7 +39,6 @@ export const useAuth = function () {
             if (!response.isError) {
                 auth.set(response.data!.user.login);
                 todo.addList([]);
-                todo.setTodoItems(response.data!.todo_items)
                 navigate('/');
             }
         })
@@ -63,7 +61,6 @@ export const useAuth = function () {
             if (!response.isError) {
                 auth.set(response.data!.user.login);
                 todo.addList(response.data!.todo_lists);
-                todo.setTodoItems(response.data!.todo_items)
                 navigate('/');
             }
         })

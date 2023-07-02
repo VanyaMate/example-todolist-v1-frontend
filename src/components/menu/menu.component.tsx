@@ -20,7 +20,6 @@ const Menu = () => {
     const search = useInput('');
     const location = useLocation();
     const todoListSlice = useStore((state) => state.todolist);
-    const todoItemSlice = useStore((state) => state.todoitem);
 
     return (
         <Theme css={css}>
@@ -33,28 +32,28 @@ const Menu = () => {
                         active={location.pathname === URL_HOMEPAGE}
                         text={'All'}
                         icon={'/icons/delete.png'}
-                        count={todoItemSlice.data.all}
+                        count={0}
                     />
                     <LinkListItem
                         to={URL_COMPLETED}
                         active={location.pathname === URL_COMPLETED}
                         text={'Completed'}
                         icon={'/icons/delete.png'}
-                        count={todoItemSlice.data.completed}
+                        count={0}
                     />
                     <LinkListItem
                         to={URL_UPCOMING}
                         active={location.pathname === URL_UPCOMING}
                         text={'Upcoming'}
                         icon={'/icons/delete.png'}
-                        count={todoItemSlice.data.upcoming.length}
+                        count={0}
                     />
                     <LinkListItem
                         to={URL_TODAY}
                         active={location.pathname === URL_TODAY}
                         text={'Today'}
                         icon={'/icons/diskette.png'}
-                        count={todoItemSlice.data.today.length}
+                        count={0}
                     />
                     <LinkListItem
                         to={URL_CALENDAR}
@@ -68,7 +67,7 @@ const Menu = () => {
                         active={location.pathname === URL_OVERDUE}
                         text={'Overdue'}
                         icon={'/icons/diskette.png'}
-                        count={todoItemSlice.data.overdue}
+                        count={0}
                     />
                 </TitledList>
                 <TitledList title={'Lists'}>
