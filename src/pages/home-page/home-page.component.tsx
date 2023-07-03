@@ -1,13 +1,18 @@
 import Row from "../../components/ui/containers/row/row.component";
 import Menu from "../../components/menu/menu.component";
-import TodoContainer from "../../components/todo-container/todo-container";
+import TodoCategoryItems from "../../components/todo-category-items/todo-category-items";
 import React from "react";
+import {Route, Routes } from "react-router-dom";
+import TodoListItems from "../../components/todo-list-items/todo-list-items";
 
 const HomePage = () => {
     return (
         <Row offset={20}>
             <Menu/>
-            <TodoContainer/>
+            <Routes>
+                <Route path={'/list/:id'} element={<TodoListItems/>}/>
+                <Route path={'*'} element={<TodoCategoryItems/>}/>
+            </Routes>
         </Row>
     );
 };

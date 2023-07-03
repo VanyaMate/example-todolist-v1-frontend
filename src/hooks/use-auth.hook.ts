@@ -21,49 +21,50 @@ export const useAuth = function () {
     , [loginOptions.isFetching, registrationOptions.isFetching, logoutOptions.isFetching, refreshOptions.isFetching]);
 
     const login = useCallback(function (login: string, password: string) {
-        return dispatchLogin({ login, password }).then((response) => {
-            auth.reset();
-            todo.reset();
-            if (!response.isError) {
+        return dispatchLogin({ login, password })
+            .then((response) => {
                 auth.set(response.data!.user.login);
                 todo.addList(response.data!.todo_lists);
                 navigate('/');
-            }
-        })
+            })
+            .catch(() => {
+                auth.reset();
+                todo.reset();
+            })
     }, [])
 
     const registration = useCallback(function (login: string, password: string) {
-        return dispatchRegistration({ login, password }).then((response) => {
-            auth.reset();
-            todo.reset();
-            if (!response.isError) {
+        return dispatchRegistration({ login, password })
+            .then((response) => {
                 auth.set(response.data!.user.login);
                 todo.addList([]);
                 navigate('/');
-            }
-        })
+            })
+            .catch(() => {
+                auth.reset();
+                todo.reset();
+            })
     }, [])
 
     const logout = useCallback(function () {
-        return dispatchLogout().then((response) => {
-            if (!response.isError && response.data!.logout) {
+        return dispatchLogout()
+            .then(() => {
                 auth.reset();
                 todo.reset();
                 navigate('/');
-            }
-        })
+            })
     }, [])
 
     const refresh = useCallback(function () {
-        return dispatchRefresh().then((response) => {
-            auth.reset();
-            todo.reset();
-            if (!response.isError) {
+        return dispatchRefresh()
+            .then((response) => {
                 auth.set(response.data!.user.login);
-                todo.addList(response.data!.todo_lists);
-                navigate('/');
-            }
-        })
+                todo.setLists(response.data!.todo_lists);
+            })
+            .catch(() => {
+                auth.reset();
+                todo.reset();
+            })
     }, [])
 
     return useMemo(() => {

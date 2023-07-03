@@ -5,17 +5,38 @@
     padding: $mediumOffset;
     border-radius: $mediumOffset;
 
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &.loading {
+        animation: $loading;
+    }
+
+    &.completed {
+        opacity: .8;
+    }
+
     &:hover {
         cursor: pointer;
     }
 
     &.dark {
+        &.completed {
+            background: lighten($darkBlack, 4);
+        }
+
         &:hover {
             background: lighten($darkBlack, 2);
         }
     }
 
     &.white {
+        &.completed {
+            background: darken($white, 4);
+        }
+
         &:hover {
             background: darken($white, 2);
         }

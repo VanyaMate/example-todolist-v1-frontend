@@ -14,36 +14,50 @@ export const todoitemApi = createApi({
         getMy: build.query<IMultiplyResponse<ITodoItem>, ISearchOptions<ITodoItem>>({
             query: (props) => ({
                 url: '/my',
-                method: 'get',
-                query: getQuerySearchOptions<ITodoItem>(props),
+                method: 'GET',
+                params: getQuerySearchOptions<ITodoItem>(props),
             })
         }),
         getOverdue: build.query<IMultiplyResponse<ITodoItem>, ISearchOptions<ITodoItem>>({
             query: (props) => ({
                 url: '/overdue',
-                method: 'get',
-                query: getQuerySearchOptions<ITodoItem>(props),
+                method: 'GET',
+                params: getQuerySearchOptions<ITodoItem>(props),
             })
         }),
         getToday: build.query<IMultiplyResponse<ITodoItem>, ISearchOptions<ITodoItem>>({
             query: (props) => ({
                 url: '/today',
-                method: 'get',
-                query: getQuerySearchOptions<ITodoItem>(props),
+                method: 'GET',
+                params: getQuerySearchOptions<ITodoItem>(props),
             })
         }),
         getCompleted: build.query<IMultiplyResponse<ITodoItem>, ISearchOptions<ITodoItem>>({
             query: (props) => ({
                 url: '/completed',
-                method: 'get',
-                query: getQuerySearchOptions<ITodoItem>(props),
+                method: 'GET',
+                params: getQuerySearchOptions<ITodoItem>(props),
             })
         }),
         getUpcoming: build.query<IMultiplyResponse<ITodoItem>, ISearchOptions<ITodoItem>>({
             query: (props) => ({
                 url: '/upcoming',
-                method: 'get',
-                query: getQuerySearchOptions<ITodoItem>(props),
+                method: 'GET',
+                params: getQuerySearchOptions<ITodoItem>(props),
+            })
+        }),
+        update: build.query<ITodoItem, { id: number, body: Partial<ITodoItem> }>({
+            query: (props) => ({
+                url: '/update/' + props.id,
+                method: 'PATCH',
+                body: props.body,
+            })
+        }),
+        getByList: build.query<IMultiplyResponse<ITodoItem>, { params: ISearchOptions<ITodoItem>, id: number }>({
+            query: (props) => ({
+                url: '/byList/' + props.id,
+                method: 'GET',
+                params: getQuerySearchOptions<ITodoItem>(props.params),
             })
         })
     })

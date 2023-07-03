@@ -1,7 +1,9 @@
+export type Order<T> = [keyof T, 'asc' | 'desc'];
+
 export interface ISearchOptions<T> {
     limit?: number;
     offset?: number;
-    order?: [keyof T, 'asc' | 'desc'][]
+    order?: Order<T>[] | string
 }
 
 export interface IMultiplyResponse<T> {

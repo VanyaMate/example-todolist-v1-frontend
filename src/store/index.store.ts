@@ -5,6 +5,7 @@ import {authApi} from "./auth/auth.api";
 import {todolistSlice} from "./todolist/todolist.slice";
 import {todoitemSlice} from "./todoitem/todoitem.slice";
 import {todoitemApi} from "./todoitem/todoitem.api";
+import {searchSlice} from "./search/search.slice";
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         [authSlice.name]: authSlice.reducer,
         [todolistSlice.name]: todolistSlice.reducer,
         [todoitemSlice.name]: todoitemSlice.reducer,
+        [searchSlice.name]: searchSlice.reducer,
         [authApi.reducerPath]: authApi.reducer,
         [todoitemApi.reducerPath]: todoitemApi.reducer,
     },

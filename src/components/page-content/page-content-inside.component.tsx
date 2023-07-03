@@ -10,9 +10,9 @@ interface IPageContentInsideProps extends React.HTMLAttributes<HTMLDivElement>{
 }
 
 const PageContentInside: React.FC<IPageContentInsideProps> = (props) => {
-    const { title, count, children } = props;
+    const { title, count, children, className } = props;
     return (
-        <Theme css={css}>
+        <Theme css={css} className={className}>
             <Vertical offset={30} className={css.container}>
                 <Row offset={30} className={css.header}>
                     <h2 className={css.title}> { title }</h2>

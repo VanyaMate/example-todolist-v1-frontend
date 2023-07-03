@@ -2,7 +2,7 @@ import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 import {ITodoItem} from "./todoitem.interface";
 
 interface ITodoItemSlice {
-    list: ITodoItem[]
+    list: ITodoItem[],
 }
 
 const initialState: ITodoItemSlice = {
@@ -26,7 +26,6 @@ export const todoitemSlice = createSlice({
             state.list = state.list.filter((item) => item.id !== action.payload);
         },
         patch (state: Draft<ITodoItemSlice>, action: PayloadAction<[number, Partial<ITodoItem>]>) {
-            console.log(state.list.length);
             const [id, patch]: [number, Partial<ITodoItem>] = action.payload;
             for (let i = 0; i < state.list.length; i++) {
                 const item = state.list[i];
@@ -35,6 +34,6 @@ export const todoitemSlice = createSlice({
                     break;
                 }
             }
-        }
+        },
     }
 })

@@ -1,0 +1,7 @@
+@import "src/styles/colors";
+
+.container {
+    &.loading {
+        animation: $loading;
+    }
+}

@@ -9,6 +9,8 @@ import css from './todo-item.module.scss';
 import ItemDate from "../item-date/item-date.component";
 import {useCheckbox} from "../../hooks/use-checkbox.hook";
 import {useActions} from "../../hooks/redux/use-actions.hook";
+import {todoitemApi} from "../../store/todoitem/todoitem.api";
+import {cn} from "../../helpers/react.helper";
 
 export interface ITodoItemProps {
     item: ITodoItem
@@ -17,9 +19,16 @@ export interface ITodoItemProps {
 const TodoItem: React.FC<ITodoItemProps> = (props) => {
     const { item } = props;
     const {todoitem} = useActions();
+    const [dispatchUpdate, { isFetching }] = todoitemApi.useLazyUpdateQuery();
     const status = useCheckbox(item.status, (status) => {
-        console.log(status);
         todoitem.patch([item.id, { status }])
+        dispatchUpdate({ id: item.id, body: { status } })
+            .then(() => {
+
+            })
+            .catch(() => {
+                todoitem.patch([item.id, { status: !status }]);
+            })
     });
     const todolistSlice = useStore((state) => state.todolist);
     const list = useMemo(
@@ -28,16 +37,18 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
     );
 
     return (
-        <Theme css={css}>
-            <Row offset={item.status ? 25 : 15}>
-                <Checkbox hook={status}/>
-                <Vertical offset={10}>
-                    <div>{item.title}</div>
-                    <Row offset={5}>
-                        <ItemDate date={item.completion_date}/>
-                        { list ? <div>{list.title}</div> : '' }
-                    </Row>
-                </Vertical>
+        <Theme css={css} className={cn(item.status ? css.completed : undefined, isFetching ? css.loading : undefined)}>
+            <Row offset={15} className={css.row}>
+                <Row offset={item.status ? 25 : 15}>
+                    <Checkbox hook={status}/>
+                    <Vertical offset={10}>
+                        <div>{item.title}</div>
+                        <Row offset={5}>
+                            <ItemDate date={item.completion_date}/>
+                            { list ? <div>{list.title}</div> : '' }
+                        </Row>
+                    </Vertical>
+                </Row>
                 <div>[-]</div>
             </Row>
         </Theme>

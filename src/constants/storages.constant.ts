@@ -3,3 +3,4 @@ export const LS_THEME = `${ LS_STORAGE_PREFIX }theme`;
 export const LS_AUTH = `${ LS_STORAGE_PREFIX }auth`;
 export const LS_ITEMS = `${ LS_STORAGE_PREFIX }todoitems`;
 export const LS_LISTS = `${ LS_STORAGE_PREFIX }todolists`;
+export const LS_ITEMS_SEARCH = `${ LS_ITEMS }-search`;

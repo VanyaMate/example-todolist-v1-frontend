@@ -14,6 +14,10 @@ export const todolistSlice = createSlice({
     name: 'todolist',
     initialState: initialState,
     reducers: {
+        set (state: Draft<ITodoListSlice>, action: PayloadAction<ITodoList[]>) {
+            state.lists = action.payload;
+            localStorage.setItem(LS_LISTS, JSON.stringify(state.lists));
+        },
         add (state: Draft<ITodoListSlice>, action: PayloadAction<ITodoList>) {
             state.lists.push(action.payload)
             localStorage.setItem(LS_LISTS, JSON.stringify(state.lists));

@@ -5,6 +5,10 @@ import {ITodoList} from "../store/todolist/todolist.interface";
 export const useTodoActions = function () {
     const { todolist, todoitem } = useActions();
 
+    const setLists = useCallback((todoLists: ITodoList[]) => {
+        todolist.set(todoLists);
+    }, [])
+
     const addLists = useCallback(function (todoLists: ITodoList[]) {
         todoLists.forEach((list) => {
             todolist.add(list);
@@ -24,5 +28,6 @@ export const useTodoActions = function () {
         addList: addLists,
         removeList,
         reset,
-    }), [addLists, removeList, reset])
+        setLists,
+    }), [addLists, removeList, reset, setLists])
 }
