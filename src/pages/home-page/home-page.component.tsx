@@ -1,13 +1,15 @@
 import Row from "../../components/ui/containers/row/row.component";
-import Menu from "../../components/menu/menu.component";
 import React from "react";
-import TodoContent from "../../components/todo/todo-content/todo-content";
+import MenuFixed from "../../components/menu-fixed/menu-fixed";
+import TodoContent from "../../components/todo-content/todo-content";
+import RedactorFixed from "../../components/redactor-fixed/redactor-fixed";
 
 const HomePage = () => {
     return (
         <Row offset={20}>
-            <Menu/>
+            <MenuFixed/>
             <TodoContent/>
+            <RedactorFixed/>
         </Row>
     );
 };

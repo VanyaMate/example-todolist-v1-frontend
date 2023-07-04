@@ -1,0 +1,30 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    .row {
+        align-items: center;
+
+        .title {
+            font-size: 40px;
+            text-transform: capitalize;
+        }
+
+        .counter {
+            padding: 0 $mediumOffset;
+            font-size: 30px;
+            border-radius: $mediumOffset;
+        }
+    }
+
+    &.dark {
+        .counter {
+            border: 2px solid $black_8;
+        }
+    }
+    &.white {
+        .counter {
+            border: 1px solid $white_-2;
+        }
+    }
+}

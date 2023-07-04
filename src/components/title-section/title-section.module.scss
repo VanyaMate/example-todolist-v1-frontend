@@ -1,0 +1,23 @@
+@import "src/styles/sizes";
+@import "src/styles/colors";
+
+.container {
+    .title {
+        font-size: 12px;
+        font-weight: bold;
+        padding-bottom: $smallOffset;
+        margin-bottom: $smallOffset;
+        text-transform: uppercase;
+    }
+
+    &.dark {
+        .title {
+            border-bottom: 2px dotted $black_6;
+        }
+    }
+    &.light {
+        .title {
+            border-bottom: 2px dotted $white_-6;
+        }
+    }
+}

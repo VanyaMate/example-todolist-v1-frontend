@@ -1,4 +1,3 @@
-import Header from "./components/page-elements/header/header.component";
 import css from './app.module.scss';
 import './styles/index.scss';
 import './styles/fonts.scss';
@@ -14,10 +13,7 @@ const App = () => {
     return (
         <Theme css={css}>
             <Vertical offset={5} className={css.content}>
-                <Vertical offset={5}>
-                    <Header/>
-                    <Content/>
-                </Vertical>
+                <Content/>
                 <Footer/>
             </Vertical>
         </Theme>

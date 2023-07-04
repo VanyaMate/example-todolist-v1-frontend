@@ -8,12 +8,12 @@
     width: 100%;
 
     &.dark {
-        background: $darkBlack;
+        background: $black;
         color: $white;
     }
     &.white {
         background: $white;
-        color: $darkBlack;
+        color: $black;
     }
 
     .content {

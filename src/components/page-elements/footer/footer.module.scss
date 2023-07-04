@@ -3,10 +3,12 @@
 
 .container {
     padding: $smallOffset;
+    height: $mediumSmallHeight;
     font-size: 10px;
     border-radius: 5px 5px 0 0;
     display: flex;
     justify-content: center;
+    align-items: center;
     color: $gray;
 
     .link {
@@ -15,5 +17,12 @@
         &:hover {
             color: $markBlueLight;
         }
+    }
+
+    &.dark {
+        background: $black_2;
+    }
+    &.light {
+        background: $white_2;
     }
 }

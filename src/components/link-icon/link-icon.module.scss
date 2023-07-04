@@ -1,0 +1,29 @@
+@import "src/styles/colors";
+
+.container {
+    .link {
+        text-decoration: none;
+    }
+
+    .row {
+        align-items: center;
+    }
+
+    &.dark {
+        .icon {
+            filter: invert(1);
+        }
+        .link {
+            color: $white;
+        }
+    }
+
+    &.light {
+        .icon {
+            filter: invert(0);
+        }
+        .link {
+            color: $black;
+        }
+    }
+}

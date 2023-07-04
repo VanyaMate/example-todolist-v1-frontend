@@ -1,0 +1,7 @@
+@import "src/styles/sizes";
+
+$menuWidth: 300px;
+
+.container {
+    min-width: $menuWidth;
+}

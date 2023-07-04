@@ -20,6 +20,26 @@ $markOrangeLight: #f72;
 $markYellowDark: #8d8439;
 $markYellowLight: #ffcf30;
 
+$black_-2: darken($black, 2);
+$black_-4: darken($black, 4);
+$black_-6: darken($black, 6);
+$black_-8: darken($black, 8);
+
+$black_2: lighten($black, 2);
+$black_4: lighten($black, 4);
+$black_6: lighten($black, 6);
+$black_8: lighten($black, 8);
+
+$white_-2: darken($white, 2);
+$white_-4: darken($white, 4);
+$white_-6: darken($white, 6);
+$white_-8: darken($white, 8);
+
+$white_2: lighten($white, 2);
+$white_4: lighten($white, 4);
+$white_6: lighten($white, 6);
+$white_8: lighten($white, 8);
+
 $defaultBoxShadow: 0 4px 10px -4px rgb(0 0 0 / 100%);
 $defaultLightBoxShadow: 0 2px 5px -3px rgb(0 0 0 / 20%);
 $defaultLightBoxShadow_bottom_1px: 0 1px 1px 0px rgb(0 0 0 / 20%);

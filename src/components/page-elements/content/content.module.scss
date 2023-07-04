@@ -2,8 +2,9 @@
 @import "src/styles/sizes";
 
 .container {
-    padding: $mediumOffset;
-    border-radius: $mediumOffset;
+    width: 100%;
+    height: $contentHeight;
+    margin-top: $bigOffset;
 
     &.dark {
         color: $white;

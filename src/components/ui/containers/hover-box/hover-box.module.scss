@@ -1,0 +1,22 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    padding: $mediumOffset;
+    border-radius: $mediumOffset;
+    width: 100%;
+
+    &.dark {
+        background: $black_6;
+        &:hover {
+            background: $black_8;
+        }
+    }
+
+    &.white {
+        background: $white_-4;
+        &:hover {
+            background: $white_-2;
+        }
+    }
+}

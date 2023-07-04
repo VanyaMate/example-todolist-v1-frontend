@@ -14,3 +14,6 @@ $mediumSmallHeight: 30px;
 $mediumHeight: 40px;
 $bigMediumHeight: 50px;
 $bigHeight: 60px;
+
+// 100vh - отступы сверху/снизу - footer
+$contentHeight: calc(100vh - #{$bigOffset} * 2 - #{$mediumSmallHeight});

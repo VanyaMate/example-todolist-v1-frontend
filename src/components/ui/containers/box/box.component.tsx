@@ -1,16 +1,12 @@
 import React from "react";
-import _css from './box.module.scss';
+import css from './box.module.scss';
 import {cn} from "../../../../helpers/react.helper";
-import Theme, {CssProps} from "../theme/theme.component";
+import Theme from "../theme/theme.component";
 
-interface IBoxProps extends React.HTMLAttributes<HTMLDivElement> {
-    css: CssProps
-}
-
-const Box: React.FC<IBoxProps> = (props) => {
-    const { className, css, ...other } = props;
+const Box: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
+    const { className, ...other } = props;
     return (
-        <Theme css={css} {...other} className={cn(className, _css.container)}/>
+        <Theme css={css} {...other} className={cn(className, css.container)}/>
     );
 };
 
