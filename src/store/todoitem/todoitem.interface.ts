@@ -8,3 +8,10 @@ export interface ITodoItem {
     createdAt: string;
     updatedAt: string;
 }
+
+export interface ITodoItemCreate {
+    title: string;
+    description: string;
+    completion_date?: string;
+    todo_list_id?: number;
+}

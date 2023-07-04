@@ -13,22 +13,20 @@ export interface IUseSelectProps {
 export interface IUseSelect {
     options: IUseSelectItem[],
     default?: IUseSelectItem,
-    value: string,
+    value: number,
     onChange: React.ChangeEventHandler<HTMLSelectElement>,
 }
 
 export const useSelect = function (props: IUseSelectProps): IUseSelect {
-    const [value, setValue] = useState<string>(props.default?.value ?? props.options[0].value);
+    const [value, setValue] = useState<number>(props.default?.value ?? props.options[0].value);
     const onChange: React.ChangeEventHandler<HTMLSelectElement> = function (e: React.ChangeEvent<HTMLSelectElement>) {
         const value: string = e.target.value;
-        setValue(value);
+        setValue(Number(value));
     }
 
     useEffect(() => {
         setValue(props.default?.value ?? props.options[0].value);
     }, [props.default])
-
-    console.log(value, props.default);
 
     return {
         ...props,

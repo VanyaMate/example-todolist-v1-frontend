@@ -22,6 +22,9 @@ export const todoitemSlice = createSlice({
         add (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem>) {
             state.list.push(action.payload);
         },
+        addFirst (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem>) {
+            state.list.unshift(action.payload);
+        },
         remove (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
             state.list = state.list.filter((item) => item.id !== action.payload);
         },

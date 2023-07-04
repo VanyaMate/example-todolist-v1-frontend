@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {HOST_API_TODOITEM} from "../../constants/urls.constant";
 import {IMultiplyResponse, ISearchOptions} from "../api.interface";
-import {ITodoItem} from "./todoitem.interface";
+import {ITodoItem, ITodoItemCreate} from "./todoitem.interface";
 import {getQuerySearchOptions} from "../../helpers/query.helper";
 
 export const todoitemApi = createApi({
@@ -65,6 +65,13 @@ export const todoitemApi = createApi({
                 url: '/delete/' + props.id,
                 method: 'DELETE',
             })
-        })
+        }),
+        create: build.query<ITodoItem, ITodoItemCreate>({
+            query: (props) => ({
+                url: '/create',
+                method: 'POST',
+                body: props,
+            })
+        }),
     })
-})
+});

@@ -1,0 +1,13 @@
+.container {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    .bottom {
+        justify-content: space-between;
+
+        & > * {
+            width: 100%;
+        }
+    }
+}

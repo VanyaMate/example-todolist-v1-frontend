@@ -6,9 +6,9 @@ import ListSelect from "../../ui/selects/select/list-select";
 import {useSelect} from "../../../hooks/use-select.hook";
 import {useMemo} from "react";
 import Row from "../../ui/containers/row/row.component";
-import Button from "../../ui/buttons/button/button.component";
 import TodoItemDeleteButton from "../../todo/todo-item-delete-button/todo-item-delete-button";
 import TodoItemUpdateButton from "../../todo/todo-item-update-button/todo-item-update-button";
+import TodoItemCreateButton from "../../todo/todo-item-create-button/todo-item-create-button";
 
 const ItemRedactor = () => {
     const redactorSlice = useSlice((state) => state.redactor);
@@ -39,8 +39,11 @@ const ItemRedactor = () => {
                             }}/>
                         </>
                         :
-                        <Button active>Create</Button>
-
+                        <TodoItemCreateButton data={{
+                            title: itemTitle.value,
+                            description: itemDescription.value,
+                            todo_list_id: lists.value !== -1 ? Number(lists.value) : null,
+                        }}/>
                 }
             </Row>
         </Vertical>
