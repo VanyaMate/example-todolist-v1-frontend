@@ -13,7 +13,7 @@ $contentWidth: calc(#{$redactorWidth} - #{$bigOffset} * 2);
     border-radius: $mediumOffset;
 
     .content {
-        width: $contentWidth;
+        max-width: $contentWidth;
     }
 
     .titleRow {

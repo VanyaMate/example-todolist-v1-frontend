@@ -25,3 +25,7 @@ $scrollWidth: 4;
         border-radius: calc(#{$scrollWidth}px / 2);
     }
 }
+
+body {
+    overflow-y: scroll;
+}
