@@ -1,9 +1,9 @@
 import {useAuth} from "./use-auth.hook";
 import {useEffect, useState} from "react";
-import {useStore} from "./redux/use-store.hook";
+import {useSlice} from "./redux/use-store.hook";
 
 export const useRefreshAfterReloading = function () {
-    const authStore = useStore((state) => state.auth);
+    const authStore = useSlice((state) => state.auth);
     const { refresh } = useAuth();
     const [refreshed, setRefreshed] = useState<boolean>(false);
 

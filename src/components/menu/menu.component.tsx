@@ -13,13 +13,15 @@ import {
     URL_TODAY,
     URL_UPCOMING
 } from "../../constants/urls.constant";
-import LinkListItem from "../link-list-item/link-list-item.component";
-import {useStore} from "../../hooks/redux/use-store.hook";
+import LinkListItem from "../todo/link-list-item/link-list-item.component";
+import {useSlice} from "../../hooks/redux/use-store.hook";
+import MenuCreateListButton from "./menu-create-list-button/menu-create-list-button";
+import MenuCreateItemButton from "./menu-create-item-button/menu-create-item-button";
 
 const Menu = () => {
     const search = useInput('');
     const location = useLocation();
-    const todoListSlice = useStore((state) => state.todolist);
+    const todoListSlice = useSlice((state) => state.todolist);
 
     return (
         <Theme css={css}>
@@ -69,6 +71,7 @@ const Menu = () => {
                         icon={'/icons/diskette.png'}
                         count={0}
                     />
+                    <MenuCreateItemButton/>
                 </TitledList>
                 <TitledList title={'Lists'}>
                     {
@@ -86,6 +89,7 @@ const Menu = () => {
                             )
                         })
                     }
+                    <MenuCreateListButton/>
                 </TitledList>
             </Vertical>
         </Theme>

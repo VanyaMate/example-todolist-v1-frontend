@@ -6,6 +6,7 @@ import {todolistSlice} from "./todolist/todolist.slice";
 import {todoitemSlice} from "./todoitem/todoitem.slice";
 import {todoitemApi} from "./todoitem/todoitem.api";
 import {searchSlice} from "./search/search.slice";
+import {redactorSlice} from "./redactor/redactor.slice";
 
 export const store = configureStore({
     reducer: {
@@ -14,8 +15,9 @@ export const store = configureStore({
         [todolistSlice.name]: todolistSlice.reducer,
         [todoitemSlice.name]: todoitemSlice.reducer,
         [searchSlice.name]: searchSlice.reducer,
+        [redactorSlice.name]: redactorSlice.reducer,
         [authApi.reducerPath]: authApi.reducer,
-        [todoitemApi.reducerPath]: todoitemApi.reducer,
+        [todoitemApi.reducerPath]: todoitemApi.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([
         authApi.middleware,

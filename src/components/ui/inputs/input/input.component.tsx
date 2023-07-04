@@ -1,6 +1,6 @@
 import React from "react";
 import {IUseInput} from "../../../../hooks/use-input.hook";
-import {useStore} from "../../../../hooks/redux/use-store.hook";
+import {useSlice} from "../../../../hooks/redux/use-store.hook";
 import {cn} from "../../../../helpers/react.helper";
 import _css from './input.module.scss';
 
@@ -11,7 +11,7 @@ export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement>
 
 const Input: React.FC<IInputProps> = (props) => {
     const { hook, className, css, ...other } = props;
-    const themeStore = useStore((state) => state.theme);
+    const themeStore = useSlice((state) => state.theme);
     return (
         <input
             {...other}

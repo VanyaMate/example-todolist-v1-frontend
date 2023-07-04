@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import ListItem, {IListItemProps} from "../list-item/list-item.component";
-import {cn} from "../../helpers/react.helper";
+import {cn} from "../../../helpers/react.helper";
 import React from "react";
 import css from './link-list-item.module.scss';
 

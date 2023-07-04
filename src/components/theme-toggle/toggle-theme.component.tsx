@@ -1,4 +1,4 @@
-import {useStore} from "../../hooks/redux/use-store.hook";
+import {useSlice} from "../../hooks/redux/use-store.hook";
 import {useActions} from "../../hooks/redux/use-actions.hook";
 import Button from "../ui/buttons/button/button.component";
 import {ThemeType} from "../../store/theme/theme.slice";
@@ -7,7 +7,7 @@ import cssPoint from './toggle-theme-point.module.scss';
 import Theme from "../ui/containers/theme/theme.component";
 
 const ToggleTheme = () => {
-    const themeStore = useStore((state) => state.theme);
+    const themeStore = useSlice((state) => state.theme);
     const { theme } = useActions();
 
     const toggleTheme = function () {

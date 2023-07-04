@@ -1,0 +1,38 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    width: 100%;
+
+    select {
+        border: none;
+        outline: none;
+
+        border-radius: $mediumOffset;
+        padding: $mediumOffset;
+
+        cursor: pointer;
+        transition: .1s;
+    }
+
+    &.dark {
+        select {
+            background: lighten($darkBlack, 8);
+            color: $white;
+
+            &:hover {
+                background: lighten($darkBlack, 10);
+            }
+        }
+    }
+    &.white {
+        select {
+            background: lighten($white, 4);
+            color: $black;
+
+            &:hover {
+                background: lighten($white, 6);
+            }
+        }
+    }
+}

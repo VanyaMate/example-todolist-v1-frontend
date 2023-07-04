@@ -59,6 +59,12 @@ export const todoitemApi = createApi({
                 method: 'GET',
                 params: getQuerySearchOptions<ITodoItem>(props.params),
             })
+        }),
+        delete: build.query<boolean, { id: number }>({
+            query: (props) => ({
+                url: '/delete/' + props.id,
+                method: 'DELETE',
+            })
         })
     })
 })

@@ -2,7 +2,7 @@ import {useLocation, useSearchParams} from "react-router-dom";
 import {useEffect, useMemo, useState} from "react";
 import {todoitemApi} from "../store/todoitem/todoitem.api";
 import {useActions} from "./redux/use-actions.hook";
-import {useStore} from "./redux/use-store.hook";
+import {useSlice} from "./redux/use-store.hook";
 import {IMultiplyResponse, ISearchOptions} from "../store/api.interface";
 import {ITodoItem} from "../store/todoitem/todoitem.interface";
 import {BaseQueryFn, FetchArgs, FetchBaseQueryError, FetchBaseQueryMeta, QueryDefinition} from "@reduxjs/toolkit/query";
@@ -22,7 +22,7 @@ export const usePageTodoItem = function () {
     const {pathname, search} = useLocation();
     const [searchParams] = useSearchParams();
     const {todoitem, search: searchActions} = useActions();
-    const searchSlice = useStore((state) => state.search);
+    const searchSlice = useSlice((state) => state.search);
     const [dispatcherName, setDispatcherName] = useState<string>(Dispatcher.ALL);
     const [fetching, setFetching] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);

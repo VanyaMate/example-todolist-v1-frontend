@@ -5,6 +5,7 @@ import {authSlice} from "../../store/auth/auth.slice";
 import {todolistSlice} from "../../store/todolist/todolist.slice";
 import {todoitemSlice} from "../../store/todoitem/todoitem.slice";
 import {searchSlice} from "../../store/search/search.slice";
+import {redactorSlice} from "../../store/redactor/redactor.slice";
 
 export const useActions = function () {
     const dispatch = useDispatch();
@@ -14,5 +15,6 @@ export const useActions = function () {
         [todolistSlice.name]: bindActionCreators(todolistSlice.actions, dispatch),
         [todoitemSlice.name]: bindActionCreators(todoitemSlice.actions, dispatch),
         [searchSlice.name]: bindActionCreators(searchSlice.actions, dispatch),
+        [redactorSlice.name]: bindActionCreators(redactorSlice.actions, dispatch),
     }
 }

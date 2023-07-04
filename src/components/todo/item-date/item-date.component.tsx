@@ -1,6 +1,6 @@
-import Theme from "../ui/containers/theme/theme.component";
+import Theme from "../../ui/containers/theme/theme.component";
 import css from './item-date.module.scss';
-import Row from "../ui/containers/row/row.component";
+import Row from "../../ui/containers/row/row.component";
 import React, {useMemo} from "react";
 
 interface IDateProps {

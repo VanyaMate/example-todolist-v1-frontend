@@ -1,8 +1,8 @@
 import React from "react";
-import Row from "../ui/containers/row/row.component";
-import {cn} from "../../helpers/react.helper";
+import Row from "../../ui/containers/row/row.component";
+import {cn} from "../../../helpers/react.helper";
 import css from './list-item.module.scss';
-import Theme from "../ui/containers/theme/theme.component";
+import Theme from "../../ui/containers/theme/theme.component";
 
 export interface IListItemProps extends React.HTMLAttributes<HTMLDivElement> {
     icon?: string;

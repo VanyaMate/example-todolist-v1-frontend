@@ -2,7 +2,8 @@
 @import "src/styles/sizes";
 
 .container {
-    width: 260px;
+    width: 100%;
+    max-width: 260px;
     padding: $largeOffset;
     border-radius: $mediumOffset;
 

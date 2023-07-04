@@ -2,7 +2,7 @@ import PageContentInside from "../page-content-inside.component";
 import {todoitemApi} from "../../../store/todoitem/todoitem.api";
 import {useEffect} from "react";
 import Vertical from "../../ui/containers/vertical/vertical.component";
-import TodoItem from "../../todo-item/todo-item.component";
+import TodoItem from "../../todo/todo-item/todo-item.component";
 
 const OverduePageContent = () => {
     const [dispatchGetOverdue, { data }] = todoitemApi.useLazyGetOverdueQuery();

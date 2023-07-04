@@ -1,13 +1,13 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useMemo, useState} from "react";
-import {useStore} from "./redux/use-store.hook";
+import {useSlice} from "./redux/use-store.hook";
 import {todoitemApi} from "../store/todoitem/todoitem.api";
 import {useActions} from "./redux/use-actions.hook";
 
 export const useListTodoItem = function () {
     const { id } = useParams<{ id: string }>();
-    const todolist = useStore((state) => state.todolist);
-    const search = useStore((state) => state.search);
+    const todolist = useSlice((state) => state.todolist);
+    const search = useSlice((state) => state.search);
     const [fetching, setFetching] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
     const [count, setCount] = useState<number>(0);

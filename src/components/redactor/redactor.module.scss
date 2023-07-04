@@ -1,0 +1,39 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+$redactorWidth: 450px;
+$contentWidth: calc(#{$redactorWidth} - #{$bigOffset} * 2);
+
+.container {
+    padding: $mediumOffset $bigOffset;
+    overflow: hidden;
+    transition: .1s;
+    width: 100%;
+    max-width: $redactorWidth;
+    border-radius: $mediumOffset;
+
+    .content {
+        width: $contentWidth;
+    }
+
+    .titleRow {
+        justify-content: space-between;
+
+        .title {
+            font-size: 30px;
+            text-transform: capitalize;
+        }
+    }
+
+    &.hidden {
+        width: 0;
+        padding: $mediumOffset 0;
+    }
+
+    &.dark {
+        background: lighten($darkBlack, 4);
+    }
+    &.white {
+        background: darken($white, 4);
+    }
+}

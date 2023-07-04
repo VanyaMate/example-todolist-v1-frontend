@@ -1,6 +1,7 @@
-@import "src/styles/colors";
+@import "../../../styles/colors";
 
 .container {
+    width: 100%;
     &.loading {
         animation: $loading;
     }

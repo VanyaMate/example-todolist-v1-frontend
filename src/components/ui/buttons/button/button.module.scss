@@ -18,6 +18,10 @@
         opacity: 1;
     }
 
+    &.loading {
+        animation: $loading;
+    }
+
     &.dark {
         color: $white;
         background: $darkBlack;
