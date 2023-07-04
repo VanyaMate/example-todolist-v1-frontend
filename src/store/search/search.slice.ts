@@ -13,7 +13,7 @@ const defaultSearchOptions = defaultSavedSearchOptions ? JSON.parse(defaultSaved
     limit: 10,
     offset: 0,
     order: [
-        ["createdAt", "asc"]
+        ["createdAt", "desc"]
     ],
 };
 

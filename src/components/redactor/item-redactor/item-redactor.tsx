@@ -42,7 +42,7 @@ const ItemRedactor = () => {
                         <TodoItemCreateButton data={{
                             title: itemTitle.value,
                             description: itemDescription.value,
-                            todo_list_id: lists.value !== -1 ? Number(lists.value) : null,
+                            todo_list_id: lists.value !== -1 ? Number(lists.value) : undefined,
                         }}/>
                 }
             </Row>
