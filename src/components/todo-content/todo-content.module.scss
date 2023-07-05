@@ -1,3 +1,9 @@
+@import "src/styles/colors";
+
 .container {
     width: 100%;
+
+    &.loading {
+        animation: $loading;
+    }
 }

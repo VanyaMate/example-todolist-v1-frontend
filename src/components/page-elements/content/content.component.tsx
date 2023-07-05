@@ -9,6 +9,7 @@ const Content = () => {
         <Theme css={css}>
             <Routes>
                 <Route path={'/login'} element={<LoginPage/>}/>
+                <Route path={'/list/:id'} element={<HomePage/>}/>
                 <Route path={'*'} element={<HomePage/>}/>
             </Routes>
         </Theme>

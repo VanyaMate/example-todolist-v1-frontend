@@ -1,8 +1,11 @@
 @import "src/styles/colors";
+@import "src/styles/sizes";
 
 .container {
     .link {
+        display: block;
         text-decoration: none;
+        text-transform: capitalize;
     }
 
     .row {

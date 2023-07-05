@@ -4,14 +4,14 @@
 .container {
     position: relative;
     width: 44px;
-    height: 30px;
-    background: darken($white, 2);
-    border-radius: 15px;
+    height: $mediumSmallHeight;
+    background: $white_-2;
+    border-radius: calc(#{$mediumSmallHeight} / 2);
 
     &.dark {
-        background: lighten($darkBlack, 5);
+        background: $black_4;
     }
     &.white {
-        background: darken($white, 5);
+        background: $white_-4;
     }
 }

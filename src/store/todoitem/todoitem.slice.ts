@@ -1,12 +1,18 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 import {ITodoItem} from "./todoitem.interface";
 
-interface ITodoItemSlice {
+export interface ITodoItemSlice {
     list: ITodoItem[],
+    fetching:   boolean;
+    error:      boolean;
+    count:      number;
 }
 
 const initialState: ITodoItemSlice = {
-    list: [],
+    list:       [],
+    fetching:   false,
+    error:      false,
+    count:      0,
 }
 
 export const todoitemSlice = createSlice({
@@ -38,5 +44,14 @@ export const todoitemSlice = createSlice({
                 }
             }
         },
+        setFetching (state: Draft<ITodoItemSlice>, action: PayloadAction<boolean>) {
+            state.fetching = action.payload;
+        },
+        setError (state: Draft<ITodoItemSlice>, action: PayloadAction<boolean>) {
+            state.error = action.payload;
+        },
+        setCount (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
+            state.count = action.payload;
+        }
     }
 })

@@ -21,7 +21,7 @@ const ListSelect: React.FC<ISelectProps> = (props) => {
                 value={id}
             >
                 {
-                    props.hook.options.map((option) =>
+                    [{ value: 0, title: 'No list'}].concat(props.hook.options).map((option) =>
                         <option
                             key={option.value}
                             value={option.value}

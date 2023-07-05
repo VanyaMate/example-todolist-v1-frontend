@@ -7,6 +7,7 @@ export interface IRow extends React.HTMLAttributes<HTMLDivElement> {
 
 const RowContainer = styled.div`
     display: flex;
+    align-items: center;
     
     & > * {
         margin-right: ${(props: { offset?: number }) => props.offset ? `${props.offset}px` : '10px'};

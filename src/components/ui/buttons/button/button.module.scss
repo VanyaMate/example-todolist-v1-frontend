@@ -24,19 +24,19 @@
 
     &.dark {
         color: $white;
-        background: $darkBlack;
+        background: $black;
 
         &:hover {
-            background: darken($darkBlack, 4);
+            background: $black_-2
         }
     }
 
     &.white {
-        color: $darkBlack;
-        background: lighten($white, 4);
+        color: $black;
+        background: $white_2;
 
         &:hover {
-            background: lighten($white, 6);
+            background: $white_4;
         }
     }
 }

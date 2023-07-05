@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 
 export interface IUseSelectItem {
     value: any;
@@ -6,31 +6,33 @@ export interface IUseSelectItem {
 }
 
 export interface IUseSelectProps {
-    options: IUseSelectItem[];
-    default?: IUseSelectItem;
+    options:    IUseSelectItem[];
+    default?:   any;
 }
 
 export interface IUseSelect {
-    options: IUseSelectItem[],
-    default?: IUseSelectItem,
-    value: number,
-    onChange: React.ChangeEventHandler<HTMLSelectElement>,
+    options:    IUseSelectItem[],
+    default?:   IUseSelectItem,
+    value:      number,
+    onChange:   React.ChangeEventHandler<HTMLSelectElement>,
 }
 
+type selectOnChange = React.ChangeEventHandler<HTMLSelectElement>;
+
 export const useSelect = function (props: IUseSelectProps): IUseSelect {
-    const [value, setValue] = useState<number>(props.default?.value ?? props.options[0].value);
-    const onChange: React.ChangeEventHandler<HTMLSelectElement> = function (e: React.ChangeEvent<HTMLSelectElement>) {
-        const value: string = e.target.value;
-        setValue(Number(value));
-    }
+    const [value, setValue] =           useState<number>(props.default ?? props.options[0].value);
+    const onChange: selectOnChange =    useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+                                            const value: string = e.target.value;
+                                            setValue(Number(value));
+                                        }, [value]);
 
     useEffect(() => {
-        setValue(props.default?.value ?? props.options[0].value);
+        setValue(props.default ?? props.options[0].value);
     }, [props.default])
 
-    return {
+    return useMemo(() => ({
         ...props,
         value,
         onChange,
-    };
+    }), [value]);
 }
