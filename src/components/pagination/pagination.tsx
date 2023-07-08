@@ -1,13 +1,14 @@
 import React, {useEffect, useMemo, useState} from "react";
 import Button from "../ui/buttons/button/button.component";
 import Row from "../ui/containers/row/row.component";
+import css from './pagination.module.scss';
+import PaginationSeparator from "./pagination-separator";
 
 export interface IPaginationProps extends React.HTMLAttributes<HTMLDivElement> {
     pages: number;                          //  Всего страниц
     page: number;                           //  Текущая страница
     onPageChange: (page: number) => void;   //  Callback при изменении страницы
 }
-
 
 const Pagination: React.FC<IPaginationProps> = (props) => {
     const items = useMemo(() => {
@@ -54,11 +55,15 @@ const Pagination: React.FC<IPaginationProps> = (props) => {
         setCurrentPage(props.page);
     }, [props.page, props.pages])
 
-    return (
-        <Row offset={5}>
+    return props.pages > 1 ?
+        <Row offset={5} className={css.container}>
             {
-                items.map((item) => {
+                items.map((item, index) => {
+                    if (item === 0) {
+                        return <PaginationSeparator key={`${item}` + `${index}`}/>
+                    }
                     return <Button
+                        className={css.item}
                         active={item !== currentPage}
                         key={item}
                         onClick={() => props.onPageChange(item)}
@@ -66,7 +71,8 @@ const Pagination: React.FC<IPaginationProps> = (props) => {
                 })
             }
         </Row>
-    );
+        : <></>
+
 };
 
 export default Pagination;

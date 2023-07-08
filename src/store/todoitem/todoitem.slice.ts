@@ -23,16 +23,25 @@ export const todoitemSlice = createSlice({
             state.list = action.payload;
         },
         reset (state: Draft<ITodoItemSlice>) {
+            state.count = 0;
             state.list = [];
         },
         add (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem>) {
+            state.count += 1;
             state.list.push(action.payload);
         },
         addFirst (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem>) {
+            state.count += 1;
             state.list.unshift(action.payload);
         },
         remove (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
-            state.list = state.list.filter((item) => item.id !== action.payload);
+            state.list = state.list.filter((item) => {
+                if (item.id !== action.payload) {
+                    state.count -= 1;
+                    return false;
+                }
+                return true;
+            });
         },
         patch (state: Draft<ITodoItemSlice>, action: PayloadAction<[number, Partial<ITodoItem>]>) {
             const [id, patch]: [number, Partial<ITodoItem>] = action.payload;

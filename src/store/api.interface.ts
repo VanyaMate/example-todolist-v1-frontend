@@ -1,8 +1,8 @@
 export type Order<T> = [keyof T, 'asc' | 'desc'];
 
 export interface ISearchOptions<T> {
-    limit?: number;
-    offset?: number;
+    limit: number;
+    offset: number;
     order?: Order<T>[] | string
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import {ITodoItem} from "../../store/todoitem/todoitem.interface";
 import Vertical from "../ui/containers/vertical/vertical.component";
-import TodoTask from "../todo-task/todo-task";
+import TodoItem from "../todo/todo-item/todo-item.component";
 
 export interface ITodoTasksProps extends React.HTMLAttributes<HTMLDivElement> {
     list: ITodoItem[];      // Список тасков
@@ -9,9 +9,9 @@ export interface ITodoTasksProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const TodoTasks: React.FC<ITodoTasksProps> = (props) => {
     return (
-        <Vertical offset={10}>
+        <Vertical offset={5}>
             {
-                props.list.map((task) => <TodoTask key={task.id} task={task}/>)
+                props.list.map((task) => <TodoItem key={task.id} item={task}/>)
             }
         </Vertical>
     );

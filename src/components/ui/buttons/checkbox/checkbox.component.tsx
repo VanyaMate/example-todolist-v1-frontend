@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, {MouseEvent, useCallback} from "react";
 import css from './checkbox.module.scss';
 import {cn} from "../../../../helpers/react.helper";
 import Theme from "../../containers/theme/theme.component";
@@ -9,7 +9,8 @@ export interface ICheckboxProps {
 }
 
 const Checkbox: React.FC<ICheckboxProps> = (props) => {
-    const toggle = useCallback(() => {
+    const toggle = useCallback((e: MouseEvent) => {
+        e.stopPropagation();
         props.hook.setStatus((prev) => !prev);
     }, [])
 

@@ -50,7 +50,7 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
             <Row offset={15} className={css.row}>
                 <Row offset={item.status ? 25 : 15}>
                     <Checkbox hook={status}/>
-                    <Vertical offset={10}>
+                    <Vertical offset={7}>
                         <div>{item.title}</div>
                         <Row offset={5}>
                             <ItemDate date={item.completion_date}/>
