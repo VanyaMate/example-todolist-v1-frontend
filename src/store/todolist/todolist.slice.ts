@@ -2,7 +2,7 @@ import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 import {ITodoList} from "./todolist.interface";
 import {LS_LISTS} from "../../constants/storages.constant";
 
-interface ITodoListSlice {
+export interface ITodoListSlice {
     lists: ITodoList[]
 }
 
