@@ -2,4 +2,6 @@
 
 .container {
     height: $contentHeight;
+    max-height: $contentHeight;
+    overflow: auto;
 }

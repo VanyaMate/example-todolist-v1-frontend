@@ -9,8 +9,8 @@ import MenuSettings from "../menu-settings/menu-settings";
 
 const MenuFixed = () => {
     return (
-        <ContentHeight>
-            <Box className={css.container}>
+        <ContentHeight className={css.container}>
+            <Box>
                 <Vertical offset={15}>
                     <TitleBox title={'Menu'}/>
                     <MenuTasksLinks/>

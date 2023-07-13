@@ -16,7 +16,7 @@ $scrollWidth: 4;
     }
 
     &::-webkit-scrollbar-track {
-        background: $darkBlack;
+        background: transparent;
         border-radius: calc(#{$scrollWidth}px / 2);
     }
 

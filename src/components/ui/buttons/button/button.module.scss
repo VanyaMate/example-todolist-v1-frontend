@@ -20,6 +20,7 @@
 
     &.loading {
         animation: $loading;
+        pointer-events: none;
     }
 
     &.dark {
