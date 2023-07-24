@@ -19,7 +19,7 @@ export interface IUseSelect {
 
 type selectOnChange = React.ChangeEventHandler<HTMLSelectElement>;
 
-export const useSelect = function (props: IUseSelectProps): IUseSelect {
+export const useSelect = function (props: IUseSelectProps, deps: any[] = []): IUseSelect {
     const [value, setValue] =           useState<number>(props.default ?? props.options[0].value);
     const onChange: selectOnChange =    useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
                                             const value: string = e.target.value;
@@ -28,7 +28,7 @@ export const useSelect = function (props: IUseSelectProps): IUseSelect {
 
     useEffect(() => {
         setValue(props.default ?? props.options[0].value);
-    }, [props.default])
+    }, [props.default, ...deps])
 
     return useMemo(() => ({
         ...props,

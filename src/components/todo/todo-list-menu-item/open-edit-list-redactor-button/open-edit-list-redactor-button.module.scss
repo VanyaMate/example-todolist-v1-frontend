@@ -1,0 +1,8 @@
+@import "src/styles/sizes";
+
+.container {
+    min-height: $mediumHeight;
+    min-width: $mediumHeight;
+    max-width: $mediumHeight;
+    max-height: $mediumHeight;
+}

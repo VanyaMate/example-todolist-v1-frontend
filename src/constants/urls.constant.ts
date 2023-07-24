@@ -2,6 +2,7 @@ export const HOST = 'http://localhost:3000';
 export const HOST_API = `${ HOST }/api`;
 export const HOST_API_AUTH = `${ HOST_API }/auth`;
 export const HOST_API_TODOITEM = `${ HOST_API }/todoitem`;
+export const HOST_API_TODOLIST = `${ HOST_API }/todolist`;
 
 export const URL_HOMEPAGE = '/';
 export const URL_LOGIN = '/login';
