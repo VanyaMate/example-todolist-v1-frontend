@@ -7,6 +7,7 @@ import { IUseInput, useInput } from '../../hooks/use-input.hook';
 import TodoListCreateButton from '../todo/todo-list-create-button/todo-list-create-button';
 import TodoListUpdateButton from '../todo/todo-list-update-button/todo-list-update-button';
 import TodoListDeleteButton from '../todo/todo-list-delete-button/todo-list-delete-button';
+import Row from '../ui/containers/row/row.component';
 
 
 interface ITodoListRedactorProps {
@@ -29,14 +30,14 @@ const TodoListRedactor: React.FC<ITodoListRedactorProps> = (props) => {
                 />
                 {
                     list
-                    ? <>
+                    ? <Row offset={ 5 }>
+                        <TodoListDeleteButton listId={ list.id }/>
                         <TodoListUpdateButton data={ {
                             title: title.value, description: description.value,
                         } }
                                               listId={ list.id }
                         />
-                        <TodoListDeleteButton listId={ list.id }/>
-                    </>
+                    </Row>
                     : <TodoListCreateButton data={ {
                         title: title.value, description: description.value,
                     } }

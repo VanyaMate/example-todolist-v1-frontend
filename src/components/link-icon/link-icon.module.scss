@@ -3,30 +3,40 @@
 
 .container {
     .link {
-        display: block;
-        text-decoration: none;
-        text-transform: capitalize;
+        display         : block;
+        text-decoration : none;
+        text-transform  : capitalize;
     }
 
     .row {
-        align-items: center;
+        align-items : center;
     }
 
     &.dark {
-        .icon {
-            filter: invert(1);
+        .active {
+            background : $black_8;
+
+            &:hover {
+                background : $black_8;
+            }
         }
+
+        .icon {
+            filter : invert(1);
+        }
+
         .link {
-            color: $white;
+            color : $white;
         }
     }
 
     &.light {
         .icon {
-            filter: invert(0);
+            filter : invert(0);
         }
+
         .link {
-            color: $black;
+            color : $black;
         }
     }
 }

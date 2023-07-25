@@ -1,3 +1,3 @@
-export const cn = function (...classNames: (string | undefined)[]): string {
+export const cn = function (...classNames: (string | undefined | null)[]): string {
     return classNames.filter((className) => className).join(' ');
 }

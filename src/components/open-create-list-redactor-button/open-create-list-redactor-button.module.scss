@@ -1,0 +1,11 @@
+@import "src/styles/colors";
+
+.container {
+    &.active {
+        background : $markBlueLight;
+
+        &:hover {
+            background : $markBlueLight;
+        }
+    }
+}

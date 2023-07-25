@@ -11,6 +11,8 @@ import { useCheckbox } from '../../../hooks/use-checkbox.hook';
 import { useActions } from '../../../hooks/redux/use-actions.hook';
 import { todoitemApi } from '../../../store/todoitem/todoitem.api';
 import { cn } from '../../../helpers/react.helper';
+import { BiRightArrow, BiSolidRightArrow } from 'react-icons/bi';
+import { RedactorType } from '../../../store/redactor/redactor.slice';
 
 
 export interface ITodoItemProps {
@@ -33,8 +35,11 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
         [ item, todolistSlice.lists ],
     );
     const redactorSlice                      = useSlice((state) => state.redactor);
-
-    const selectItem = useCallback(() => {
+    const selectedCurrentItem                = useMemo(
+        () => redactorSlice.opened && redactorSlice.redactorType === RedactorType.TASK && redactorSlice.item?.id === item.id,
+        [ redactorSlice, item.id ],
+    );
+    const selectItem                         = useCallback(() => {
         redactor.setItem(item);
     }, [ item ]);
 
@@ -44,7 +49,7 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
             className={ cn(
                 item.status ? css.completed : undefined,
                 isFetching ? css.loading : undefined,
-                (redactorSlice.opened && redactorSlice.item?.id === item.id) ? css.selected : '',
+                selectedCurrentItem ? css.selected : '',
             ) }
             onClick={ selectItem }
         >
@@ -61,7 +66,11 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
                         </Row>
                     </Vertical>
                 </Row>
-                <div>[-]</div>
+                {
+                    selectedCurrentItem
+                    ? <BiSolidRightArrow/>
+                    : <BiRightArrow/>
+                }
             </Row>
         </Theme>
     );

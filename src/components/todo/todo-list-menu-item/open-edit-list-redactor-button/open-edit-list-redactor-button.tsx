@@ -3,6 +3,7 @@ import Button, { IButtonProps } from '../../../ui/buttons/button/button.componen
 import { useActions } from '../../../../hooks/redux/use-actions.hook';
 import { ITodoList } from '../../../../store/todolist/todolist.interface';
 import css from './open-edit-list-redactor-button.module.scss';
+import { BiPencil } from 'react-icons/bi';
 
 
 interface IOpenEditListRedactorButton extends IButtonProps {
@@ -18,8 +19,10 @@ const OpenEditListRedactorButton: React.FC<IOpenEditListRedactorButton> = (props
     };
 
     return (
-        <Button { ...other } onClick={ openRedactor } className={css.container}>
-            O
+        <Button { ...other } onClick={ openRedactor }
+                className={ css.container }
+        >
+            <BiPencil size={16}/>
         </Button>
     );
 };
