@@ -3,6 +3,7 @@ import Button from '../../ui/buttons/button/button.component';
 import { todolistApi } from '../../../store/todolist/todolist.api';
 import { useActions } from '../../../hooks/redux/use-actions.hook';
 import { ITodoListCreate } from '../../../store/todolist/todolist.interface';
+import { toast } from 'react-hot-toast';
 
 
 interface ITodoListCreateButtonProps {
@@ -16,7 +17,11 @@ const TodoListCreateButton: React.FC<ITodoListCreateButtonProps> = (props) => {
 
     const createList = function () {
         dispatchCreate(data).then((response) => {
-            response.data && todolist.add(response.data);
+            response.data && (todolist.add(response.data) && toast.success(`List [${ data.title }] created`, {
+                duration : 2000,
+                position : 'bottom-right',
+                className: 'toast-container',
+            }));
         });
     };
 

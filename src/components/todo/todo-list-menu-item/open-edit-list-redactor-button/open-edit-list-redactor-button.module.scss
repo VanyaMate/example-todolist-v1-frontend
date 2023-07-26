@@ -1,8 +1,19 @@
 @import "src/styles/sizes";
+@import "src/styles/colors";
 
 .container {
     min-height: $mediumHeight;
     min-width: $mediumHeight;
     max-width: $mediumHeight;
     max-height: $mediumHeight;
+
+    &.active {
+        background: $mark_blue_4;
+        color: #fff;
+
+        &:hover {
+            background: $mark_blue_4;
+            color: #fff;
+        }
+    }
 }

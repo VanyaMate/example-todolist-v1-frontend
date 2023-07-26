@@ -11,8 +11,8 @@ const OpenCreateListRedactorButton = () => {
     const { redactor }  = useActions();
     const redactorSlice = useSlice(state => state.redactor);
     const active        = useMemo(
-        () => !redactorSlice.list?.id && redactorSlice.redactorType === RedactorType.LIST,
-        [ redactorSlice.list, redactorSlice.redactorType ],
+        () => !redactorSlice.list?.id && redactorSlice.redactorType === RedactorType.LIST && redactorSlice.opened,
+        [ redactorSlice.list, redactorSlice.redactorType, redactorSlice.opened ],
     );
 
     return (

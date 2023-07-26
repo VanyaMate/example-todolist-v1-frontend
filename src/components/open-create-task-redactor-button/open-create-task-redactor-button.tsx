@@ -4,15 +4,15 @@ import { useSlice } from '../../hooks/redux/use-store.hook';
 import { useMemo } from 'react';
 import { RedactorType } from '../../store/redactor/redactor.slice';
 import { cn } from '../../helpers/react.helper';
-import css from '../open-create-list-redactor-button/open-create-list-redactor-button.module.scss';
+import css from './open-create-task-redactor-button.module.scss';
 
 
 const OpenCreateTaskRedactorButton = () => {
-    const { redactor } = useActions();
+    const { redactor }  = useActions();
     const redactorSlice = useSlice(state => state.redactor);
     const active        = useMemo(
-        () => !redactorSlice.item?.id && redactorSlice.redactorType === RedactorType.TASK,
-        [ redactorSlice.item, redactorSlice.redactorType ],
+        () => !redactorSlice.item?.id && redactorSlice.redactorType === RedactorType.TASK && redactorSlice.opened,
+        [ redactorSlice.item, redactorSlice.redactorType, redactorSlice.opened ],
     );
 
     return (

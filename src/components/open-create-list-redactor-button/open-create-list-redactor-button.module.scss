@@ -2,10 +2,12 @@
 
 .container {
     &.active {
-        background : $markBlueLight;
+        background : $mark_blue_4;
+        color: #fff;
 
         &:hover {
-            background : $markBlueLight;
+            background : $mark_blue_4;
+            color: #fff;
         }
     }
 }

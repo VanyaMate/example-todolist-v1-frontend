@@ -38,6 +38,7 @@
     &.white {
         background : $white;
         border     : 1px solid darken($white, 6);
+        color      : #FFFFFF;
 
         &.active {
             border     : 1px solid transparent;

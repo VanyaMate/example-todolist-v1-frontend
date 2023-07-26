@@ -1,6 +1,7 @@
 import css from './app.module.scss';
 import './styles/index.scss';
 import './styles/fonts.scss';
+import './styles/toast.scss';
 import Content from "./components/page-elements/content/content.component";
 import Footer from "./components/page-elements/footer/footer.component";
 import Theme from "./components/ui/containers/theme/theme.component";

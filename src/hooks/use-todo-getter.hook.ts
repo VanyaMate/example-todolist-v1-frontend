@@ -1,20 +1,21 @@
-import {PageType} from "./use-page.hook";
-import {ISearchOptions} from "../store/api.interface";
-import {ITodoItem} from "../store/todoitem/todoitem.interface";
-import {ITodoGetQueries, SimpleTodoQuery, useTodoGetQueries} from "./use-todo-get-queries.hook";
-import {useEffect} from "react";
-import {useParams} from "react-router-dom";
-import {useActions} from "./redux/use-actions.hook";
+import { PageType } from './use-page.hook';
+import { ISearchOptions } from '../store/api.interface';
+import { ITodoItem } from '../store/todoitem/todoitem.interface';
+import { ITodoGetQueries, SimpleTodoQuery, useTodoGetQueries } from './use-todo-get-queries.hook';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useActions } from './redux/use-actions.hook';
+
 
 interface IUseTodoGetterProps {
-    page:           PageType;
-    searchOptions:  ISearchOptions<ITodoItem>;
+    page: PageType;
+    searchOptions: ISearchOptions<ITodoItem>;
 }
 
 export const useTodoGetter = function (props: IUseTodoGetterProps) {
-    const params =                      useParams<{ id: string }>();
-    const queries: ITodoGetQueries =    useTodoGetQueries();
-    const {todoitem} =                  useActions();
+    const params                   = useParams<{ id: string }>();
+    const queries: ITodoGetQueries = useTodoGetQueries();
+    const { todoitem }             = useActions();
 
     useEffect(() => {
         todoitem.setFetching(true);
@@ -45,5 +46,5 @@ export const useTodoGetter = function (props: IUseTodoGetterProps) {
                 .catch(() => todoitem.setError(true))
                 .finally(() => todoitem.setFetching(false));
         }
-    }, [props.page, props.searchOptions, params.id])
+    }, [ props.page, props.searchOptions, params.id ])
 }

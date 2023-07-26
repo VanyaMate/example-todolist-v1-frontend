@@ -30,7 +30,15 @@
         }
     }
 
-    &.light {
+    &.white {
+        .active {
+            background : $white_4;
+
+            &:hover:not(.active) {
+                background : $white_2;
+            }
+        }
+
         .icon {
             filter : invert(0);
         }

@@ -3,7 +3,7 @@ import {LS_ITEMS_SEARCH} from "../../constants/storages.constant";
 import {ITodoItem} from "../todoitem/todoitem.interface";
 import {ISearchOptions} from "../api.interface";
 
-interface ISearchSlice {
+export interface ISearchSlice {
     defaultSearchOptions: ISearchOptions<ITodoItem>,
     currentSearchOptions: ISearchOptions<ITodoItem>,
 }

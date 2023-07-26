@@ -36,7 +36,7 @@ export const todoitemSlice = createSlice({
         },
         remove (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
             state.list = state.list.filter((item) => {
-                if (item.id !== action.payload) {
+                if (item.id === action.payload) {
                     state.count -= 1;
                     return false;
                 }
