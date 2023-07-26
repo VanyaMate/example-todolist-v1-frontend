@@ -10,11 +10,13 @@ import TitleBox from '../title-box/title-box';
 import TodoTaskRedactor from '../todo-task-redactor/todo-task-redactor';
 import { RedactorType } from '../../store/redactor/redactor.slice';
 import TodoListRedactor from '../todo-list-redactor/todo-list-redactor';
+import { useMemo } from 'react';
 
 
 const RedactorFixed = () => {
-    const redactorSlice = useSlice((state) => state.redactor);
-    const { redactor }  = useActions();
+    const redactorSlice  = useSlice((state) => state.redactor);
+    const { redactor }   = useActions();
+    const isTaskRedactor = useMemo(() => redactorSlice.redactorType === RedactorType.TASK, [ redactorSlice.redactorType ]);
 
     return (
         <ContentHeight
@@ -22,13 +24,13 @@ const RedactorFixed = () => {
         >
             <Box className={ css.content }>
                 <Row offset={ 15 }>
-                    <TitleBox title={ 'Redactor' }/>
+                    <TitleBox title={ isTaskRedactor ? 'Task redactor' : ' List redactor' }/>
                     <Button active
                             onClick={ () => redactor.setOpen(false) }
                     >Close</Button>
                 </Row>
                 {
-                    redactorSlice.redactorType === RedactorType.TASK
+                    isTaskRedactor
                     ? <TodoTaskRedactor task={ redactorSlice.item }/>
                     : <TodoListRedactor list={ redactorSlice.list }/>
                 }

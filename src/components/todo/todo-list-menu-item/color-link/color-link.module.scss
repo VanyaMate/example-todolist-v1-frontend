@@ -1,0 +1,56 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    .color {
+        width: 20px;
+        height: 20px;
+        border-radius: $smallOffset;
+    }
+
+    .link {
+        display         : block;
+        text-decoration : none;
+        text-transform  : capitalize;
+    }
+
+    .row {
+        align-items : center;
+    }
+
+    &.dark {
+        .active {
+            background : $black_8;
+
+            &:hover {
+                background : $black_8;
+            }
+        }
+
+        .icon {
+            filter : invert(1);
+        }
+
+        .link {
+            color : $white;
+        }
+    }
+
+    &.white {
+        .active {
+            background : $white_4;
+
+            &:hover:not(.active) {
+                background : $white_2;
+            }
+        }
+
+        .icon {
+            filter : invert(0);
+        }
+
+        .link {
+            color : $black;
+        }
+    }
+}

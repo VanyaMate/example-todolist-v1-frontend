@@ -5,6 +5,8 @@ import { useMemo } from 'react';
 import { RedactorType } from '../../store/redactor/redactor.slice';
 import { cn } from '../../helpers/react.helper';
 import css from './open-create-task-redactor-button.module.scss';
+import Row from '../ui/containers/row/row.component';
+import { BiTask } from 'react-icons/bi';
 
 
 const OpenCreateTaskRedactorButton = () => {
@@ -21,7 +23,7 @@ const OpenCreateTaskRedactorButton = () => {
             onClick={ () => redactor.setItem(null) }
             className={ cn(css.container, active ? css.active : '') }
         >
-            Create task
+            <Row offset={10}><BiTask/><span>Create task</span></Row>
         </Button>
     );
 };

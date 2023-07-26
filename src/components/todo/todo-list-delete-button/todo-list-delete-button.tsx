@@ -3,6 +3,8 @@ import { todolistApi } from '../../../store/todolist/todolist.api';
 import Button from '../../ui/buttons/button/button.component';
 import { useActions } from '../../../hooks/redux/use-actions.hook';
 import { toast } from 'react-hot-toast';
+import Row from '../../ui/containers/row/row.component';
+import { MdDelete } from 'react-icons/md';
 
 
 interface ITodoListDeleteButtonProps {
@@ -31,7 +33,7 @@ const TodoListDeleteButton: React.FC<ITodoListDeleteButtonProps> = (props) => {
                 loading={ isFetching }
                 onClick={ deleteList }
         >
-            Delete
+            <Row offset={5}><MdDelete/><span>Delete</span></Row>
         </Button>
     );
 };

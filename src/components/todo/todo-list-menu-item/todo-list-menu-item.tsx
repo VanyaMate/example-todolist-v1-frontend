@@ -1,11 +1,11 @@
 import React from 'react';
 import { ITodoList } from '../../../store/todolist/todolist.interface';
-import LinkIcon from '../../link-icon/link-icon';
 import { URL_LIST } from '../../../constants/urls.constant';
 import OpenEditListRedactorButton
     from './open-edit-list-redactor-button/open-edit-list-redactor-button';
 import Row from '../../ui/containers/row/row.component';
 import css from './todo-list-menu-item.module.scss';
+import LinkColor from './color-link/color-link';
 
 
 interface ITodoListMenuItem {
@@ -19,9 +19,9 @@ const TodoListMenuItem: React.FC<ITodoListMenuItem> = (props) => {
         <Row offset={ 5 }
              className={ css.container }
         >
-            <LinkIcon icon={ '/icons/delete.png' }
-                      href={ URL_LIST + '/' + list.id }
-                      title={ list.title }
+            <LinkColor color={ list.colorHex }
+                       href={ URL_LIST + '/' + list.id }
+                       title={ list.title }
             />
             <OpenEditListRedactorButton active
                                         list={ list }

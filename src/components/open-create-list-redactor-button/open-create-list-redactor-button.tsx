@@ -5,6 +5,8 @@ import { cn } from '../../helpers/react.helper';
 import css from './open-create-list-redactor-button.module.scss';
 import { useMemo } from 'react';
 import { RedactorType } from '../../store/redactor/redactor.slice';
+import Row from '../ui/containers/row/row.component';
+import { IoList } from 'react-icons/io5';
 
 
 const OpenCreateListRedactorButton = () => {
@@ -21,7 +23,7 @@ const OpenCreateListRedactorButton = () => {
             onClick={ () => redactor.setList(null) }
             className={ cn(css.container, active ? css.active : '') }
         >
-            Create list
+            <Row offset={10}><IoList/><span>Create list</span></Row>
         </Button>
     );
 };

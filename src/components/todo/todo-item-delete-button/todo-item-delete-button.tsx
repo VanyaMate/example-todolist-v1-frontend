@@ -3,6 +3,8 @@ import React from "react";
 import {useActions} from "../../../hooks/redux/use-actions.hook";
 import {todoitemApi} from "../../../store/todoitem/todoitem.api";
 import { toast } from 'react-hot-toast';
+import Row from '../../ui/containers/row/row.component';
+import { MdDelete } from 'react-icons/md';
 
 interface ITodoItemDeleteButton extends IButtonProps {
     taskId: number;
@@ -26,7 +28,7 @@ const TodoItemDeleteButton: React.FC<ITodoItemDeleteButton> = (props) => {
             loading={isFetching}
             onClick={deleteTask}
         >
-            Delete
+            <Row offset={5}><MdDelete/><span>Delete</span></Row>
         </Button>
     );
 };

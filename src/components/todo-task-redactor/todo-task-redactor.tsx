@@ -14,6 +14,8 @@ import TodoItemCreateButton from '../todo/todo-item-create-button/todo-item-crea
 import TodoItemUpdateButton from '../todo/todo-item-update-button/todo-item-update-button';
 import { ITodoListSlice } from '../../store/todolist/todolist.slice';
 import { ITodoList } from '../../store/todolist/todolist.interface';
+import Checkbox from '../ui/buttons/checkbox/checkbox.component';
+import { IUseCheckbox, useCheckbox } from '../../hooks/use-checkbox.hook';
 
 
 export interface ITodoTaskRedactorProps {
@@ -30,6 +32,8 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         () => todolistSlice.lists.map((list: ITodoList) => ({ value: list.id, title: list.title })),
         [ list, todolistSlice.lists ],
     );
+    const status: IUseCheckbox           = useCheckbox(props.task?.status ?? false, () => {
+    });
     const todolists: IUseSelect          = useSelect({
         options: listOptions,
         default: list ? list.id : 0,
@@ -39,30 +43,45 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         title       : title.value,
         description : description.value,
         todo_list_id: todolists.value,
+        status      : status.status,
     }), [ title, description, todolists ]);
 
     return (
-        <TitleSection title={ 'task redactor' }>
-            <Vertical offset={ 7 }>
-                <Input hook={ title }
-                       placeholder={ 'title' }
-                />
-                <Input hook={ description }
-                       placeholder={ 'description' }
-                />
+        <Vertical offset={ 14 }>
+            <TitleSection title={ 'General' }>
+                <Vertical offset={ 7 }>
+                    <Input hook={ title }
+                           placeholder={ 'title' }
+                    />
+                    <Input hook={ description }
+                           placeholder={ 'description' }
+                    />
+                </Vertical>
+            </TitleSection>
+            <TitleSection title={ 'Status' }>
+                <Vertical offset={ 7 }>
+                    <Checkbox hook={ status }/>
+                </Vertical>
+            </TitleSection>
+            <TitleSection title={ 'List' }>
                 <ListSelect hook={ todolists }/>
-                {
-                    props.task ?
-                    <Row offset={ 10 }>
-                        <TodoItemDeleteButton taskId={ props.task.id }/>
-                        <TodoItemUpdateButton taskId={ props.task.id }
-                                              data={ tododata }
-                        />
-                    </Row> :
-                    <TodoItemCreateButton data={ tododata }/>
-                }
-            </Vertical>
-        </TitleSection>
+            </TitleSection>
+            <TitleSection title={ 'Tags' }>
+                <Vertical offset={ 7 }>
+
+                </Vertical>
+            </TitleSection>
+            {
+                props.task ?
+                <Row offset={ 10 }>
+                    <TodoItemDeleteButton taskId={ props.task.id }/>
+                    <TodoItemUpdateButton taskId={ props.task.id }
+                                          data={ tododata }
+                    />
+                </Row> :
+                <TodoItemCreateButton data={ tododata }/>
+            }
+        </Vertical>
     );
 };
 

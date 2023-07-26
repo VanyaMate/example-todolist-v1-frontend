@@ -14,4 +14,5 @@ export interface ITodoItemCreate {
     description: string;
     completion_date?: string;
     todo_list_id?: number;
+    status?: boolean;
 }

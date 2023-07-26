@@ -4,6 +4,8 @@ import Button from '../../ui/buttons/button/button.component';
 import { todolistApi } from '../../../store/todolist/todolist.api';
 import { useActions } from '../../../hooks/redux/use-actions.hook';
 import { toast } from 'react-hot-toast';
+import Row from '../../ui/containers/row/row.component';
+import { RxUpdate } from 'react-icons/rx';
 
 
 interface ITodoListUpdateButton {
@@ -31,7 +33,7 @@ const TodoListUpdateButton: React.FC<ITodoListUpdateButton> = (props) => {
                 loading={ isFetching }
                 onClick={ updateList }
         >
-            Update
+            <Row offset={5}><RxUpdate/><span>Update</span></Row>
         </Button>
     );
 };

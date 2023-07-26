@@ -4,6 +4,8 @@ import {useActions} from "../../../hooks/redux/use-actions.hook";
 import {todoitemApi} from "../../../store/todoitem/todoitem.api";
 import {ITodoItem} from "../../../store/todoitem/todoitem.interface";
 import { toast } from 'react-hot-toast';
+import Row from '../../ui/containers/row/row.component';
+import { RxUpdate } from 'react-icons/rx';
 
 interface ITodoItemUpdateButton extends IButtonProps {
     taskId: number;
@@ -28,7 +30,7 @@ const TodoItemUpdateButton: React.FC<ITodoItemUpdateButton> = (props) => {
             loading={isFetching}
             onClick={updateTask}
         >
-            Update
+            <Row offset={5}><RxUpdate/><span>Update</span></Row>
         </Button>
     );
 };

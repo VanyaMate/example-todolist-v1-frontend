@@ -4,6 +4,8 @@ import { todolistApi } from '../../../store/todolist/todolist.api';
 import { useActions } from '../../../hooks/redux/use-actions.hook';
 import { ITodoListCreate } from '../../../store/todolist/todolist.interface';
 import { toast } from 'react-hot-toast';
+import Row from '../../ui/containers/row/row.component';
+import { TfiWrite } from 'react-icons/tfi';
 
 
 interface ITodoListCreateButtonProps {
@@ -29,7 +31,9 @@ const TodoListCreateButton: React.FC<ITodoListCreateButtonProps> = (props) => {
         <Button active
                 loading={ isFetching }
                 onClick={ createList }
-        >Create</Button>
+        >
+            <Row offset={10}><TfiWrite/><span>Create</span></Row>
+        </Button>
     );
 };
 
