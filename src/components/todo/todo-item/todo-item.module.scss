@@ -2,56 +2,76 @@
 @import "../../../styles/sizes";
 
 .container {
-    padding: $mediumOffset;
-    border-radius: $mediumOffset;
-    width: 100%;
+    padding       : $mediumOffset;
+    border-radius : $mediumOffset;
 
     .row {
-        display: flex;
-        justify-content: space-between;
+        display         : flex;
+        justify-content : space-between;
+    }
+
+    .title {
+        font-size   : 16px;
+        font-weight : bold;
+        color       : $white_2;
+    }
+
+    .desc {
+        font-size     : 14px;
+        color         : $white_-8;
+        max-height    : 72px;
+        overflow      : hidden;
+        text-overflow : ellipsis;
+    }
+
+    .icon {
+        max-height : 16px;
+        max-height : 16px;
+        min-width  : 16px;
+        min-height : 16px;
     }
 
     &.loading {
-        animation: $loading;
+        animation : $loading;
     }
 
     &.completed {
-        opacity: .8;
+        opacity : .8;
     }
 
     &.selected {
-        opacity: 1;
+        opacity : 1;
     }
 
     &:hover {
-        cursor: pointer;
+        cursor : pointer;
     }
 
     &.dark {
         &.completed {
-            background: lighten($darkBlack, 4);
+            background : lighten($darkBlack, 4);
         }
 
         &.selected {
-            background: lighten($darkBlack, 8);
+            background : lighten($darkBlack, 8);
         }
 
         &:hover:not(.selected) {
-            background: lighten($darkBlack, 2);
+            background : lighten($darkBlack, 2);
         }
     }
 
     &.white {
         &.completed {
-            background: darken($white, 4);
+            background : darken($white, 4);
         }
 
         &.selected {
-            background: darken($white, 8);
+            background : darken($white, 8);
         }
 
         &:hover:not(.selected) {
-            background: darken($white, 2);
+            background : darken($white, 2);
         }
     }
 }

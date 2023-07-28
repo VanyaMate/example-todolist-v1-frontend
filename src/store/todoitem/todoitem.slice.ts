@@ -1,30 +1,31 @@
-import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {ITodoItem} from "./todoitem.interface";
+import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
+import { ITodoItem } from './todoitem.interface';
+
 
 export interface ITodoItemSlice {
     list: ITodoItem[],
-    fetching:   boolean;
-    error:      boolean;
-    count:      number;
+    fetching: boolean;
+    error: boolean;
+    count: number;
 }
 
 const initialState: ITodoItemSlice = {
-    list:       [],
-    fetching:   false,
-    error:      false,
-    count:      0,
-}
+    list    : [],
+    fetching: false,
+    error   : false,
+    count   : 0,
+};
 
 export const todoitemSlice = createSlice({
-    name: 'todoitem',
+    name        : 'todoitem',
     initialState: initialState,
-    reducers: {
+    reducers    : {
         set (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem[]>) {
             state.list = action.payload;
         },
         reset (state: Draft<ITodoItemSlice>) {
             state.count = 0;
-            state.list = [];
+            state.list  = [];
         },
         add (state: Draft<ITodoItemSlice>, action: PayloadAction<ITodoItem>) {
             state.count += 1;
@@ -43,12 +44,12 @@ export const todoitemSlice = createSlice({
                 return true;
             });
         },
-        patch (state: Draft<ITodoItemSlice>, action: PayloadAction<[number, Partial<ITodoItem>]>) {
-            const [id, patch]: [number, Partial<ITodoItem>] = action.payload;
+        patch (state: Draft<ITodoItemSlice>, action: PayloadAction<[ number, Partial<ITodoItem> ]>) {
+            const [ id, patch ]: [ number, Partial<ITodoItem> ] = action.payload;
             for (let i = 0; i < state.list.length; i++) {
                 const item = state.list[i];
                 if (item.id === id) {
-                    state.list.splice(i, 1, {...item, ...patch});
+                    state.list.splice(i, 1, { ...item, ...patch });
                     break;
                 }
             }
@@ -61,6 +62,6 @@ export const todoitemSlice = createSlice({
         },
         setCount (state: Draft<ITodoItemSlice>, action: PayloadAction<number>) {
             state.count = action.payload;
-        }
-    }
-})
+        },
+    },
+});

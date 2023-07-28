@@ -13,6 +13,7 @@ import {
     ColorResult,
     SketchPicker,
 } from 'react-color';
+import css from './todo-list-redactor.module.scss';
 
 
 interface ITodoListRedactorProps {
@@ -34,7 +35,7 @@ const TodoListRedactor: React.FC<ITodoListRedactorProps> = (props) => {
     }, [ colorHex ]);
 
     return (
-        <Vertical offset={ 14 }>
+        <Vertical offset={ 14 } className={css.container}>
             <TitleSection title={'General'}>
                 <Vertical offset={7}>
                     <Input hook={ title }
@@ -49,6 +50,7 @@ const TodoListRedactor: React.FC<ITodoListRedactorProps> = (props) => {
                 <SketchPicker
                     color={ colorHex }
                     onChangeComplete={ handleChangeColor }
+                    className={css.picker}
                 />
             </TitleSection>
             {

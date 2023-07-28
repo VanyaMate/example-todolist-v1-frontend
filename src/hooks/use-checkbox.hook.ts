@@ -6,18 +6,23 @@ export interface IUseCheckbox {
     setStatus: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const useCheckbox = function (status: boolean, onChange: (value: boolean) => void): IUseCheckbox {
+export const useCheckbox = function (status: boolean, onChange: (value: boolean) => void, deps: any[] = []): IUseCheckbox {
     const [ state, setState ]   = useState<boolean>(status);
     const [ inited, setInited ] = useState<boolean>(false);
 
+    /**
+     *  TODO: Временное решение.
+     *  Проблема в том, что если будет несколько checkpoint с разными
+     *  onChange - они будут срабатывать все при изменении status
+     *  (ссылающихся на один и тот же объект)
+     */
     useEffect(() => {
-        setInited(false);
         setState(status);
-    }, [ status ]);
+    }, [status])
 
     useEffect(() => {
         inited && onChange(state);
-        setInited(true);
+        !inited && setInited(true);
     }, [ state ]);
 
     return useMemo(() => {
@@ -25,5 +30,5 @@ export const useCheckbox = function (status: boolean, onChange: (value: boolean)
             status   : state,
             setStatus: setState,
         };
-    }, [ state ]);
+    }, [ state, ...deps ]);
 };

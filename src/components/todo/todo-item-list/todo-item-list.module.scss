@@ -1,0 +1,14 @@
+@import "src/styles/sizes";
+
+.container {
+    display : flex;
+
+    .color {
+        border-radius: $mediumOffset;
+        width: 12px;
+        height: 12px;
+    }
+    .title {
+        font-size: 14px;
+    }
+}

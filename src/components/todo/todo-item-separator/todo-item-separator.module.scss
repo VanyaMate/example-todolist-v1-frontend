@@ -1,0 +1,42 @@
+@import "src/styles/colors";
+
+.container {
+    display : flex;
+
+    & > * {
+        position     : relative;
+        margin-right : 11px;
+
+        &:last-child {
+            margin-right : 0;
+        }
+
+        &:not(:last-child) {
+            &:after {
+                position  : absolute;
+                right     : -6px;
+                top       : 50%;
+                transform : translateY(-50%);
+                content   : '';
+                width     : 1px;
+                height    : 12px;
+            }
+        }
+    }
+
+    &.dark {
+        & > *:not(:last-child) {
+            &:after {
+                background : $black_16;
+            }
+        }
+    }
+
+    &.white {
+        & > *:not(:last-child) {
+            &:after {
+                background : $white_-16;
+            }
+        }
+    }
+}

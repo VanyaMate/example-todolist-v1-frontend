@@ -13,6 +13,9 @@ import { todoitemApi } from '../../../store/todoitem/todoitem.api';
 import { cn } from '../../../helpers/react.helper';
 import { BiRightArrow, BiSolidRightArrow } from 'react-icons/bi';
 import { RedactorType } from '../../../store/redactor/redactor.slice';
+import TodoItemSeparator from '../todo-item-separator/todo-item-separator';
+import TodoItemList from '../todo-item-list/todo-item-list';
+import { getWordsWithEllipsis } from '../../../helpers/string.helper';
 
 
 export interface ITodoItemProps {
@@ -59,17 +62,20 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
                 <Row offset={ item.status ? 25 : 15 }>
                     <Checkbox hook={ status }/>
                     <Vertical offset={ 7 }>
-                        <div>{ item.title }</div>
-                        <Row offset={ 5 }>
+                        <div className={ css.title }>{ item.title }</div>
+                        { item.description ? <div
+                                               className={ css.desc }>{ getWordsWithEllipsis(item.description, 150) }</div>
+                                           : '' }
+                        <TodoItemSeparator>
                             <ItemDate date={ item.completion_date }/>
-                            { list ? <div>{ list.title }</div> : '' }
-                        </Row>
+                            { list ? <TodoItemList list={ list }/> : '' }
+                        </TodoItemSeparator>
                     </Vertical>
                 </Row>
                 {
                     selectedCurrentItem
-                    ? <BiSolidRightArrow/>
-                    : <BiRightArrow/>
+                    ? <BiSolidRightArrow className={ css.icon }/>
+                    : <BiRightArrow className={ css.icon }/>
                 }
             </Row>
         </Theme>

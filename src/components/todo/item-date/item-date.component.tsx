@@ -27,16 +27,19 @@ const ItemDate: React.FC<IDateProps> = (props) => {
         `;
     }, [ props.date ]);
 
-    return (
-        <Theme css={ css }>
-            <Row offset={ 7 }
-                 className={ css.align }
-            >
-                <BiCalendar/>
-                <div className={ css.date }>{ date }</div>
-            </Row>
-        </Theme>
-    );
+
+    return props.date
+           ? (
+               <Theme css={ css }>
+                   <Row offset={ 7 }
+                        className={ css.align }
+                   >
+                       <BiCalendar/>
+                       <div className={ css.date }>{ date }</div>
+                   </Row>
+               </Theme>
+           )
+           : <></>;
 };
 
 export default ItemDate;
