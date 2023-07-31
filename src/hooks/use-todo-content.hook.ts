@@ -32,8 +32,9 @@ export const useTodoContent = function (): IUseTodoContent {
 
     const listSearch: UseListSearch       = useListSearch();
     const params: { id?: string }         = useParams<{ id?: string }>();
-    const todolist: ITodoList | undefined = useMemo(() => params.id ? listSearch(Number(params.id))
-                                                                    : undefined, [ params ]);
+    const todolist: ITodoList | undefined = useMemo(() => params.id
+                                                          ? listSearch(Number(params.id))
+                                                          : undefined, [ params ]);
     const title: string                   = useMemo(() => page === PageType.TODO_LIST
                                                           ? (todolist?.title ?? '')
                                                           : page, [ page, todolist ]);

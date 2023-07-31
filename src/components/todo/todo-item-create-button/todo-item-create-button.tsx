@@ -5,6 +5,8 @@ import { ITodoItemCreate } from '../../../store/todoitem/todoitem.interface';
 import { toast } from 'react-hot-toast';
 import Row from '../../ui/containers/row/row.component';
 import { TfiWrite } from 'react-icons/tfi';
+import { useActions } from '../../../hooks/redux/use-actions.hook';
+import { IError, IValidationError } from '../../../store/api.interface';
 
 
 interface ITodoItemCreateButton extends IButtonProps {
@@ -13,13 +15,30 @@ interface ITodoItemCreateButton extends IButtonProps {
 
 const TodoItemCreateButton: React.FC<ITodoItemCreateButton> = (props) => {
     const [ dispatchCreate, { isFetching } ] = todoitemApi.useLazyCreateQuery();
+    const { search }                         = useActions();
     const createTask                         = function () {
         dispatchCreate(props.data)
-            .then((response) => response.data && toast.success(`Todo [${ props.data.title }] created`, {
-                duration : 2000,
-                position : 'bottom-right',
-                className: 'toast-container',
-            }));
+            .then((response) => {
+                if (response.data) {
+                    toast.success(`Todo [${ props.data.title }] created`, {
+                        duration : 2000,
+                        position : 'bottom-right',
+                        className: 'toast-container',
+                    });
+                } else {
+                    const error: IError<IValidationError> = response.error as IError<IValidationError>;
+                    if (error.status === 400) {
+                        error.data.errors.forEach((error) => {
+                            toast.error(`Поле: [ ${ error.field } ]: ${ error.messages.join(', ') }`, {
+                                duration : 2000,
+                                position : 'bottom-right',
+                                className: 'toast-container',
+                            });
+                        });
+                    }
+                }
+            })
+            .then(() => search.resetCurrentOptions());
     };
 
     return (
@@ -28,7 +47,7 @@ const TodoItemCreateButton: React.FC<ITodoItemCreateButton> = (props) => {
             loading={ isFetching }
             onClick={ createTask }
         >
-            <Row offset={10}><TfiWrite/><span>Create</span></Row>
+            <Row offset={ 10 }><TfiWrite/><span>Create</span></Row>
         </Button>
     );
 };
