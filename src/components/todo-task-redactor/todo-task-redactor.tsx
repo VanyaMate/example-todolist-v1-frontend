@@ -2,7 +2,7 @@ import {
     ITodoItem,
     ITodoItemCreate,
 } from '../../store/todoitem/todoitem.interface';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { IUseInput, useInput } from '../../hooks/use-input.hook';
 import Input from '../ui/inputs/input/input.component';
 import TitleSection from '../title-section/title-section';
@@ -53,12 +53,15 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         options: listOptions,
         default: list ? list.id : 0,
     }, [ props.task ]);
-    const [ calendarTime, setCalendarTime ] = useState<Value>(props.task
-                                                              ? new Date(props.task.completion_date)
-                                                              : null);
+    const [ calendarTime, setCalendarTime ] = useState<Value>(null);
+    const calendarValue: Date | null        = useMemo<Date | null>(() => {
+        return props.task?.completion_date
+               ? new Date(props.task?.completion_date)
+               : null;
+    }, [ props.task?.completion_date ]);
     const calendarOnChange                  = useCallback<(value: Value, event: React.MouseEvent<HTMLButtonElement>) => void>((date: Value) => {
         setCalendarTime(date);
-    }, []);
+    }, [ calendarTime, props.task ]);
     const tododata: ITodoItemCreate         = useMemo(() => {
         const data: ITodoItemCreate = {
             title       : title.value,
@@ -74,6 +77,17 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         return data;
     }, [ title, description, todolists, status.status, calendarTime ]);
 
+    useEffect(() => {
+        const date: Date | null = props.task?.completion_date
+                                  ? new Date(props.task.completion_date)
+                                  : null;
+        if ((date && date.toISOString()) !== (calendarTime && (calendarTime as Date).toISOString())) {
+            setCalendarTime(props.task?.completion_date
+                            ? new Date(props.task.completion_date)
+                            : null);
+        }
+    }, [ props.task ]);
+
     return (
         <Vertical offset={ 14 }>
             <TitleSection title={ 'General' }>
@@ -88,7 +102,8 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
             </TitleSection>
 
             <TitleSection title={ 'Time' }>
-                <Calendar onChange={ calendarOnChange }/>
+                <Calendar value={ calendarValue }
+                          onChange={ calendarOnChange }/>
             </TitleSection>
             <TitleSection title={ 'Status' }>
                 <Vertical offset={ 7 }>

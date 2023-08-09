@@ -15,7 +15,7 @@ interface ITodoItemCreateButton extends IButtonProps {
 
 const TodoItemCreateButton: React.FC<ITodoItemCreateButton> = (props) => {
     const [ dispatchCreate, { isFetching } ] = todoitemApi.useLazyCreateQuery();
-    const { search }                         = useActions();
+    const { search, redactor }                         = useActions();
     const createTask                         = function () {
         dispatchCreate(props.data)
             .then((response) => {
@@ -25,6 +25,8 @@ const TodoItemCreateButton: React.FC<ITodoItemCreateButton> = (props) => {
                         position : 'bottom-right',
                         className: 'toast-container',
                     });
+                    redactor.setItem(response.data);
+                    redactor.setOpen(false);
                 } else {
                     const error: IError<IValidationError> = response.error as IError<IValidationError>;
                     if (error.status === 400) {

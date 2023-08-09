@@ -30,19 +30,24 @@ const TodoContent = () => {
         <ContentHeight
             className={ cn(css.container, getter.fetching ? css.loading
                                                           : undefined) }>
-            <Vertical offset={ 10 }
+            <Vertical offset={ 15 }
                       className={ css.separator }
             >
-                <Vertical offset={ 20 }>
+                <Vertical offset={ 15 }
+                          className={ css.top }>
                     <TitleWithCounter title={ title }
                                       counter={ getter.count }
+                                      className={ css.title }
                     />
-                    <TodoTasks list={ getter.list.slice(0, 10) }/>
+                    <TodoTasks list={ getter.list.slice(0, 10) }
+                               className={ css.content }
+                    />
                 </Vertical>
                 <Pagination
                     pages={ pagesAmount }
                     page={ currentPage }
                     onPageChange={ setPage }
+                    className={ css.pagination }
                 />
             </Vertical>
         </ContentHeight>

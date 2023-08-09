@@ -1,8 +1,10 @@
-import React, {useEffect, useMemo, useState} from "react";
-import Button from "../ui/buttons/button/button.component";
-import Row from "../ui/containers/row/row.component";
+import React, { useEffect, useMemo, useState } from 'react';
+import Button from '../ui/buttons/button/button.component';
+import Row from '../ui/containers/row/row.component';
 import css from './pagination.module.scss';
-import PaginationSeparator from "./pagination-separator";
+import PaginationSeparator from './pagination-separator';
+import { cn } from '../../helpers/react.helper';
+
 
 export interface IPaginationProps extends React.HTMLAttributes<HTMLDivElement> {
     pages: number;                          //  Всего страниц
@@ -11,26 +13,26 @@ export interface IPaginationProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Pagination: React.FC<IPaginationProps> = (props) => {
-    const items = useMemo(() => {
-        const pages = props.pages;
+    const { pages, page, onPageChange, className, ...other } = props;
+    const items                                   = useMemo(() => {
         const listOfItems: number[] = new Array(pages);
-        const currentPageIndex = props.page - 1;
-        const lastPageIndex = pages - 1;
+        const currentPageIndex      = page - 1;
+        const lastPageIndex         = pages - 1;
 
-        listOfItems[0] = 1;
-        listOfItems[currentPageIndex] = props.page;
-        listOfItems[lastPageIndex] = pages;
+        listOfItems[0]                = 1;
+        listOfItems[currentPageIndex] = page;
+        listOfItems[lastPageIndex]    = pages;
 
         for (let i = 1, j = 0; j < 9 - (currentPageIndex === 0 ? 3 : 4); i++) {
             let changed = false;
             if (currentPageIndex + i < lastPageIndex) {
-                listOfItems[currentPageIndex + i] = props.page + i;
+                listOfItems[currentPageIndex + i] = page + i;
                 j++;
                 changed = true;
             }
 
             if (currentPageIndex - i > 0) {
-                listOfItems[currentPageIndex - i] = props.page - i;
+                listOfItems[currentPageIndex - i] = page - i;
                 j++;
                 changed = true;
             }
@@ -48,30 +50,31 @@ const Pagination: React.FC<IPaginationProps> = (props) => {
         }
 
         return listOfItems;
-    }, [props]);
-    const [currentPage, setCurrentPage] = useState<number>(props.page);
+    }, [ props ]);
+    const [ currentPage, setCurrentPage ]         = useState<number>(page);
 
     useEffect(() => {
-        setCurrentPage(props.page);
-    }, [props.page, props.pages])
+        setCurrentPage(page);
+    }, [ page, pages ]);
 
-    return props.pages > 1 ?
-        <Row offset={5} className={css.container}>
-            {
-                items.map((item, index) => {
-                    if (item === 0) {
-                        return <PaginationSeparator key={`${item}` + `${index}`}/>
-                    }
-                    return <Button
-                        className={css.item}
-                        active={item !== currentPage}
-                        key={item}
-                        onClick={() => props.onPageChange(item)}
-                    >{item}</Button>;
-                })
-            }
-        </Row>
-        : <></>
+    return pages > 1 ?
+           <Row offset={ 5 } className={ cn(css.container, className) } { ...other }>
+               {
+                   items.map((item, index) => {
+                       if (item === 0) {
+                           return <PaginationSeparator
+                               key={ `${ item }` + `${ index }` }/>;
+                       }
+                       return <Button
+                           className={ css.item }
+                           active={ item !== currentPage }
+                           key={ item }
+                           onClick={ () => onPageChange(item) }
+                       >{ item }</Button>;
+                   })
+               }
+           </Row>
+                     : <></>;
 
 };
 

@@ -12,7 +12,7 @@ interface ITodoItemDeleteButton extends IButtonProps {
 }
 
 const TodoItemDeleteButton: React.FC<ITodoItemDeleteButton> = (props) => {
-    const { todoitem, search }               = useActions();
+    const { todoitem, search, redactor }               = useActions();
     const [ dispatchDelete, { isFetching } ] = todoitemApi.useLazyDeleteQuery();
     const deleteTask                         = function () {
         dispatchDelete({ id: props.taskId })
@@ -21,7 +21,9 @@ const TodoItemDeleteButton: React.FC<ITodoItemDeleteButton> = (props) => {
                 position : 'bottom-right',
                 className: 'toast-container',
             }))
-            .then(() => search.resetCurrentOptions());
+            .then(() => search.resetCurrentOptions())
+            .then(() => redactor.setItem(null))
+            .then(() => redactor.setOpen(false));
     };
 
     return (

@@ -67,8 +67,8 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
                                                className={ css.desc }>{ getWordsWithEllipsis(item.description, 150) }</div>
                                            : '' }
                         <TodoItemSeparator>
-                            <ItemDate date={ item.completion_date }/>
                             { list ? <TodoItemList list={ list }/> : '' }
+                            <ItemDate date={ item.completion_date }/>
                         </TodoItemSeparator>
                     </Vertical>
                 </Row>
