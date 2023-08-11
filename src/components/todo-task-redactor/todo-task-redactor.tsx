@@ -2,7 +2,7 @@ import {
     ITodoItem,
     ITodoItemCreate,
 } from '../../store/todoitem/todoitem.interface';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { IUseInput, useInput } from '../../hooks/use-input.hook';
 import Input from '../ui/inputs/input/input.component';
 import TitleSection from '../title-section/title-section';
@@ -26,9 +26,12 @@ import { ITodoListSlice } from '../../store/todolist/todolist.slice';
 import { ITodoList } from '../../store/todolist/todolist.interface';
 import Checkbox from '../ui/buttons/checkbox/checkbox.component';
 import { IUseCheckbox, useCheckbox } from '../../hooks/use-checkbox.hook';
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { Value } from 'react-calendar/src/shared/types';
+import {
+    IUseMiniCalendar,
+    useMiniCalendar,
+} from '../../hooks/use-mini-calendar.hook';
+import MiniCalendar from '../mini-calendar/mini-calendar';
 
 
 export interface ITodoTaskRedactorProps {
@@ -36,33 +39,26 @@ export interface ITodoTaskRedactorProps {
 }
 
 const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
-    const title: IUseInput<string>          = useInput<string>(props.task?.title ?? '');
-    const description: IUseInput<string>    = useInput<string>(props.task?.description ?? '');
-    const todolistSlice: ITodoListSlice     = useSlice((state) => state.todolist);
-    const listSearch: UseListSearch         = useListSearch();
-    const list: ITodoList | undefined       = useMemo(() => listSearch(props.task?.todo_list_id ?? 0), [ props.task ]);
-    const listOptions: IUseSelectItem[]     = useMemo(
+    const title: IUseInput<string>       = useInput<string>(props.task?.title ?? '');
+    const description: IUseInput<string> = useInput<string>(props.task?.description ?? '');
+    const todolistSlice: ITodoListSlice  = useSlice((state) => state.todolist);
+    const listSearch: UseListSearch      = useListSearch();
+    const list: ITodoList | undefined    = useMemo(() => listSearch(props.task?.todo_list_id ?? 0), [ props.task ]);
+    const listOptions: IUseSelectItem[]  = useMemo(
         () => todolistSlice.lists.map((list: ITodoList) => ({
             value: list.id, title: list.title,
         })),
         [ list, todolistSlice.lists ],
     );
-    const status: IUseCheckbox              = useCheckbox(props.task?.status ?? false, () => {
+    const status: IUseCheckbox           = useCheckbox(props.task?.status ?? false, () => {
     }, [ props.task ]);
-    const todolists: IUseSelect             = useSelect({
+    const todolists: IUseSelect          = useSelect({
         options: listOptions,
         default: list ? list.id : 0,
     }, [ props.task ]);
-    const [ calendarTime, setCalendarTime ] = useState<Value>(null);
-    const calendarValue: Date | null        = useMemo<Date | null>(() => {
-        return props.task?.completion_date
-               ? new Date(props.task?.completion_date)
-               : null;
-    }, [ props.task?.completion_date ]);
-    const calendarOnChange                  = useCallback<(value: Value, event: React.MouseEvent<HTMLButtonElement>) => void>((date: Value) => {
-        setCalendarTime(date);
-    }, [ calendarTime, props.task ]);
-    const tododata: ITodoItemCreate         = useMemo(() => {
+    const miniCalendar: IUseMiniCalendar = useMiniCalendar({ initialValue: props.task?.completion_date });
+
+    const tododata: ITodoItemCreate = useMemo(() => {
         const data: ITodoItemCreate = {
             title       : title.value,
             description : description.value,
@@ -70,23 +66,12 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
             status      : status.status,
         };
 
-        if (calendarTime !== null) {
-            data.completion_date = (calendarTime as Date).toISOString();
+        if (miniCalendar.selectedDate !== null) {
+            data.completion_date = (miniCalendar.selectedDate as Date).toISOString();
         }
 
         return data;
-    }, [ title, description, todolists, status.status, calendarTime ]);
-
-    useEffect(() => {
-        const date: Date | null = props.task?.completion_date
-                                  ? new Date(props.task.completion_date)
-                                  : null;
-        if ((date && date.toISOString()) !== (calendarTime && (calendarTime as Date).toISOString())) {
-            setCalendarTime(props.task?.completion_date
-                            ? new Date(props.task.completion_date)
-                            : null);
-        }
-    }, [ props.task ]);
+    }, [ title, description, todolists, status.status, miniCalendar.selectedDate ]);
 
     return (
         <Vertical offset={ 14 }>
@@ -102,8 +87,7 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
             </TitleSection>
 
             <TitleSection title={ 'Time' }>
-                <Calendar value={ calendarValue }
-                          onChange={ calendarOnChange }/>
+                <MiniCalendar hook={ miniCalendar }/>
             </TitleSection>
             <TitleSection title={ 'Status' }>
                 <Vertical offset={ 7 }>
