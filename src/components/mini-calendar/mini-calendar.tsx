@@ -1,6 +1,8 @@
 import React from 'react';
 import { IUseMiniCalendar } from '../../hooks/use-mini-calendar.hook';
 import Calendar from 'react-calendar';
+import css from './mini-calendar.module.scss';
+import Theme from '../ui/containers/theme/theme.component';
 
 
 export interface IMiniCalendarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -9,10 +11,13 @@ export interface IMiniCalendarProps extends React.HTMLAttributes<HTMLDivElement>
 
 const MiniCalendar: React.FC<IMiniCalendarProps> = (props: IMiniCalendarProps) => {
     return (
-        <Calendar
-            value={ props.hook.selectedDate }
-            onChange={ props.hook.onCalendarChange }
-        />
+        <Theme css={ css }>
+            <Calendar
+                className={ css.container }
+                value={ props.hook.selectedDate }
+                onChange={ props.hook.onCalendarChange }
+            />
+        </Theme>
     );
 };
 

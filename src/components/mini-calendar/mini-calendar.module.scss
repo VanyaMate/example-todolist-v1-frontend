@@ -1,0 +1,62 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+$gap : 10px;
+
+.container {
+    :global {
+        .react-calendar {
+            border : none !important;
+
+            & * {
+                transition : .05s;
+            }
+
+            &__month-view {
+                &__days {
+                    gap : $gap;
+                }
+            }
+
+            &__tile {
+                flex          : 0 0 calc((100% / 7) - ($gap * 6) / 7) !important;
+                border-radius : $smallOffset;
+
+                &--active {
+                    background : $mark_blue_4;
+                }
+            }
+        }
+    }
+
+    &.dark {
+        :global {
+            .react-calendar {
+                background : $black_2 !important;
+
+                & * {
+                    color : $white_-4 !important;
+                }
+
+                &__month-view {
+                    &__days {
+                    }
+                }
+
+                &__tile {
+                    &:hover:not(&--active) {
+                        background : $black_8;
+                    }
+
+                    &--active {
+                        background : $mark_blue_4 !important;
+                    }
+                }
+            }
+        }
+    }
+
+    &.white {
+
+    }
+}
