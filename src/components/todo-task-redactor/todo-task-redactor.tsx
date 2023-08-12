@@ -5,7 +5,6 @@ import {
 import React, { useMemo } from 'react';
 import { IUseInput, useInput } from '../../hooks/use-input.hook';
 import Input from '../ui/inputs/input/input.component';
-import TitleSection from '../title-section/title-section';
 import Vertical from '../ui/containers/vertical/vertical.component';
 import {
     IUseSelect,
@@ -32,6 +31,7 @@ import {
     useMiniCalendar,
 } from '../../hooks/use-mini-calendar.hook';
 import MiniCalendar from '../mini-calendar/mini-calendar';
+import Collapse from '../ui/collapses/collapse/collapse';
 
 
 export interface ITodoTaskRedactorProps {
@@ -78,7 +78,10 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
 
     return (
         <Vertical offset={ 14 }>
-            <TitleSection title={ 'General' }>
+            <Collapse
+                opened={ true }
+                label={ 'general' }
+            >
                 <Vertical offset={ 7 }>
                     <Input hook={ title }
                            placeholder={ 'title' }
@@ -87,24 +90,26 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
                            placeholder={ 'description' }
                     />
                 </Vertical>
-            </TitleSection>
-
-            <TitleSection title={ 'Time' }>
+            </Collapse>
+            <Collapse
+                opened={ false }
+                label={ 'time' }
+            >
                 <MiniCalendar hook={ miniCalendar }/>
-            </TitleSection>
-            <TitleSection title={ 'Status' }>
+            </Collapse>
+            <Collapse label={ 'Status' }>
                 <Vertical offset={ 7 }>
                     <Checkbox hook={ status }/>
                 </Vertical>
-            </TitleSection>
-            <TitleSection title={ 'List' }>
+            </Collapse>
+            <Collapse label={ 'List' }>
                 <ListSelect hook={ todolists }/>
-            </TitleSection>
-            <TitleSection title={ 'Tags' }>
+            </Collapse>
+            <Collapse label={ 'Tags' }>
                 <Vertical offset={ 7 }>
 
                 </Vertical>
-            </TitleSection>
+            </Collapse>
             {
                 props.task ?
                 <Row offset={ 10 }>
