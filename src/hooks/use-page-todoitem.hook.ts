@@ -1,38 +1,45 @@
-import {useLocation, useSearchParams} from "react-router-dom";
-import {useEffect, useMemo, useState} from "react";
-import {todoitemApi} from "../store/todoitem/todoitem.api";
-import {useActions} from "./redux/use-actions.hook";
-import {useSlice} from "./redux/use-store.hook";
-import {IMultiplyResponse, ISearchOptions} from "../store/api.interface";
-import {ITodoItem} from "../store/todoitem/todoitem.interface";
-import {BaseQueryFn, FetchArgs, FetchBaseQueryError, FetchBaseQueryMeta, QueryDefinition} from "@reduxjs/toolkit/query";
-import {LazyQueryTrigger} from "@reduxjs/toolkit/dist/query/react/buildHooks";
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { todoitemApi } from '../store/todoitem/todoitem.api';
+import { useActions } from './redux/use-actions.hook';
+import { useSlice } from './redux/use-store.hook';
+import { IMultiplyResponse, ISearchOptions } from '../store/api.interface';
+import { ITodoItem } from '../store/todoitem/todoitem.interface';
+import {
+    BaseQueryFn,
+    FetchArgs,
+    FetchBaseQueryError,
+    FetchBaseQueryMeta,
+    QueryDefinition,
+} from '@reduxjs/toolkit/query';
+import { LazyQueryTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 
-type DispatcherType = LazyQueryTrigger<QueryDefinition<ISearchOptions<ITodoItem>, BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, never, IMultiplyResponse<ITodoItem>, "todoitem/api">>;
+
+type DispatcherType = LazyQueryTrigger<QueryDefinition<ISearchOptions<ITodoItem>, BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, never, IMultiplyResponse<ITodoItem>, 'todoitem/api'>>;
 
 enum Dispatcher {
-    ALL = '/all',
+    ALL       = '/all',
     COMPLETED = '/completed',
-    OVERDUE = '/overdue',
-    TODAY = '/today',
-    UPCOMING = '/upcoming',
+    OVERDUE   = '/overdue',
+    TODAY     = '/today',
+    UPCOMING  = '/upcoming',
 }
 
 export const usePageTodoItem = function () {
-    const {pathname, search} = useLocation();
-    const [searchParams] = useSearchParams();
-    const {todoitem, search: searchActions} = useActions();
-    const searchSlice = useSlice((state) => state.search);
-    const [dispatcherName, setDispatcherName] = useState<string>(Dispatcher.ALL);
-    const [fetching, setFetching] = useState<boolean>(false);
-    const [error, setError] = useState<boolean>(false);
-    const [count, setCount] = useState<number>(0);
+    const { pathname, search }                  = useLocation();
+    const [ searchParams ]                      = useSearchParams();
+    const { todoitem, search: searchActions }   = useActions();
+    const searchSlice                           = useSlice((state) => state.search);
+    const [ dispatcherName, setDispatcherName ] = useState<string>(Dispatcher.ALL);
+    const [ fetching, setFetching ]             = useState<boolean>(false);
+    const [ error, setError ]                   = useState<boolean>(false);
+    const [ count, setCount ]                   = useState<number>(0);
 
-    const [dispatchGetMy] = todoitemApi.useLazyGetMyQuery();
-    const [dispatchGetCompleted] = todoitemApi.useLazyGetCompletedQuery();
-    const [dispatchGetOverdue] = todoitemApi.useLazyGetOverdueQuery();
-    const [dispatchGetToday] = todoitemApi.useLazyGetTodayQuery();
-    const [dispatchGetUpcoming] = todoitemApi.useLazyGetUpcomingQuery();
+    const [ dispatchGetMy ]        = todoitemApi.useLazyGetMyQuery();
+    const [ dispatchGetCompleted ] = todoitemApi.useLazyGetCompletedQuery();
+    const [ dispatchGetOverdue ]   = todoitemApi.useLazyGetOverdueQuery();
+    const [ dispatchGetToday ]     = todoitemApi.useLazyGetTodayQuery();
+    const [ dispatchGetUpcoming ]  = todoitemApi.useLazyGetUpcomingQuery();
 
     const dispatcher = useMemo<DispatcherType>(() => {
         switch (pathname) {
@@ -52,16 +59,16 @@ export const usePageTodoItem = function () {
                 setDispatcherName(Dispatcher.ALL.split('/')[1]);
                 return dispatchGetMy;
         }
-    }, [pathname]);
+    }, [ pathname ]);
 
     useEffect(() => {
         searchActions.resetCurrentOptions();
-    }, [pathname])
+    }, [ pathname ]);
 
     useEffect(() => {
-        let limit: string | null = searchParams.get('limit');
+        let limit: string | null  = searchParams.get('limit');
         let offset: string | null = searchParams.get('offset');
-        let order: string | null = searchParams.get('order');
+        let order: string | null  = searchParams.get('order');
 
         const options: Partial<ISearchOptions<ITodoItem>> = {};
         if (limit) options.limit = Number(limit);
@@ -69,7 +76,7 @@ export const usePageTodoItem = function () {
         if (order) options.order = order;
 
         searchActions.setCurrentOptions(options);
-    }, [search])
+    }, [ search ]);
 
     useEffect(() => {
         setFetching(true);
@@ -81,8 +88,8 @@ export const usePageTodoItem = function () {
                 setCount(data!.count);
             })
             .catch(() => setError(true))
-            .finally(() => setFetching(false))
-    }, [dispatcher, searchSlice.currentSearchOptions])
+            .finally(() => setFetching(false));
+    }, [ dispatcher, searchSlice.currentSearchOptions ]);
 
-    return {fetching, error, dispatcherName, count};
-}
+    return { fetching, error, dispatcherName, count };
+};

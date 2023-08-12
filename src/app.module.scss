@@ -2,36 +2,37 @@
 @import "src/styles/colors";
 
 .container {
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100%;
+    display         : flex;
+    justify-content : center;
+    min-height      : 100vh;
+    width           : 100%;
 
     &.dark {
-        background: $black;
-        color: $white;
+        background : $black;
+        color      : $white;
 
         & *::selection {
-            background: $mark_blue_4;
-            color: $white_8;
+            background : $mark_blue_4;
+            color      : $white_8;
         }
     }
+
     &.white {
-        background: $white;
-        color: $black;
+        background : $white;
+        color      : $black;
 
         & *::selection {
-            background: $mark_blue_4;
-            color: $white_8;
+            background : $mark_blue_4;
+            color      : $white_8;
         }
     }
 
     .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        display         : flex;
+        flex-direction  : column;
+        justify-content : space-between;
 
-        width: $contentWidth;
-        max-width: calc(100vw - #{$mediumOffset} * 2);
+        width           : $contentWidth;
+        max-width       : calc(100vw - #{$mediumOffset} * 2);
     }
 }
