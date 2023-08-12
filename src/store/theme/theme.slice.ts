@@ -1,8 +1,9 @@
-import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {LS_THEME} from "../../constants/storages.constant";
+import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
+import { LS_THEME } from '../../constants/storages.constant';
+
 
 export enum ThemeType {
-    DARK = 'dark',
+    DARK  = 'dark',
     WHITE = 'white',
 }
 
@@ -11,16 +12,16 @@ export interface IThemeSlice {
 }
 
 const initialState: IThemeSlice = {
-    theme: localStorage.getItem(LS_THEME) as ThemeType ?? ThemeType.WHITE
+    theme: localStorage.getItem(LS_THEME) as ThemeType ?? ThemeType.WHITE,
 };
 
 export const themeSlice = createSlice({
-    name: 'theme',
+    name        : 'theme',
     initialState: initialState,
-    reducers: {
+    reducers    : {
         set (state: Draft<IThemeSlice>, action: PayloadAction<ThemeType>) {
             state.theme = action.payload;
             localStorage.setItem(LS_THEME, action.payload);
-        }
-    }
+        },
+    },
 });

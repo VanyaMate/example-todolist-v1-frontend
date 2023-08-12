@@ -1,4 +1,5 @@
 @import "src/styles/sizes";
+@import "src/styles/colors";
 
 .container {
     :global {
@@ -13,6 +14,22 @@
         .ant-collapse-header,
         .ant-collapse-content-box {
             padding: $smallOffset 0 !important;
+        }
+    }
+
+    &.dark {
+        :global {
+            .ant-collapse-header {
+                color: $white;
+            }
+        }
+    }
+
+    &.white {
+        :global {
+            .ant-collapse-header {
+                color: $black;
+            }
         }
     }
 }

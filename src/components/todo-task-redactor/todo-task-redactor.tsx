@@ -31,7 +31,12 @@ import {
     useMiniCalendar,
 } from '../../hooks/use-mini-calendar.hook';
 import MiniCalendar from '../mini-calendar/mini-calendar';
-import Collapse from '../ui/collapses/collapse/collapse';
+import Collapse from '../ui/collapses/collapse-antd/collapse';
+import {
+    IUseAntdTextarea,
+    useTextarea,
+} from '../../hooks/use-textarea.hook';
+import AntdTextarea from '../ui/inputs/textarea-antd/antd-textarea';
 
 
 export interface ITodoTaskRedactorProps {
@@ -39,8 +44,14 @@ export interface ITodoTaskRedactorProps {
 }
 
 const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
-    const title: IUseInput<string>       = useInput<string>(props.task?.title ?? '');
-    const description: IUseInput<string> = useInput<string>(props.task?.description ?? '');
+    const title: IUseInput<string> = useInput<string>(props.task?.title ?? '');
+    console.log(props.task?.description);
+    const description: IUseAntdTextarea  = useTextarea({
+        maxLength   : 200,
+        showCount   : true,
+        initialState: props.task?.description,
+        placeholder : 'description',
+    });
     const todolistSlice: ITodoListSlice  = useSlice((state) => state.todolist);
     const listSearch: UseListSearch      = useListSearch();
     const list: ITodoList | undefined    = useMemo(() => listSearch(props.task?.todo_list_id ?? 0), [ props.task ]);
@@ -86,9 +97,7 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
                     <Input hook={ title }
                            placeholder={ 'title' }
                     />
-                    <Input hook={ description }
-                           placeholder={ 'description' }
-                    />
+                    <AntdTextarea hook={ description }/>
                 </Vertical>
             </Collapse>
             <Collapse

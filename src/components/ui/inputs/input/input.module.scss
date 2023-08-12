@@ -11,11 +11,11 @@
     transition: .1s;
 
     &.dark {
-        background: lighten($darkBlack, 8);
+        background: $black_8;
         color: $white;
     }
     &.white {
-        background: lighten($white, 8);
+        background: $white_8;
         color: $darkBlack;
     }
 }

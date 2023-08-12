@@ -1,0 +1,68 @@
+@import "src/styles/colors";
+@import "src/styles/sizes";
+
+.container {
+    .ant {
+        transition : .1s;
+    }
+
+    .ant > textarea,
+    textarea.ant {
+        transition : .1s;
+        padding    : $mediumOffset calc($mediumOffset + 5px);
+        min-height : 85px;
+    }
+
+
+    :global {
+        .ant-input-data-count {
+            font-size : 12px;
+            bottom    : 0;
+            right     : 10px;
+        }
+    }
+
+    &.dark {
+        .ant {
+            border-radius : $mediumOffset;
+            border        : none;
+
+            textarea {
+                background : $black_8;
+                color      : $white;
+
+                &:focus {
+                    outline : 1px solid $mark_blue_4;
+                }
+            }
+        }
+
+        :global {
+            .ant-input-data-count {
+                color : $white-_16;
+            }
+        }
+    }
+
+    &.white {
+        .ant {
+            border-radius : $mediumOffset;
+            border        : none;
+
+            textarea {
+                background : $white_8;
+                color      : $black;
+
+                &:focus {
+                    outline : 1px solid $mark_blue_4;
+                }
+            }
+        }
+
+        :global {
+            .ant-input-data-count {
+                color : $black_16;
+            }
+        }
+    }
+}
