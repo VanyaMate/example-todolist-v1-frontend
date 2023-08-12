@@ -6,25 +6,56 @@ $gap : 10px;
 .container {
     :global {
         .react-calendar {
-            border : none !important;
+            border        : none !important;
+            width         : 100% !important;
+            border-radius : $smallOffset;
+            transition: .1s;
 
             & * {
-                transition : .05s;
+                transition : .1s !important;
+            }
+
+            &__navigation {
+                gap : $gap;
             }
 
             &__month-view {
-                &__days {
+                &__days,
+                &__weekdays {
                     gap : $gap;
+
+                    &__day,
+                    &__weekday {
+                        flex          : 0 0 calc((100% / 7) - ($gap * 6) / 7) !important;
+                        border-radius : $smallOffset;
+                    }
+
+                    &__weekday {
+                        & * {
+                            text-decoration : none !important;
+                            opacity         : .5;
+                            cursor          : default;
+                            user-select     : none;
+                        }
+                    }
+                }
+            }
+
+            &__year-view__months,
+            &__century-view__decades,
+            &__decade-view__years {
+                gap : $gap;
+
+                &__month,
+                &__decade,
+                &__year {
+                    flex          : 0 0 calc((100% / 3) - ($gap * 2) / 3) !important;
+                    border-radius : $smallOffset;
                 }
             }
 
             &__tile {
-                flex          : 0 0 calc((100% / 7) - ($gap * 6) / 7) !important;
-                border-radius : $smallOffset;
 
-                &--active {
-                    background : $mark_blue_4;
-                }
             }
         }
     }
@@ -38,18 +69,52 @@ $gap : 10px;
                     color : $white_-4 !important;
                 }
 
+                &__navigation {
+                    &__label,
+                    &__arrow {
+                        background    : $black_4 !important;
+                        border-radius : $smallOffset;
+
+                        &:hover {
+                            background : $black_12 !important;
+                        }
+                    }
+                }
+
                 &__month-view {
                     &__days {
+                        &__day {
+                            &--weekend {
+                                & > * {
+                                    color : $mark_blue_4 !important;
+                                }
+                            }
+
+                            &--neighboringMonth {
+                                background : $black_2 !important;
+                            }
+                        }
                     }
                 }
 
                 &__tile {
+                    background : $black_4;
+
                     &:hover:not(&--active) {
-                        background : $black_8;
+                        background : $black_12;
                     }
 
-                    &--active {
+                    &--active,
+                    &--hasActive {
                         background : $mark_blue_4 !important;
+
+                        & > * {
+                            color : $white_-4 !important;
+                        }
+                    }
+
+                    &--now {
+                        background : $black_8;
                     }
                 }
             }
@@ -57,6 +122,63 @@ $gap : 10px;
     }
 
     &.white {
+        :global {
+            .react-calendar {
+                background : $white_-2 !important;
 
+                & * {
+                    color : $black_4 !important;
+                }
+
+                &__navigation {
+                    &__label,
+                    &__arrow {
+                        background    : $white_-4 !important;
+                        border-radius : $smallOffset;
+
+                        &:hover {
+                            background : $white_-12 !important;
+                        }
+                    }
+                }
+
+                &__month-view {
+                    &__days {
+                        &__day {
+                            &--weekend {
+                                & > * {
+                                    color : $mark_blue_4 !important;
+                                }
+                            }
+
+                            &--neighboringMonth {
+                                background : $white_-2 !important;
+                            }
+                        }
+                    }
+                }
+
+                &__tile {
+                    background : $white_-4;
+
+                    &:hover:not(&--active) {
+                        background : $white_-12;
+                    }
+
+                    &--active,
+                    &--hasActive {
+                        background : $mark_blue_4 !important;
+
+                        & > * {
+                            color : $white_-4 !important;
+                        }
+                    }
+
+                    &--now {
+                        background : $white_-8;
+                    }
+                }
+            }
+        }
     }
 }

@@ -56,7 +56,10 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         options: listOptions,
         default: list ? list.id : 0,
     }, [ props.task ]);
-    const miniCalendar: IUseMiniCalendar = useMiniCalendar({ initialValue: props.task?.completion_date });
+    const miniCalendar: IUseMiniCalendar = useMiniCalendar({
+        initialValue: props.task?.completion_date,
+        resetId     : props.task?.id,
+    });
 
     const tododata: ITodoItemCreate = useMemo(() => {
         const data: ITodoItemCreate = {

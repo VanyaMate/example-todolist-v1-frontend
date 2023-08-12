@@ -4,6 +4,7 @@ import { Value } from 'react-calendar/src/shared/types';
 
 export interface IUseMiniCalendarProps {
     initialValue: string | undefined;
+    resetId?: string | number | undefined;
 }
 
 export interface IUseMiniCalendar {
@@ -30,6 +31,14 @@ export const useMiniCalendar = function (props: IUseMiniCalendarProps): IUseMini
                             : null);
         }
     }, [ props.initialValue ]);
+
+    useEffect(() => {
+        const date: Date | null = props.initialValue
+                                  ? new Date(props.initialValue)
+                                  : null;
+
+        setSelectedDate(date);
+    }, [ props.resetId ]);
 
     return useMemo(() => ({
         selectedDate,
