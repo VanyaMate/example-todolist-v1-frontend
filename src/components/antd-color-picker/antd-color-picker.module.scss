@@ -2,26 +2,116 @@
 
 :global {
     .dark {
-        .ant-popover-inner, {
-            background: $black_8 !important;
-
-            .ant-select-selection-item,
-            .ant-select-arrow svg {
-                color: $white_-16;
+        .ant-popover-arrow {
+            &:before {
+                background : $black_16;
             }
         }
 
-        .ant-input-affix-wrapper {
-            background: $black_8;
+        .ant-popover-inner, {
+            background : $black_8 !important;
+
+            .ant-select-selection-item,
+            .ant-select-arrow svg {
+                color : $white_-16 !important;
+            }
+        }
+
+        .ant-input-affix-wrapper,
+        .ant-input-number,
+        .ant-input-number-handler-wrap {
+            background : $black_8 !important;
+            border     : 1px solid $black_12;
+
+            .ant-input-prefix,
+            .ant-input-number-handler-wrap svg {
+                color : $white_-32 !important;
+            }
+
+            .ant-input-number-handler {
+                border : 1px solid transparent;
+            }
 
             & input {
-                background: $black_8;
+                background : $black_8 !important;
+                color      : $white_-16;
+            }
+        }
+
+        .rc-virtual-list-holder-inner {
+            display : flex;
+            gap     : 5px;
+        }
+
+        .ant-select-dropdown {
+            background : $black_12;
+            gap        : 5px;
+
+            .ant-select-item {
+                background : $black_16;
+                color      : $white_-16;
+
+                &-option-selected {
+                    background : $black_32;
+                }
             }
         }
     }
 
     .white {
+        .ant-popover-arrow {
+            &:before {
+                background : $white_2;
+            }
+        }
 
+        .ant-popover-inner, {
+            background : $white_8 !important;
+
+            .ant-select-selection-item,
+            .ant-select-arrow svg {
+                color : $black_16 !important;
+            }
+        }
+
+        .ant-input-affix-wrapper,
+        .ant-input-number,
+        .ant-input-number-handler-wrap {
+            background : $white_8 !important;
+            border     : 1px solid $white_-8;
+
+            .ant-input-prefix,
+            .ant-input-number-handler-wrap svg {
+                color : $black_12 !important;
+            }
+
+            .ant-input-number-handler {
+                border : 1px solid transparent;
+            }
+
+            & input {
+                background : $white_8 !important;
+                color      : $black_16;
+            }
+        }
+
+        .rc-virtual-list-holder-inner {
+            display : flex;
+            gap     : 5px;
+        }
+
+        .ant-select-dropdown {
+            background : $white_8;
+
+            .ant-select-item {
+                background : $white_4;
+                color      : $black_12;
+
+                &-option-selected {
+                    background : $white_-2;
+                }
+            }
+        }
     }
 }
 
@@ -35,7 +125,7 @@
                     transition : .1s;
 
                     &:hover {
-                        background: $black_12 !important;
+                        background : $black_12 !important;
                     }
 
                     &-text {
@@ -56,7 +146,7 @@
                     transition : .1s;
 
                     &:hover {
-                        background: $white_4 !important;
+                        background : $white_4 !important;
                     }
 
                     &-text {

@@ -1,8 +1,6 @@
 import React from 'react';
 import { ITodoList } from '../../store/todolist/todolist.interface';
 import Vertical from '../ui/containers/vertical/vertical.component';
-import Input from '../ui/inputs/input/input.component';
-import { IUseInput, useInput } from '../../hooks/use-input.hook';
 import TodoListCreateButton
     from '../todo/todo-list-create-button/todo-list-create-button';
 import TodoListUpdateButton
@@ -17,6 +15,13 @@ import {
     useAntdColorPicker,
 } from '../../hooks/use-antd-color-picker.hook';
 import Collapse from '../ui/collapses/collapse-antd/collapse';
+import { IUseAntdInput, useAntdInput } from '../../hooks/use-antd-input.hook';
+import {
+    IUseAntdTextarea,
+    useAntdTextarea,
+} from '../../hooks/use-antd-textarea.hook';
+import AntdInput from '../ui/inputs/antd-input/antd-input';
+import AntdTextarea from '../ui/inputs/textarea-antd/antd-textarea';
 
 
 interface ITodoListRedactorProps {
@@ -24,10 +29,20 @@ interface ITodoListRedactorProps {
 }
 
 const TodoListRedactor: React.FC<ITodoListRedactorProps> = (props) => {
-    const { list }                       = props;
-    const title: IUseInput<string>       = useInput<string>(list?.title ?? '');
-    const description: IUseInput<string> = useInput<string>(list?.description ?? '');
-    const color: IUseAntdColorPicker     = useAntdColorPicker({
+    const { list }                      = props;
+    const title: IUseAntdInput          = useAntdInput({
+        initialState: props.list?.title ?? '',
+        placeholder : 'title',
+        showCount   : true,
+        maxLength   : 40,
+    });
+    const description: IUseAntdTextarea = useAntdTextarea({
+        initialState: props.list?.description ?? '',
+        placeholder : 'description',
+        showCount   : true,
+        maxLength   : 200,
+    });
+    const color: IUseAntdColorPicker    = useAntdColorPicker({
         initialValue: props.list?.colorHex,
         showText    : true,
     });
@@ -36,12 +51,8 @@ const TodoListRedactor: React.FC<ITodoListRedactorProps> = (props) => {
         <Vertical offset={ 14 } className={ css.container }>
             <Collapse opened={ true } label={ 'general' }>
                 <Vertical offset={ 7 }>
-                    <Input hook={ title }
-                           placeholder={ 'title' }
-                    />
-                    <Input hook={ description }
-                           placeholder={ 'description' }
-                    />
+                    <AntdInput hook={ title }/>
+                    <AntdTextarea hook={ description }/>
                 </Vertical>
             </Collapse>
             <Collapse opened={ true } label={ 'Color' }>
