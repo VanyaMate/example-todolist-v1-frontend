@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from 'antd';
-import { IUseAntdTextarea } from '../../../../hooks/use-textarea.hook';
+import { IUseAntdTextarea } from '../../../../hooks/use-antd-textarea.hook';
 import Theme from '../../containers/theme/theme.component';
 import css from './antd-textarea.module.scss';
 

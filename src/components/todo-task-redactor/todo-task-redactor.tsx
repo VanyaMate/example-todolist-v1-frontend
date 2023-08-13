@@ -3,8 +3,6 @@ import {
     ITodoItemCreate,
 } from '../../store/todoitem/todoitem.interface';
 import React, { useMemo } from 'react';
-import { IUseInput, useInput } from '../../hooks/use-input.hook';
-import Input from '../ui/inputs/input/input.component';
 import Vertical from '../ui/containers/vertical/vertical.component';
 import {
     IUseSelect,
@@ -34,9 +32,11 @@ import MiniCalendar from '../mini-calendar/mini-calendar';
 import Collapse from '../ui/collapses/collapse-antd/collapse';
 import {
     IUseAntdTextarea,
-    useTextarea,
-} from '../../hooks/use-textarea.hook';
+    useAntdTextarea,
+} from '../../hooks/use-antd-textarea.hook';
 import AntdTextarea from '../ui/inputs/textarea-antd/antd-textarea';
+import { IUseAntdInput, useAntdInput } from '../../hooks/use-antd-input.hook';
+import AntdInput from '../ui/inputs/antd-input/antd-input';
 
 
 export interface ITodoTaskRedactorProps {
@@ -44,9 +44,13 @@ export interface ITodoTaskRedactorProps {
 }
 
 const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
-    const title: IUseInput<string> = useInput<string>(props.task?.title ?? '');
-    console.log(props.task?.description);
-    const description: IUseAntdTextarea  = useTextarea({
+    const title: IUseAntdInput           = useAntdInput({
+        maxLength   : 40,
+        showCount   : true,
+        initialState: props.task?.title,
+        placeholder : 'title',
+    });
+    const description: IUseAntdTextarea  = useAntdTextarea({
         maxLength   : 200,
         showCount   : true,
         initialState: props.task?.description,
@@ -94,9 +98,7 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
                 label={ 'general' }
             >
                 <Vertical offset={ 7 }>
-                    <Input hook={ title }
-                           placeholder={ 'title' }
-                    />
+                    <AntdInput hook={ title }/>
                     <AntdTextarea hook={ description }/>
                 </Vertical>
             </Collapse>

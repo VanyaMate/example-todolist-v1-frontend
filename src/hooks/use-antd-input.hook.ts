@@ -1,22 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 
-export interface IUseAntdTextareaProps {
+export interface IUseAntdInputProps {
     maxLength: number;
     showCount?: boolean;
     placeholder?: string;
     initialState?: string;
 }
 
-export interface IUseAntdTextarea extends IUseAntdTextareaProps {
-    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+export interface IUseAntdInput {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     initialState: string;
     value: string;
 }
 
-export const useTextarea = function (props: IUseAntdTextareaProps): IUseAntdTextarea {
+export const useAntdInput = function (props: IUseAntdInputProps): IUseAntdInput {
     const [ value, setValue ] = useState<string>(props.initialState ?? '');
-    const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const onChange            = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
     }, [ setValue ]);
 
