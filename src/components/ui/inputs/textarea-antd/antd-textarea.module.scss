@@ -11,6 +11,10 @@
         transition : .1s;
         padding    : $mediumOffset calc($mediumOffset + 5px);
         min-height : 85px;
+
+        &::placeholder {
+            transition : .1s;
+        }
     }
 
 
@@ -30,6 +34,10 @@
             textarea {
                 background : $black_8;
                 color      : $white;
+
+                &::placeholder {
+                    color : $black_24;
+                }
 
                 &:focus {
                     outline : 1px solid $mark_blue_4;
@@ -52,6 +60,10 @@
             textarea {
                 background : $white_8;
                 color      : $black;
+
+                &::placeholder {
+                    color : $white_-16;
+                }
 
                 &:focus {
                     outline : 1px solid $mark_blue_4;

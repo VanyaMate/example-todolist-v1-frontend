@@ -2,42 +2,46 @@
 @import "src/styles/sizes";
 
 .container {
-    cursor: pointer;
-    padding: $smallOffset;
-    border-radius: $smallOffset;
-    height: $mediumHeight;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-    opacity: .6;
-    transition: .1s;
+    cursor          : pointer;
+    padding         : $smallOffset;
+    border-radius   : $smallOffset;
+    height          : $mediumHeight;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    pointer-events  : none;
+    opacity         : .6;
+    transition      : .1s;
 
     &.active {
-        pointer-events: auto;
-        opacity: 1;
+        pointer-events : auto;
+        opacity        : 1;
     }
 
     &.loading {
-        animation: $loading;
-        pointer-events: none;
+        animation      : $loading;
+        pointer-events : none;
     }
 
     &.dark {
-        color: $white;
-        background: $black;
+        color      : $white_-16;
+        background : $black_8;
+        border     : 1px solid $black_12;
 
         &:hover {
-            background: $black_-2
+            background : $black_12;
+            border     : 1px solid $black_16;
         }
     }
 
     &.white {
-        color: $black;
-        background: $white_2;
+        color      : $black_-4;
+        background : $white_2;
+        border     : 1px solid $white_-4;
 
         &:hover {
-            background: $white_4;
+            background : $white_4;
+            border     : 1px solid $white_-8;
         }
     }
 }

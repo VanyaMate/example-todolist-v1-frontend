@@ -42,6 +42,8 @@ $black_8                          : lighten($black, 8);
 $black_12                          : lighten($black, 12);
 $black_14                          : lighten($black, 14);
 $black_16                          : lighten($black, 16);
+$black_24                          : lighten($black, 24);
+$black_32                          : lighten($black, 32);
 
 $white_-2                         : darken($white, 2);
 $white_-4                         : darken($white, 4);
@@ -50,6 +52,7 @@ $white_-8                         : darken($white, 8);
 $white_-12                         : darken($white, 12);
 $white_-14                         : darken($white, 14);
 $white_-16                         : darken($white, 16);
+$white_-32                         : darken($white, 32);
 
 $white_2                          : lighten($white, 2);
 $white_4                          : lighten($white, 4);

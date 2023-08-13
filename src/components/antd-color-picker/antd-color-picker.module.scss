@@ -1,0 +1,70 @@
+@import "src/styles/colors";
+
+:global {
+    .dark {
+        .ant-popover-inner, {
+            background: $black_8 !important;
+
+            .ant-select-selection-item,
+            .ant-select-arrow svg {
+                color: $white_-16;
+            }
+        }
+
+        .ant-input-affix-wrapper {
+            background: $black_8;
+
+            & input {
+                background: $black_8;
+            }
+        }
+    }
+
+    .white {
+
+    }
+}
+
+.container {
+    &.dark {
+        :global {
+            .ant-color-picker {
+                &-trigger {
+                    background : $black_8;
+                    border     : 1px solid $black_16;
+                    transition : .1s;
+
+                    &:hover {
+                        background: $black_12 !important;
+                    }
+
+                    &-text {
+                        color      : $white_-16;
+                        transition : .1s;
+                    }
+                }
+            }
+        }
+    }
+
+    &.white {
+        :global {
+            .ant-color-picker {
+                &-trigger {
+                    background : $white_2;
+                    border     : 1px solid $white_-4;
+                    transition : .1s;
+
+                    &:hover {
+                        background: $white_4 !important;
+                    }
+
+                    &-text {
+                        color      : $black_-4;
+                        transition : .1s;
+                    }
+                }
+            }
+        }
+    }
+}

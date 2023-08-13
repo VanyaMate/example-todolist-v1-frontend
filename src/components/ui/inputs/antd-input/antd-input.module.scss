@@ -5,13 +5,17 @@
     :global {
         .ant-input-affix-wrapper {
             transition    : .1s;
-            padding       : $mediumOffset calc($mediumOffset + 5px);
+            padding       : $mediumOffset $mediumOffset $mediumOffset calc($mediumOffset + 5px);
             border-radius : $smallOffset;
         }
 
         .ant-input-affix-wrapper > input,
         input.ant-input-affix-wrapper {
             transition : .1s;
+
+            &::placeholder {
+                transition : .1s;
+            }
         }
 
         .ant-input-show-count-suffix {
@@ -31,6 +35,10 @@
                 input {
                     background : $black_8;
                     color      : $white;
+
+                    &::placeholder {
+                        color: $black_24;
+                    }
                 }
 
                 &-focused {
@@ -54,6 +62,10 @@
                 input {
                     background : $white_8;
                     color      : $black;
+
+                    &::placeholder {
+                        color: $white_-16;
+                    }
                 }
 
                 &-focused {

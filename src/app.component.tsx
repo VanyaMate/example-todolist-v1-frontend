@@ -13,10 +13,20 @@ import ContentTodo from './components/content/content-todo/content-todo';
 import ContentLoading
     from './components/content/content-loading/content-loading';
 import ContentAuth from './components/content/content-auth/content-auth';
+import { useSlice } from './hooks/redux/use-store.hook';
+import { useEffect } from 'react';
 
 
 const App = () => {
     const { refreshed, login } = useRefreshAfterReloading();
+    const { theme }            = useSlice((state) => state.theme);
+
+    useEffect(() => {
+        const body: HTMLBodyElement | null = document.querySelector('body');
+        if (body) {
+            body.className = theme;
+        }
+    }, [ theme ]);
 
     return (
         <Theme css={ css }>
