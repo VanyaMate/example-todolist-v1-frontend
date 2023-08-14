@@ -1,0 +1,80 @@
+@import "src/styles/colors";
+
+
+.container {
+    .select {
+        width : 100%;
+    }
+
+    &.dark {
+        :global {
+            .ant-select-selector {
+                background : $black_12;
+                border     : 1px solid $black_16;
+
+                &:hover,
+                &:focus {
+                    border : 1px solid $mark_blue_4 !important;
+                }
+
+                .ant-select-selection-item {
+                    color : $white;
+                }
+
+                .ant-select-selection-placeholder {
+                    color : $black_32;
+                }
+            }
+
+            .ant-select-clear svg,
+            .ant-select-arrow svg {
+                color      : $white_-16;
+                transition : .1s;
+            }
+
+            .ant-select-clear {
+                background : transparent;
+
+                &:hover svg {
+                    color : $white;
+                }
+            }
+        }
+    }
+
+    &.white {
+        :global {
+            .ant-select-selector {
+                background : $white_4;
+                border     : 1px solid $white_-2;
+
+                &:hover,
+                &:focus {
+                    border : 1px solid $mark_blue_4 !important;
+                }
+
+                .ant-select-selection-item {
+                    color : $black;
+                }
+
+                .ant-select-selection-placeholder {
+                    color : $white_-32;
+                }
+            }
+
+            .ant-select-clear svg,
+            .ant-select-arrow svg {
+                color      : $white_-16;
+                transition : .1s;
+            }
+
+            .ant-select-clear {
+                background : transparent;
+
+                &:hover svg {
+                    color : $black-32;
+                }
+            }
+        }
+    }
+}

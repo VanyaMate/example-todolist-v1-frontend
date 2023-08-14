@@ -10,10 +10,11 @@ export interface IAntdInputProps {
 }
 
 const AntdInput: React.FC<IAntdInputProps> = (props) => {
+    const { initialState, ...other } = props.hook;
 
     return (
         <Theme css={ css }>
-            <Input { ...props.hook }/>
+            <Input { ...other }/>
         </Theme>
     );
 };

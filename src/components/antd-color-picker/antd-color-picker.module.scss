@@ -51,6 +51,10 @@
                 background : $black_16;
                 color      : $white_-16;
 
+                &:hover {
+                    background : $black_24;
+                }
+
                 &-option-selected {
                     background : $black_32;
                 }
@@ -106,6 +110,10 @@
             .ant-select-item {
                 background : $white_4;
                 color      : $black_12;
+
+                &:hover {
+                    background : $white;
+                }
 
                 &-option-selected {
                     background : $white_-2;

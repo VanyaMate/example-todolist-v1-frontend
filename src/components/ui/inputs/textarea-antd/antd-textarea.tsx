@@ -10,11 +10,13 @@ export interface IAntdTextareaProps {
 }
 
 const AntdTextarea: React.FC<IAntdTextareaProps> = (props) => {
+    const { initialState, ...other } = props.hook;
+
     return (
         <Theme css={ css }>
             <Input.TextArea
                 className={ css.ant }
-                { ...props.hook }
+                { ...other }
                 autoSize={ { minRows: 2, maxRows: 10 } }
             />
         </Theme>

@@ -4,14 +4,8 @@ import {
 } from '../../store/todoitem/todoitem.interface';
 import React, { useMemo } from 'react';
 import Vertical from '../ui/containers/vertical/vertical.component';
-import {
-    IUseSelect,
-    IUseSelectItem,
-    useSelect,
-} from '../../hooks/use-select.hook';
 import { useSlice } from '../../hooks/redux/use-store.hook';
 import { UseListSearch, useListSearch } from '../../hooks/use-list-search.hook';
-import ListSelect from '../ui/selects/select/list-select';
 import TodoItemDeleteButton
     from '../todo/todo-item-delete-button/todo-item-delete-button';
 import Row from '../ui/containers/row/row.component';
@@ -37,6 +31,11 @@ import {
 import AntdTextarea from '../ui/inputs/textarea-antd/antd-textarea';
 import { IUseAntdInput, useAntdInput } from '../../hooks/use-antd-input.hook';
 import AntdInput from '../ui/inputs/antd-input/antd-input';
+import {
+    IUseAntdSelect,
+    useAntdSelect, UseAntdSelectOption,
+} from '../../hooks/use-antd-select.hook';
+import AntdSelect from '../ui/selects/antd-select/antd-select';
 
 
 export interface ITodoTaskRedactorProps {
@@ -44,43 +43,46 @@ export interface ITodoTaskRedactorProps {
 }
 
 const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
-    const title: IUseAntdInput           = useAntdInput({
+    const title: IUseAntdInput               = useAntdInput({
         maxLength   : 40,
         showCount   : true,
         initialState: props.task?.title,
         placeholder : 'title',
     });
-    const description: IUseAntdTextarea  = useAntdTextarea({
+    const description: IUseAntdTextarea      = useAntdTextarea({
         maxLength   : 200,
         showCount   : true,
         initialState: props.task?.description,
         placeholder : 'description',
     });
-    const todolistSlice: ITodoListSlice  = useSlice((state) => state.todolist);
-    const listSearch: UseListSearch      = useListSearch();
-    const list: ITodoList | undefined    = useMemo(() => listSearch(props.task?.todo_list_id ?? 0), [ props.task ]);
-    const listOptions: IUseSelectItem[]  = useMemo(
+    const todolistSlice: ITodoListSlice      = useSlice((state) => state.todolist);
+    const listSearch: UseListSearch          = useListSearch();
+    const list: ITodoList | undefined        = useMemo(() => listSearch(props.task?.todo_list_id ?? 0), [ props.task ]);
+    const listOptions: UseAntdSelectOption[] = useMemo(
         () => todolistSlice.lists.map((list: ITodoList) => ({
-            value: list.id, title: list.title,
-        })),
-        [ list, todolistSlice.lists ],
+            value: `${ list.id }`, label: list.title,
+        })), [ list, todolistSlice.lists ],
     );
-    const status: IUseCheckbox           = useCheckbox(props.task?.status ?? false, () => {
+    const status: IUseCheckbox               = useCheckbox(props.task?.status ?? false, () => {
     }, [ props.task ]);
-    const todolists: IUseSelect          = useSelect({
-        options: listOptions,
-        default: list ? list.id : 0,
-    }, [ props.task ]);
-    const miniCalendar: IUseMiniCalendar = useMiniCalendar({
+    const miniCalendar: IUseMiniCalendar     = useMiniCalendar({
         initialValue: props.task?.completion_date,
         resetId     : props.task?.id,
+    });
+    const todolistSelect: IUseAntdSelect     = useAntdSelect({
+        options     : listOptions,
+        defaultValue: props.task?.todo_list_id ? `${ props.task.todo_list_id }`
+                                               : undefined,
+        placeholder : 'List',
+        allowClear  : true,
     });
 
     const tododata: ITodoItemCreate = useMemo(() => {
         const data: ITodoItemCreate = {
             title       : title.value,
             description : description.value,
-            todo_list_id: todolists.value,
+            todo_list_id: todolistSelect.value ? +todolistSelect.value
+                                               : undefined,
             status      : status.status,
         };
 
@@ -89,7 +91,8 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         }
 
         return data;
-    }, [ title, description, todolists, status.status, miniCalendar.selectedDate ]);
+    }, [ title, description, todolistSelect, status.status, miniCalendar.selectedDate ]);
+
 
     return (
         <Vertical offset={ 14 }>
@@ -103,8 +106,8 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
                 </Vertical>
             </Collapse>
             <Collapse
-                opened={ false }
-                label={ 'time' }
+                opened={ true }
+                label={ 'Time' }
             >
                 <MiniCalendar hook={ miniCalendar }/>
             </Collapse>
@@ -114,7 +117,7 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
                 </Vertical>
             </Collapse>
             <Collapse label={ 'List' }>
-                <ListSelect hook={ todolists }/>
+                <AntdSelect hook={ todolistSelect }/>
             </Collapse>
             <Collapse label={ 'Tags' }>
                 <Vertical offset={ 7 }>
