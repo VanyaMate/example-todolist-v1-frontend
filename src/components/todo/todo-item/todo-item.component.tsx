@@ -43,8 +43,13 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
         [ redactorSlice, item.id ],
     );
     const selectItem                         = useCallback(() => {
-        redactor.setItem(item);
-    }, [ item ]);
+        if ((redactorSlice.item?.id === item.id) && redactorSlice.opened) {
+            redactor.setItem(null);
+            redactor.setOpen(false);
+        } else {
+            redactor.setItem(item);
+        }
+    }, [ item, redactorSlice ]);
 
     return (
         <Theme

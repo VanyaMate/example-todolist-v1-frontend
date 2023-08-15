@@ -34,7 +34,7 @@
     }
 
     &.completed {
-        opacity : .8;
+        opacity : .7;
     }
 
     &.selected {
@@ -46,12 +46,16 @@
     }
 
     &.dark {
+        border: 1px solid $black_2;
+
         &.completed {
             background : $black_4;
+            border: 1px solid $black_6;
         }
 
         &.selected {
             background : $black_8;
+            border: 1px solid $mark_blue_4;
         }
 
         &:hover:not(.selected) {
@@ -68,12 +72,16 @@
     }
 
     &.white {
+        border: 1px solid $white_-4;
+
         &.completed {
-            background : $white_-4;
+            background : $white_-2;
+            border: 1px solid $white_-4;
         }
 
         &.selected {
-            background : $white_-6;
+            background : $white_4;
+            border: 1px solid $mark_blue_8;
         }
 
         &:hover:not(.selected) {
