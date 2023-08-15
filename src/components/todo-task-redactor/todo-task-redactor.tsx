@@ -36,6 +36,11 @@ import {
     useAntdSelect, UseAntdSelectOption,
 } from '../../hooks/use-antd-select.hook';
 import AntdSelect from '../ui/selects/antd-select/antd-select';
+import {
+    IUseAntdTimePicker,
+    useAntdTimePicker,
+} from '../../hooks/use-antd-time-picker.hook';
+import AntdTimePicker from '../antd-time-picker/antd-time-picker';
 
 
 export interface ITodoTaskRedactorProps {
@@ -76,6 +81,10 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         placeholder : 'List',
         allowClear  : true,
     });
+    const timePicker: IUseAntdTimePicker     = useAntdTimePicker({
+        defaultValue: props.task?.completion_date,
+        disabled    : !miniCalendar.selectedDate,
+    });
 
     const tododata: ITodoItemCreate = useMemo(() => {
         const data: ITodoItemCreate = {
@@ -87,7 +96,12 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         };
 
         if (miniCalendar.selectedDate !== null) {
-            data.completion_date = (miniCalendar.selectedDate as Date).toISOString();
+            const calendarDate: Date = miniCalendar.selectedDate as Date;
+
+            calendarDate.setHours(timePicker.value?.hour() ?? 0);
+            calendarDate.setMinutes(timePicker.value?.minute() ?? 0);
+            calendarDate.setSeconds(timePicker.value?.second() ?? 0);
+            data.completion_date = calendarDate.toISOString();
         }
 
         return data;
@@ -109,7 +123,10 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
                 opened={ true }
                 label={ 'Time' }
             >
-                <MiniCalendar hook={ miniCalendar }/>
+                <Vertical offset={ 10 }>
+                    <AntdTimePicker hook={ timePicker }/>
+                    <MiniCalendar hook={ miniCalendar }/>
+                </Vertical>
             </Collapse>
             <Collapse label={ 'Status' }>
                 <Vertical offset={ 7 }>

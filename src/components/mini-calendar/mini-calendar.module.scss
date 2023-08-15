@@ -9,7 +9,7 @@ $gap : 10px;
             border        : none !important;
             width         : 100% !important;
             border-radius : $smallOffset;
-            transition: .1s;
+            transition    : .1s;
 
             & * {
                 transition : .1s !important;
@@ -73,6 +73,7 @@ $gap : 10px;
                     &__label,
                     &__arrow {
                         background    : $black_4 !important;
+                        border        : 1px solid $black_6;
                         border-radius : $smallOffset;
 
                         &:hover {
@@ -99,14 +100,17 @@ $gap : 10px;
 
                 &__tile {
                     background : $black_4;
+                    border     : 1px solid $black_6;
 
                     &:hover:not(&--active) {
                         background : $black_12;
+                        border     : 1px solid $black_16;
                     }
 
                     &--active,
                     &--hasActive {
                         background : $mark_blue_4 !important;
+                        border     : 1px solid $black_6;
 
                         & > * {
                             color : $white_-4 !important;
@@ -115,6 +119,7 @@ $gap : 10px;
 
                     &--now {
                         background : $black_8;
+                        border     : 1px solid $black_12;
                     }
                 }
             }
@@ -134,10 +139,12 @@ $gap : 10px;
                     &__label,
                     &__arrow {
                         background    : $white_-4 !important;
+                        border        : 1px solid $white_-6;
                         border-radius : $smallOffset;
 
                         &:hover {
                             background : $white_-12 !important;
+                            border     : 1px solid $white_-16;
                         }
                     }
                 }
@@ -160,14 +167,17 @@ $gap : 10px;
 
                 &__tile {
                     background : $white_-4;
+                    border     : 1px solid $white_-6;
 
                     &:hover:not(&--active) {
                         background : $white_-12;
+                        border     : 1px solid $white_-16;
                     }
 
                     &--active,
                     &--hasActive {
                         background : $mark_blue_4 !important;
+                        border     : 1px solid $mark_blue_4;
 
                         & > * {
                             color : $white_-4 !important;

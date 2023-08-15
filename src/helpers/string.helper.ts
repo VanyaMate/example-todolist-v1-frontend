@@ -19,3 +19,10 @@ export const getWordsWithEllipsis = function (str: string, maxWidth: number): st
 
     return slice.join(' ') + (full ? '' : ' ...');
 };
+
+export const getFormattedTime = function (value: number): string {
+    const str = value.toString();
+    return str.length === 1 ? `0${ value }` : str;
+};
+
+export const gft = getFormattedTime;

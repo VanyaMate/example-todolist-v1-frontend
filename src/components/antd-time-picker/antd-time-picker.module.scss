@@ -1,0 +1,82 @@
+@import "src/styles/colors";
+
+.container {
+    .timepicker {
+        width : 100%;
+    }
+
+    &.dark {
+        :global {
+            .ant-picker {
+                background : $black_12;
+                border     : 1px solid $black_16;
+
+                input {
+                    color : $white;
+
+                    &::placeholder {
+                        color : $black_32;
+                    }
+                }
+
+                &-suffix,
+                &-clear {
+                    background : transparent;
+
+                    & svg {
+                        color : $white_-16;
+                    }
+                }
+
+                &-disabled {
+                    background : $black_4;
+                    border     : 1px solid $black_12;
+
+                    input,
+                    svg {
+                        color : $black_32;
+
+                        &::placeholder {
+                            color : $black_16;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.white {
+        :global {
+            .ant-picker {
+                background : $white_8;
+                border     : 1px solid $white_-12;
+
+                input {
+                    color : $black;
+
+                    &::placeholder {
+                        color : $white_-32;
+                    }
+                }
+
+                &-suffix,
+                &-clear {
+                    background : transparent;
+
+                    & svg {
+                        color : $white_-16;
+                    }
+                }
+
+                &-disabled {
+                    background : $white_-4;
+
+                    input,
+                    svg {
+                        color : $white_-16;
+                    }
+                }
+            }
+        }
+    }
+}

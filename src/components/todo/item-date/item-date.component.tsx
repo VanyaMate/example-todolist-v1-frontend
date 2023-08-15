@@ -19,7 +19,7 @@ const ItemDate: React.FC<IDateProps> = (props) => {
     const gfv = getFormattedValue;
 
     const date = useMemo(() => {
-        const date = new Date(props.date);
+        const date: Date = new Date(props.date);
         return format(date, 'PPpp');
         return `
             ${ gfv(date.getDate()) }-${ gfv(date.getMonth() + 1) }-${ date.getFullYear() } 

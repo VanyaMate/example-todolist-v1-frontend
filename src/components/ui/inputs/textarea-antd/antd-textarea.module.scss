@@ -32,11 +32,11 @@
             border        : none;
 
             textarea {
-                background : $black_8;
+                background : $black_12;
                 color      : $white;
 
                 &::placeholder {
-                    color : $black_24;
+                    color : $black_32;
                 }
 
                 &:focus {

@@ -17,6 +17,7 @@ const AntdSelect: React.FC<IAntdSelectProps> = (props: IAntdSelectProps) => {
             <Select
                 className={ css.select }
                 { ...other }
+                size={ 'large' }
             />
         </Theme>
     );
