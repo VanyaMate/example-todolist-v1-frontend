@@ -178,7 +178,7 @@ $gap : 10px;
                     &--active,
                     &--hasActive {
                         background : $mark_blue_4 !important;
-                        border     : 1px solid $mark_blue_4;
+                        border     : 1px solid $mark_blue_4 !important;
 
                         & > * {
                             color : $white_4 !important;
@@ -187,6 +187,7 @@ $gap : 10px;
 
                     &--now {
                         background : $white_-8;
+                        border: 1px solid $white_-12;
                     }
                 }
             }

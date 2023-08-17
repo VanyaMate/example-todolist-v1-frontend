@@ -2,22 +2,24 @@
 @import "src/styles/sizes";
 
 .container {
-    border-radius: $mediumOffset;
-    padding: $mediumOffset;
-    width: 100%;
-    height: 100%;
+    border-radius : $smallOffset;
+    padding       : $mediumOffset;
+    width         : 100%;
+    height        : 100%;
 
     &.dark {
-        background: $black_6;
+        background : $black_6;
+
         &:hover {
-            background: $black_8;
+            background : $black_8;
         }
     }
 
     &.white {
-        background: $white_-4;
+        background : $white_2;
+
         &:hover {
-            background: $white_2;
+            background : $white_4;
         }
     }
 }

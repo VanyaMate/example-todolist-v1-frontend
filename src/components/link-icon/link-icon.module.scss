@@ -14,10 +14,10 @@
 
     &.dark {
         .active {
-            background : $black_8;
+            background : $black_12;
 
             &:hover {
-                background : $black_8;
+                background : $black_12;
             }
         }
 
@@ -32,11 +32,7 @@
 
     &.white {
         .active {
-            background : $white_4;
-
-            &:hover:not(.active) {
-                background : $white_2;
-            }
+            background : $white_6;
         }
 
         .icon {
