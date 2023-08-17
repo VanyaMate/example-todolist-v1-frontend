@@ -3,13 +3,15 @@ import { Value } from 'react-calendar/src/shared/types';
 
 
 export interface IUseMiniCalendarProps {
-    initialValue: string | undefined;
+    initialValue?: string | null;
     resetId?: string | number | undefined;
+    disabled?: boolean;
 }
 
 export interface IUseMiniCalendar {
     selectedDate: Value;
     onCalendarChange: (date: Value) => void;
+    disabled?: boolean;
 }
 
 export const useMiniCalendar = function (props: IUseMiniCalendarProps): IUseMiniCalendar {
@@ -43,5 +45,6 @@ export const useMiniCalendar = function (props: IUseMiniCalendarProps): IUseMini
     return useMemo(() => ({
         selectedDate,
         onCalendarChange,
-    }), [ selectedDate, onCalendarChange ]);
+        disabled: props.disabled,
+    }), [ selectedDate, onCalendarChange, props.disabled ]);
 };

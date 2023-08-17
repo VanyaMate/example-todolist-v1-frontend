@@ -6,7 +6,7 @@ import { gft } from '../helpers/string.helper';
 export type TimePickerOnChange = (time: dayjs.Dayjs | null, timeString: string) => void;
 
 export interface IUseAntdTimePickerProps {
-    defaultValue?: string;
+    defaultValue?: string | null;
     disabled?: boolean;
 }
 
