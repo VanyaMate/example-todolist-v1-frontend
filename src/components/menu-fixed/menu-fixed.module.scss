@@ -1,7 +1,15 @@
 @import "src/styles/sizes";
 
-$menuWidth: 300px;
+$menuWidth  : 300px;
+$smallWidth : 80px;
+
 
 .container {
-    min-width: $menuWidth;
+    min-width  : $menuWidth;
+    transition : .1s;
+
+    @media screen and (max-width : $contentWidth_800max) {
+        width     : $smallWidth !important;
+        min-width : $smallWidth !important;
+    }
 }

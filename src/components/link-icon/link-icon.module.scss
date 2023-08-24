@@ -2,14 +2,40 @@
 @import "src/styles/sizes";
 
 .container {
+
+    @media screen and (max-width : $contentWidth_800max) {
+        text-align : center;
+
+        .row {
+            text-align : center;
+
+            svg {
+                display : block;
+                margin  : auto;
+            }
+
+            div {
+                width : 0 !important;
+            }
+        }
+    }
+
     .link {
         display         : block;
         text-decoration : none;
         text-transform  : capitalize;
+        overflow        : hidden;
+        height          : 40px;
     }
 
     .row {
         align-items : center;
+
+        div {
+            width      : 100%;
+            transition : .1s;
+            overflow   : hidden;
+        }
     }
 
     &.dark {
