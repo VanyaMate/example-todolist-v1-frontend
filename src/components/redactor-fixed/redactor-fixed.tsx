@@ -1,6 +1,7 @@
 import ContentHeight from '../content-height/content-height';
 import Box from '../ui/containers/box/box.component';
 import css from './redactor-fixed.module.scss';
+import themeCss from './redactor-fixed-theme.module.scss';
 import { useSlice } from '../../hooks/redux/use-store.hook';
 import { cn } from '../../helpers/react.helper';
 import Button from '../ui/buttons/button/button.component';
@@ -11,6 +12,7 @@ import TodoTaskRedactor from '../todo-task-redactor/todo-task-redactor';
 import { RedactorType } from '../../store/redactor/redactor.slice';
 import TodoListRedactor from '../todo-list-redactor/todo-list-redactor';
 import { useMemo } from 'react';
+import Theme from '../ui/containers/theme/theme.component';
 
 
 const RedactorFixed = () => {
@@ -20,21 +22,25 @@ const RedactorFixed = () => {
 
     return (
         <ContentHeight
-            className={ cn(css.container, redactorSlice.opened ? undefined : css.hidden) }
+            className={ cn(css.container, redactorSlice.opened ? undefined
+                                                               : css.hidden) }
         >
-            <Box className={ css.content }>
-                <Row offset={ 15 }>
-                    <TitleBox title={ isTaskRedactor ? 'Task redactor' : ' List redactor' }/>
-                    <Button active
-                            onClick={ () => redactor.setOpen(false) }
-                    >Close</Button>
-                </Row>
-                {
-                    isTaskRedactor
-                    ? <TodoTaskRedactor task={ redactorSlice.item }/>
-                    : <TodoListRedactor list={ redactorSlice.list }/>
-                }
-            </Box>
+            <Theme css={themeCss}>
+                <Box className={ css.content }>
+                    <Row offset={ 15 }>
+                        <TitleBox title={ isTaskRedactor ? 'Task redactor'
+                                                         : ' List redactor' }/>
+                        <Button active
+                                onClick={ () => redactor.setOpen(false) }
+                        >Close</Button>
+                    </Row>
+                    {
+                        isTaskRedactor
+                        ? <TodoTaskRedactor task={ redactorSlice.item }/>
+                        : <TodoListRedactor list={ redactorSlice.list }/>
+                    }
+                </Box>
+            </Theme>
         </ContentHeight>
     );
 };

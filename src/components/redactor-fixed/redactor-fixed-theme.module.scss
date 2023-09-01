@@ -1,0 +1,14 @@
+@import "src/styles/colors";
+
+.container {
+    height : 100%;
+    width: 100%;
+
+    &.dark {
+        background : $black_2;
+    }
+
+    &.white {
+        background : $white_-2;
+    }
+}

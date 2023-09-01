@@ -7,9 +7,4 @@ $smallWidth : 80px;
 .container {
     min-width  : $menuWidth;
     transition : .1s;
-
-    @media screen and (max-width : $contentWidth_800max) {
-        width     : $smallWidth !important;
-        min-width : $smallWidth !important;
-    }
 }
