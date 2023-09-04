@@ -16,6 +16,7 @@ import { RedactorType } from '../../../store/redactor/redactor.slice';
 import TodoItemSeparator from '../todo-item-separator/todo-item-separator';
 import TodoItemList from '../todo-item-list/todo-item-list';
 import { getWordsWithEllipsis } from '../../../helpers/string.helper';
+import TodoItemTags from '@/components/todo/todo-item-tags/todo-item-tags';
 
 
 export interface ITodoItemProps {
@@ -68,12 +69,23 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
                     <Checkbox hook={ status }/>
                     <Vertical offset={ 7 }>
                         <div className={ css.title }>{ item.title }</div>
-                        { item.description ? <div
-                                               className={ css.desc }>{ getWordsWithEllipsis(item.description, 150) }</div>
-                                           : '' }
+                        { item.description
+                          ? <div
+                              className={ css.desc }>{ getWordsWithEllipsis(item.description, 150) }</div>
+                          : '' }
                         <TodoItemSeparator>
                             { list ? <TodoItemList list={ list }/> : '' }
-                            <ItemDate date={ item.completion_date }/>
+                            {
+                                item.completion_date
+                                ? <ItemDate date={ item.completion_date }/>
+                                : ''
+                            }
+                            {
+                                item.tags?.length
+                                ? <TodoItemTags taskId={ item.id }
+                                                tags={ item.tags }/>
+                                : ''
+                            }
                         </TodoItemSeparator>
                     </Vertical>
                 </Row>

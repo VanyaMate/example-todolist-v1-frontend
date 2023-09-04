@@ -1,3 +1,12 @@
+export interface ITodoItemTag {
+    id: number;
+    color: string;
+    title: string;
+    createdAt: string;
+    updatedAt: string;
+    todo_items?: ITodoItem[];
+}
+
 export interface ITodoItem {
     id: number;
     title: string;
@@ -7,6 +16,7 @@ export interface ITodoItem {
     todo_list_id: number;
     createdAt: string;
     updatedAt: string;
+    tags?: ITodoItemTag[];
 }
 
 export interface ITodoItemCreate {
