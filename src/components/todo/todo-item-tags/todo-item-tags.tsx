@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { ITodoItemTag } from '@/store/todoitem/todoitem.interface';
 import css from './todo-item-tags.module.scss';
 import TodoItemTag
@@ -11,11 +11,25 @@ export interface ITodoItemTagsProps {
 }
 
 const TodoItemTags: React.FC<ITodoItemTagsProps> = (props: ITodoItemTagsProps) => {
+    const onCloseHandler = useCallback<(tag: ITodoItemTag) => void>((tag) => {
+        console.log('Remove', tag.id, 'from', props.taskId);
+    }, [ props.taskId ]);
+
+    const onClickHandler = useCallback<(tag: ITodoItemTag) => void>((tag) => {
+        console.log('Open all tasks with tag: ', tag.id);
+    }, [ props.taskId ]);
+
     return (
         <div className={ css.container }>
             {
-                props.tags.map((tag) => {
-                    return <TodoItemTag closeIcon tag={ tag } key={ tag.id }/>;
+                props.tags.map((tag: ITodoItemTag) => {
+                    return <TodoItemTag
+                        closeIcon
+                        tag={ tag }
+                        key={ tag.id }
+                        onCloseHandler={ onCloseHandler }
+                        onClickHandler={ onClickHandler }
+                    />;
                 })
             }
         </div>

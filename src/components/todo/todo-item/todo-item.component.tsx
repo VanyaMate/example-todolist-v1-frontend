@@ -69,10 +69,12 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
                     <Checkbox hook={ status }/>
                     <Vertical offset={ 7 }>
                         <div className={ css.title }>{ item.title }</div>
-                        { item.description
-                          ? <div
-                              className={ css.desc }>{ getWordsWithEllipsis(item.description, 150) }</div>
-                          : '' }
+                        {
+                            item.description
+                            ? <div
+                                className={ css.desc }>{ getWordsWithEllipsis(item.description, 150) }</div>
+                            : ''
+                        }
                         <TodoItemSeparator>
                             { list ? <TodoItemList list={ list }/> : '' }
                             {
@@ -80,13 +82,13 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
                                 ? <ItemDate date={ item.completion_date }/>
                                 : ''
                             }
-                            {
-                                item.tags?.length
-                                ? <TodoItemTags taskId={ item.id }
-                                                tags={ item.tags }/>
-                                : ''
-                            }
                         </TodoItemSeparator>
+                        {
+                            item.tags?.length
+                            ? <TodoItemTags taskId={ item.id }
+                                            tags={ item.tags }/>
+                            : ''
+                        }
                     </Vertical>
                 </Row>
                 {
