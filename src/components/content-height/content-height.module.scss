@@ -1,7 +1,7 @@
 @import "src/styles/sizes";
 
 .container {
-    height: $contentHeight;
-    max-height: $contentHeight;
-    overflow: auto;
+    height     : $contentHeight;
+    max-height : $contentHeight;
+    // overflow   : auto;
 }

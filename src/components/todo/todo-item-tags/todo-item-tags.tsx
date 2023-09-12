@@ -8,6 +8,7 @@ import TodoItemTag
 export interface ITodoItemTagsProps {
     taskId: number;
     tags: ITodoItemTag[];
+    closeIcon?: boolean;
 }
 
 const TodoItemTags: React.FC<ITodoItemTagsProps> = (props: ITodoItemTagsProps) => {
@@ -24,7 +25,7 @@ const TodoItemTags: React.FC<ITodoItemTagsProps> = (props: ITodoItemTagsProps) =
             {
                 props.tags.map((tag: ITodoItemTag) => {
                     return <TodoItemTag
-                        closeIcon
+                        closeIcon={ props.closeIcon }
                         tag={ tag }
                         key={ tag.id }
                         onCloseHandler={ onCloseHandler }

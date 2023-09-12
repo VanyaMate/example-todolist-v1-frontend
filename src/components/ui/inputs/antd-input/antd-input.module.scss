@@ -3,7 +3,8 @@
 
 .container {
     :global {
-        .ant-input-affix-wrapper {
+        .ant-input-affix-wrapper,
+        input {
             transition    : .1s;
             padding       : $mediumOffset $mediumOffset $mediumOffset calc($mediumOffset + 5px);
             border-radius : $smallOffset;
@@ -27,21 +28,18 @@
 
     &.dark {
         :global {
-            .ant-input-affix-wrapper {
-                border        : none;
-                background    : $black_12 !important;
-                color         : $white;
+            .ant-input-affix-wrapper,
+            input {
+                border     : none;
+                background : $black_12 !important;
+                color      : $white;
 
-                input {
-                    background : $black_12 !important;
-                    color      : $white;
-
-                    &::placeholder {
-                        color: $black_32;
-                    }
+                &::placeholder {
+                    color : $black_32;
                 }
 
-                &-focused {
+                &-focused,
+                &:focus {
                     outline : 1px solid $mark_blue_4;
                 }
             }
@@ -54,21 +52,18 @@
 
     &.white {
         :global {
-            .ant-input-affix-wrapper {
-                border        : none;
-                background    : $white_8;
-                color         : $black;
+            .ant-input-affix-wrapper,
+            input {
+                border     : none;
+                background : $white_8;
+                color      : $black;
 
-                input {
-                    background : $white_8;
-                    color      : $black;
-
-                    &::placeholder {
-                        color: $white_-16;
-                    }
+                &::placeholder {
+                    color : $white_-16;
                 }
 
-                &-focused {
+                &-focused,
+                &:focus {
                     outline : 1px solid $mark_blue_4;
                 }
             }

@@ -46,6 +46,9 @@ import {
     useAntdCheckbox,
 } from '../../hooks/use-antd-checkbox.hook';
 import AntdCheckbox from '../ui/inputs/antd-checkbox/antd-checkbox';
+import TodoItemTags from '@/components/todo/todo-item-tags/todo-item-tags';
+import CreateTagForm from '@/components/create-tag-form/create-tag-form';
+import { Divider } from 'antd';
 
 
 export interface ITodoTaskRedactorProps {
@@ -96,8 +99,7 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
         defaultValue: props.task?.completion_date,
         disabled    : !miniCalendar.selectedDate || !setCompletionDateStatus.value,
     });
-
-    const tododata: ITodoItemCreate = useMemo(() => {
+    const tododata: ITodoItemCreate                 = useMemo(() => {
         const data: ITodoItemCreate = {
             title       : title.value,
             description : description.value,
@@ -153,7 +155,18 @@ const TodoTaskRedactor: React.FC<ITodoTaskRedactorProps> = (props) => {
             </Collapse>
             <Collapse label={ 'tags' }>
                 <Vertical offset={ 7 }>
-
+                    {
+                        props.task?.tags
+                        ? <TodoItemTags taskId={ props.task.id }
+                                        tags={ props.task.tags }
+                                        closeIcon
+                        />
+                        : ''
+                    }
+                    <Divider orientation={ 'center' }>
+                        Create new tag
+                    </Divider>
+                    <CreateTagForm/>
                 </Vertical>
             </Collapse>
             {
