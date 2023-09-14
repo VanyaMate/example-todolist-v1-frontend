@@ -49,6 +49,6 @@
 - ...
 
 ### Временный результат:
-![Светлая тема, list redactor](https://sun9-48.userapi.com/impg/C5f6D_FZcRJ4kYAiBKMNjqDC8d5qDkI8q1lZOQ/6HQl9rIVNhk.jpg?size=1290x976&quality=95&sign=7ab588eba512e224e1817c6516304634&type=album)
-![Темная тема, task redactor](https://sun9-71.userapi.com/impg/fy-w1yEsWIo4LhGlPUB8GScrp4YakDRw93ct-g/LKR5c6gfG4g.jpg?size=1270x976&quality=95&sign=bade99fcc3ca5ea039b0d0a7b32395d4&type=album)
-![Темная тема, completed list](https://sun1-55.userapi.com/impg/BiJL1SY7kJKFEz-FseV_uGtb2UajewxRDOB2pw/qGLb5dA1PUU.jpg?size=1258x971&quality=95&sign=ebc2498e2116144cda3cc08cf899febe&type=album)
+![Светлая тема, task redactor](https://sun9-53.userapi.com/impg/rmOM-kilIqfECWZMckc0qbpRIwwLYYe5VUuEOw/G7-ZAPfJP9A.jpg?size=1413x1001&quality=95&sign=66646cb8f9d2c8c7af50699568c0ccf4&type=album)
+![Темная тема, list redactor](https://sun9-69.userapi.com/impg/tEzkGLOs86KIYI9EwOnpX9kfIIHf_eZlufEvEw/HYMcC9Oguuc.jpg?size=1365x995&quality=95&sign=a4f5d27a4f871bc3a4abed2f7802cf72&type=album)
+![Темная тема, completed list](https://sun9-79.userapi.com/impg/vARpptGRIV_X8BRln5L14iDD1NNXA4yKwn10rQ/CYKcjjofCp8.jpg?size=1445x1001&quality=95&sign=fb9486567fa8591c56f4248ccf2c50ce&type=album)

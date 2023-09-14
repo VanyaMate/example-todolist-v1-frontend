@@ -38,10 +38,18 @@
                     color : $black_32;
                 }
 
+                input {
+                    background : $black_12 !important;
+                }
+
                 &-focused,
                 &:focus {
                     outline : 1px solid $mark_blue_4;
                 }
+            }
+
+            input:focus {
+                outline : none !important;
             }
 
             .ant-input-show-count-suffix {
@@ -66,6 +74,10 @@
                 &:focus {
                     outline : 1px solid $mark_blue_4;
                 }
+            }
+
+            input:focus {
+                outline : none !important;
             }
 
             .ant-input-show-count-suffix {
